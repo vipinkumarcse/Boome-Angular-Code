@@ -1,0 +1,7 @@
+<svg id="contact_location" xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61">
+  <rect id="Rectangle_2953" data-name="Rectangle 2953" width="61" height="61" rx="6" fill="#9ea5ff"/>
+  <g id="Icon_feather-map-pin" data-name="Icon feather-map-pin" transform="translate(19 16)">
+    <path id="Path_27113" data-name="Path 27113" d="M27.533,13.016c0,8.957-11.516,16.635-11.516,16.635S4.5,21.973,4.5,13.016a11.516,11.516,0,1,1,23.033,0Z" transform="translate(-4.5 -1.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_27114" data-name="Path 27114" d="M18.175,12.838A2.338,2.338,0,1,1,15.838,10.5,2.338,2.338,0,0,1,18.175,12.838Z" transform="translate(-4.321 -1.697)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

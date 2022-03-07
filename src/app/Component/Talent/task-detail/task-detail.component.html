@@ -1,0 +1,176 @@
+<app-talent-header></app-talent-header>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Your Task</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Task Details</h2>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="task-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-4">
+                <div class="cmn-card user-details mb-4 px-0 pb-0">
+                    <div class="content-box px-3">
+                        <div class="top-sec pb-2">
+                            <div class="img-wrap">
+                                <img [src]="bookingDetail?.booking?.bookedBy?.profileImage ? bookingDetail?.booking?.bookedBy?.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <h6>{{bookingDetail?.booking?.bookedBy?.city}}, {{bookingDetail?.booking?.bookedBy?.currentCountry}}</h6>
+                            <h3 class="fs20 text_color_light_blue fw_semibold text-center my-2">{{bookingDetail?.booking?.bookedBy?.firstName}} {{bookingDetail?.booking?.bookedBy?.lastName}}</h3>
+                            <div class="rating-sec d-flex align-items-start justify-content-center">
+                                <h5 class="fs28 fw_bold me-2">{{bookingDetail?.booking?.bookedBy?.averageRating.toFixed(1)}}/5</h5>
+                                <div class="right-sec">
+                                    <div class="star-sec d-flex align-items-center">
+                                        <!-- <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg"> -->
+                                        <ng-template #t let-fill="fill">
+                                            <span class="star" [class.full]="fill === 100">
+                                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                            </span>
+                                        </ng-template>
+
+                                        <ngb-rating [(rate)]="bookingDetail.booking.bookedBy.averageRating" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                        </ngb-rating>
+                                    </div>
+                                    <span class="fs14 fw_normal text_color_lightgrey mt-2 d-block">{{bookingDetail?.booking?.bookedBy?.allReviews?.length}} reviews</span>
+                                </div>
+                            </div>
+                            <!-- <button class="btn btn-primary mx-auto d-block my-3">Send Message</button> -->
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3" (click)="acceptAndRejectBookingRequest(bookingDetail.booking._id,'accepted')">Accept</button>
+                                <button class="btn btn-reject" (click)="acceptAndRejectBookingRequest(bookingDetail.booking._id,'rejected')">Reject</button>
+                            </div>
+                        </div>
+                        <h4 class="fs18 fw_semibold mt-3 mb-2">{{bookingDetail?.booking?.title}} </h4>
+                        <p class="fs16 fw_light mb-3">{{bookingDetail?.booking?.description}}</p>
+                        <!-- <p class="fs16 fw_light mb-3">Their textiles and designs range from Patola, Kalamkari, Banarasi, South silk, cotton, Lucknowi and many more, each that celebrates Indian-ness with an eclectic vibe</p> -->
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_calendar.svg"> Booking Date</span><span class="fs16 fw_normal text_color_lightgrey"> {{bookingDayName}} - {{bookingStartDate}}</span></h2>
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_clock.svg"> Booking Time</span><span class="fs16 fw_normal text_color_lightgrey">{{bookingStartTime}} - {{bookingEndTime}}</span></h2>
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_clock.svg"> Total Hours</span><span class="fs16 fw_normal text_color_lightgrey">{{(bookingDetail?.booking?.timeline?.totalHour).toFixed(2)}} Hrs</span></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8">
+                <div class="cmn-card rating-sec mb-4">
+                    <h2 class="border-bottom-heading fs22 fw_semibold text_color_blue d-flex align-items-center justify-content-between">Rating & Reviews <span class="fw_normal text_color_lightgrey">{{bookingDetail?.booking?.bookedBy?.allReviews?.length}}</span></h2>
+
+                    <div class="rating-itmbox d-flex align-items-start" *ngFor="let reviews of bookingDetail?.booking?.bookedBy?.allReviews">
+                        <div class="img-wrap">
+                            <img [src]="reviews.review.sender.profileImage ? reviews.review.sender.profileImage : 'assets/images/rating-user.svg'">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">{{reviews?.review?.sender?.fullName}}</h2>
+                                <div class="star-sec">
+                                    <ngb-rating [(rate)]="reviews.review.starCount" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                    </ngb-rating>
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1"> {{reviews?.review?.text}}</h3>
+                            <!-- <p class="fs12 fw_normal text_color_lightgrey m-0">{{moment(reviews?.review?.createdAt).format('MMM DD , YYYY')}} Yesterday 05:15 PM</p> -->
+                            <!-- <p class="fs12 fw_normal text_color_lightgrey m-0">{{moment(reviews?.review?.createdAt).format('MMM DD , YYYY h:mm A')}} </p> -->
+                            <p class="fs12 fw_normal text_color_lightgrey m-0"> {{timeAgo(reviews?.review?.createdAt)}} </p>
+
+
+                        </div>
+                    </div>
+
+                    <!-- <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

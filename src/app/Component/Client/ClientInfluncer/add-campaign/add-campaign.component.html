@@ -1,0 +1,199 @@
+<app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Campaign Hall</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Add Campaign</h2>
+            </div>
+            <!-- <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> 
+            </div> -->
+        </div>
+    </div>   
+</section>     
+
+<section class="add_campagin" *ngIf="step">
+    <div class="container">
+        <form [formGroup]="CreateCampaign">
+        <div class="row">
+           <div class="col-md-12 col-lg-4">
+                <div class="cmn-card px-3">
+                    <!-- <form [formGroup]="CreateCampaign"> -->
+                        <div class="upload-img-wrap position-relative d-flex align-items-center justify-content-center flex-column mb-3">
+                            <img *ngIf="!imgURL" src="assets/images/image-gallery.svg">
+                            <img *ngIf="imgURL" [src]="imgURL">
+                            <p *ngIf="!imgURL" class="mt-3 mb-0">Upload Campaign Image</p>
+                            <input type="file" (change)="selectImage($event)" >
+                        </div>
+                        <div class="">
+                            <label class="form-label">Choose Category</label>
+                            <select class="form-select form-select-lg" formControlName="category" >
+                                <option selected disabled>Select Category</option>
+                                <option *ngFor="let list of categorgiesList" [value]=list._id >{{list.name}}</option>
+                            </select>
+                        </div>
+                    <!-- </form> -->
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="cmn-card mb-4">
+                    <!-- <form> -->
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Campaign Title" formControlName="title" />
+                                <div *ngIf="!CreateCampaign.controls.title.valid &&
+                                CreateCampaign.controls.title.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.title.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea rows="5" class="form-control form-control-lg"
+                            placeholder="Additional comments..." formControlName="description"></textarea>
+                            <div *ngIf="!CreateCampaign.controls.description.valid &&
+                            CreateCampaign.controls.description.dirty" class="error_main_div">
+                                    <div *ngIf="CreateCampaign.controls.description.hasError('required')"
+                                        class="error_message">This field is Mandatory !</div>
+                                </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Enter your location" formControlName="completeAddress" />
+                                <div *ngIf="!CreateCampaign.controls.completeAddress.valid &&
+                                CreateCampaign.controls.completeAddress.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.completeAddress.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Country From</label>
+                            <select class="form-select form-select-lg" formControlName="country" (change)="getCitieswithcountries($event)">
+                                <option selected disabled>Select Where are you from</option>
+                                <option [value]="countryList"  *ngFor="let countryList of country">{{countryList}}</option>
+                                <div *ngIf="!CreateCampaign.controls.country.valid &&
+                                CreateCampaign.controls.country.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.country.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                              </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Select City</label>
+                            <select class="form-select form-select-lg" formControlName="city">
+                                <option selected disabled>Select Your City</option>
+                                <option *ngFor="let city of cities">{{city}}</option>
+                                <div *ngIf="!CreateCampaign.controls.city.valid &&
+                                CreateCampaign.controls.city.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.city.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                              </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Campaign Timeline</label>
+                            <!-- <input type="date" class="form-control form-control-lg"
+                                placeholder="Start Date"  formControlName="startDate" /> -->
+                                <input matInput class="form-control form-control-lg"  [min]="CreateCampaign.get('currentDate').value" placeholder="Start Date"  [matDatepicker]="picker" formControlName="startDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>   
+                                <div *ngIf="!CreateCampaign.controls.startDate.valid &&
+                                CreateCampaign.controls.startDate.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.startDate.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Campaign Timeline</label>
+                            <!-- <input type="date" class="form-control form-control-lg"
+                                placeholder="End Date"  formControlName="endDate" /> -->
+                                <input matInput class="form-control form-control-lg" disbaled [min]="CreateCampaign.get('currentDate').value" placeholder="End Date"  [matDatepicker]="picker1" formControlName="endDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>    
+                                <div *ngIf="!CreateCampaign.controls.endDate.valid &&
+                                CreateCampaign.controls.endDate.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.endDate.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+
+                        <!-- <div class="mb-3">
+                            <label class="form-label w-100">Choose One</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="select" id="Voucher"  formControlName="select">
+                                <label class="form-check-label" for="Voucher">Voucher</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="select" id="Price"  formControlName="select">
+                                <label class="form-check-label" for="Price">Price</label>
+                            </div>
+                        </div> -->
+
+                        <div class="mb-3">
+                            <label class="form-label w-100">Choose One</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="select" id="Voucher" formControlName="select" value="Voucher">
+    
+                                <label class="form-check-label" for="Voucher">Voucher</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="select" id="Price"  formControlName="select" value="Price">
+                                <label class="form-check-label" for="Price">Price</label>
+                              </div>
+                        </div>
+                        <div class="mb-3 d-flex align-items-center input-select">
+                            <select class="form-select form-select-lg no-shadow"  formControlName="paymentType">
+                                <option selected disabled>Select currency</option>
+                                <option value="AED">AED</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                            <input type="text" class="form-control form-control-lg border-start-0 no-shadow"
+                                placeholder="Enter Amount"  formControlName="amount" />
+                                <div *ngIf="!CreateCampaign.controls.amount.valid &&
+                                CreateCampaign.controls.amount.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.amount.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                        <ng-container *ngIf="CreateCampaign.get('select').value =='Voucher'">
+                        <div class="mb-3">
+                            <label class="form-label">Voucher title</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Campaign Title"  formControlName="voucherTitle" />
+                                <div *ngIf="!CreateCampaign.controls.voucherTitle.valid &&
+                                CreateCampaign.controls.voucherTitle.dirty" class="error_main_div">
+                                        <div *ngIf="CreateCampaign.controls.voucherTitle.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Voucher Description</label>
+                            <textarea rows="5" class="form-control form-control-lg"
+                            placeholder="Description here..."  formControlName="voucherDescription"></textarea>
+                            <div *ngIf="!CreateCampaign.controls.voucherDescription.valid &&
+                            CreateCampaign.controls.voucherDescription.dirty" class="error_main_div">
+                                    <div *ngIf="CreateCampaign.controls.voucherDescription.hasError('required')"
+                                        class="error_message">This field is Mandatory !</div>
+                                </div>
+                        </div>
+                        </ng-container>
+                        <button class="btn btn-primary" [disabled]="!CreateCampaign.valid" (click)="next()" >Next</button>
+                        <!-- [routerLink]="['/add-campaign-post']" -->
+                    <!-- </form> -->
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</section>
+<app-add-campaign-post *ngIf="!step"></app-add-campaign-post>
+<!-- step 2 -->
+

@@ -1,0 +1,205 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-side-social></app-left-side-social>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card card_top_shape">   
+                    <div class="card_container">
+                        <div class="card_circle_btn position-relative mb-3">
+                            <button class="btn p-0 position-absolute mx-auto" [routerLink]="['/signup']">
+                                <svg width="25" height="25" viewBox="0 0 30.241 30.241">
+                                    <g id="plus" transform="translate(1 1)">
+                                        <path id="Path_4106" data-name="Path 4106" d="M18,7.5V35.741"
+                                            transform="translate(-3.88 -7.5)" fill="none" stroke="#fff"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                        <path id="Path_4107" data-name="Path 4107" d="M7.5,18H35.741"
+                                            transform="translate(-7.5 -3.88)" fill="none" stroke="#fff"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                    </g>
+                                </svg>
+
+                            </button>
+                            <p class="m-0 fs20 text-center pt-4">Create new account</p>
+                        </div>
+                        <div class="card_header text-center px-4 py-2">
+                            <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Welcome Back <i
+                                    class="d-inline-flex ms-3"><img class="img-fluid"
+                                        src="assets/images/features_lines.svg" alt=""></i></h3>
+                            <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Fill the following detail to
+                                get into your account</h4>
+                        </div>
+
+                        <form action="" class="p-4" [formGroup]="loginForm">
+                            <div class="mb-3">
+                                <label class="form-label w-100">Login Via</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="check" id="Email" value="Email" formControlName="check" (change)="reset('Email')">
+        
+                                    <label class="form-check-label" for="Email">Email</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="check" id="Phone" value="Phone" formControlName="check" (change)="reset('Phone')">
+                                    <label class="form-check-label" for="Phone">Phone</label>
+                                  </div>
+                            </div>
+                            <ng-container *ngIf="loginForm.get('check').value =='Email'">
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control form-control-lg"
+                                    placeholder="Email id or phone number" formControlName="email" />
+                                    <div *ngIf="!loginForm.controls.email.valid &&
+                                    loginForm.controls.email.dirty" class="error_main_div">
+                                    <div *ngIf="loginForm.controls.email.hasError('invalidEmail') && loginForm.controls.email.value"
+                                    class="error_message">Invalid email !</div>
+                                                <div *ngIf="loginForm.controls.email.hasError('required')"
+                                                    class="error_message">This field is Mandatory !</div>
+                                            </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="loginForm.get('check').value =='Phone'">
+                            <div class="mb-3" >
+                                <label class="form-label">Phone Number</label>
+                                <input class="phoneinput form-control form-control-lg" type="tel" formControlName="email" ng2TelInput
+                                    [ng2TelInputOptions]="initialConfig" (countryChange)="onCountryChange1($event)"
+                                    />
+                                    <div *ngIf="!loginForm.controls.email.valid &&
+                                    loginForm.controls.email.dirty" class="error_main_div">
+                                                <div *ngIf="loginForm.controls.email.hasError('required')"
+                                                    class="error_message">This field is Mandatory !</div>
+                                            </div>
+                            </div>
+                            </ng-container>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-lg" placeholder="Enter Password"
+                                    formControlName="password" />
+                                    <div *ngIf="!loginForm.controls.password.valid &&
+                                    loginForm.controls.password.dirty" class="error_main_div">
+                                                <div *ngIf="loginForm.controls.password.hasError('required')"
+                                                    class="error_message">This field is Mandatory !</div>
+                                            </div>
+                            </div>
+                            <div class="mb-3 text-end">
+                                <a class="text_color_darkgrey" data-bs-toggle="modal"
+                                    data-bs-target="#forgotPass">Forgot Password?</a>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <!-- [routerLink]="['/campaign']" -->
+                                <!-- <button type="button" [routerLink]="['/talent']" class="btn btn-primary">Login</button> -->
+                                <button type="button" (click)="loginSubmit()"
+                                    class="btn btn-primary" [disabled]="!loginForm.valid" >Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="modal fade " id="forgotPass" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center pb-0">
+                <div class="pt-5">
+                    <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Forget Password<i
+                            class="d-inline-flex ms-3"><img class="img-fluid" src="images/features_lines.svg"
+                                alt=""></i></h3>
+                    <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Select which contact details should we
+                        use to reset your password:</h4>
+                </div>
+
+                <button type="button " class="btn-close " data-bs-dismiss="modal" aria-label="Close "></button>
+
+            </div>
+            <div class="modal-body p-4">
+                <form [formGroup]="forgotForm">
+                    <div class="mb-4">
+                        <label class="form-label">Via Email</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="Enter Email"
+                            formControlName="email" />
+                    </div>
+
+                    <div class="or_divide fs18 position-relative text-center text_color_light_blue my-3">
+                        Or
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Via Mobile No.</label>
+                        <input class="form-control form-control-lg" type="tel" formControlName="mobile" ng2TelInput
+                            [ng2TelInputOptions]="initialConfig" (hasError)="hasError($event)"
+                            (countryChange)="onCountryChange($event)" />
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="button" class="btn btn-primary" (click)="forgotSubmit()">Submit</button>
+                        <!-- data-bs-dismiss="modal" data-bs-toggle="modal"
+                        data-bs-target="#otp" -->
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="otp" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-5">
+                    <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Verification<i
+                            class="d-inline-flex ms-3"><img class="img-fluid" src="assets/images/features_lines.svg"
+                                alt=""></i></h3>
+                    <h4 class="fst-italic text_color_lightgrey fw_semibold fs20 mb-3">we have sent a confirmation code
+                        via email.</h4>
+                </div>
+
+                <button type="button " class="btn-close " data-bs-dismiss="modal" aria-label="Close "></button>
+
+            </div>
+            <div class="modal-body p-4">
+
+                <form method="" class="digit-group text-center" data-group-name="digits" data-autosubmit="false"
+                    autocomplete="off">
+                    <input class="change_bg" type="text" id="digit-1" name="digit-1" data-next="digit-2" />
+                    <input class="change_bg" type="text" id="digit-2" name="digit-2" data-next="digit-3"
+                        data-previous="digit-1" />
+                    <input class="change_bg" type="text" id="digit-3" name="digit-3" data-next="digit-4"
+                        data-previous="digit-2" />
+                    <input class="change_bg" type="text" id="digit-4" name="digit-4" data-next="digit-5"
+                        data-previous="digit-3" />
+
+                    <button type="button" class="btn btn-primary d-block mx-auto mt-5" data-bs-toggle="modal"
+                        data-bs-target="#otp_success">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- OTP Verify number success Modal -->
+<div class="modal fade " id="otp_success" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-2">
+                    <img class="img-fluid" src="assets/images/app/phone_graphic.svg" alt="">
+                </div>
+            </div>
+
+            <div class="modal-body p-4 text-center">
+                <h3 class="display-6 position-relative d-inline-flex text_color_pink">Awesome</h3>
+                <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Your phone number has been verified
+                    successfully.</h4>
+                <button type="button" class="btn btn-primary d-block mx-auto mt-4" data-bs-dismiss="modal"
+                    [routerLink]="['/campaign']">Continue</button>
+            </div>
+
+        </div>
+    </div>
+</div>

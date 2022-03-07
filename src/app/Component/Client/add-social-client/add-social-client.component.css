@@ -1,0 +1,21 @@
+.input-outer input{
+    padding-left: 60px;
+}
+.input-outer img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 15px;
+    width: 16px;
+}
+.input-outer::after {
+    content: '';
+    top: 7px;
+    bottom: 7px;
+    width: 1px;
+    background-color: #CCCCCC;
+    position: absolute;
+    left: 46px;
+    z-index: 1;
+}

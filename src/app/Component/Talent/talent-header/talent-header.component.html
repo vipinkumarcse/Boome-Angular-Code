@@ -1,0 +1,114 @@
+<header class="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" [routerLink]="['/talent']"><img src="assets/images/inner-logo.svg"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a [routerLink]="['/talent']" routerLinkActive="active" class="nav-link cstm fs18 fw_normal text-white" aria-current="page">Your Task</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/messages']" routerLinkActive="active" class="nav-link cstm fs18 fw_normal text-white">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/bookings']" routerLinkActive="active" class="nav-link cstm fs18 fw_normal text-white">Booking History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/review']" routerLinkActive="active" class="nav-link cstm fs18 fw_normal text-white">Reviews</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="notification-outer d-flex align-items-center justify-content-center position-relative">
+                                    <img src="assets/images/bell.svg">
+                                    <span class="status"></span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu notification" aria-labelledby="navbarDropdown">
+                                <h3 class="fs20 fw_semibold text_color_darkgrey">Notifications <span>{{notificationsDetail.length}}</span></h3>
+
+                                <div class="item-sec d-flex align-items-start" *ngFor="let notification of notificationsDetail">
+                                    <div class="img-wrap">
+                                        <img [src]="notification.body.senderImage ? notification.body.senderImage : 'assets/images/header_user.svg'">
+                                    </div>
+                                    <div class="content-sec">
+                                        <!-- <h4 class="fs18 fw_normal text_color_lightgrey"> <span class="fw_semibold text_color_darkgrey">{{notification.title}}</span> has accept your proposal.</h4> -->
+                                        <h4 class="fs18 fw_normal text_color_lightgrey"> {{notification.title}} </h4>
+                                        <p class="fs14 fw_normal text_color_lightgrey">{{timeAgo(notification.createdAt)}}</p>
+                                    </div>
+                                </div>
+                                <!-- <div class="item-sec d-flex align-items-start">
+                                    <div class="img-wrap">
+                                        <img src="assets/images/drop_check.svg">
+                                    </div>
+                                    <div class="content-sec">
+                                        <h4 class="fs18 fw_normal text_color_lightgrey"> <span class="fw_semibold text_color_darkgrey">Albert Eintein</span> has accept your proposal.
+                                        </h4>
+                                        <p class="fs14 fw_normal text_color_lightgrey">12 hrs ago <span class="ms-4">12:30PM</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="item-sec d-flex align-items-start">
+                                    <div class="img-wrap">
+                                        <img src="assets/images/header_user.svg">
+                                    </div>
+                                    <div class="content-sec">
+                                        <h4 class="fs18 fw_normal text_color_lightgrey"> <span class="fw_semibold text_color_darkgrey">Albert Eintein</span> has accept your proposal.
+                                        </h4>
+                                        <p class="fs14 fw_normal text_color_lightgrey">12 hrs ago</p>
+                                    </div>
+                                </div> -->
+
+                                <a href="" class="btn btn-light-pink rounded-0 w-100">View All</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link usertogl dropdown-toggle d-flex align-items-center ps-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="img-wrap">
+                                    <img class="img-fluid w-100" *ngIf="!detail" src="assets/images/header_user.svg">
+                                    <img class="img-fluid w-100" *ngIf="detail?.user?.profileImage" [src]="detail.user.profileImage">
+                                </div>
+                                <div class="content-sec">
+                                    <h5 class="fs18 fw_normal text-white m-0">{{detail?.user?.firstName}} {{detail?.user?.lastName}}</h5>
+                                    <p class="fs14 fw_normal text-white m-0">{{detail?.user?.email}}</p>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a [routerLink]="['/talent-profile']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_user.svg"></span> My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/talent-settings']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_setting.svg"></span> Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['/talent-privacy-policy']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_privacy.svg"></span> Privacy Policies
+                                    </a>
+                                </li>
+                                <li>
+                                    <!-- <a [routerLink]="['/']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"> -->
+                                        <a (click) = "logout()" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span class="icn-outer d-flex align-items-center justify-content-center">
+                                            <img src="assets/images/drop_logout.svg">
+                                        </span> 
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

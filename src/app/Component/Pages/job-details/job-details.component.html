@@ -1,0 +1,368 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>
+<section class="job-detial-sec">
+    <div class="container">
+        <div class="row">
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-job cmn-card mb-4 p-0 d-inline-block w-100">
+                    <div class="top-sec position-relative">
+                        <div class="coverimg-wrap">
+                            <!-- <img src="assets/images/profile_coverimg.svg"> -->
+                            <img  [src]="detailCampaign?.campaignImage">
+                        </div>
+                        <div class="userimg-wrap"> 
+                            <!-- <img src="assets/images/userimage.svg">     -->
+                            <img  [src]="detailCampaign?.createdBy?.profileImage">
+                        </div>    
+                    </div>    
+                    <h2 class="text-center fs20 fw_semibold text_color_light_blue mt-3 mb-1">
+                        <!-- Josua Csizmadia -->
+                        {{ detailCampaign?.createdBy?.fullName }}
+
+                    </h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px"
+                            class="me-2" src="assets/images/post_location.svg"><span>
+                                <!-- California 95023,USA -->
+                            {{ detailCampaign?.address?.city }} {{ detailCampaign?.address?.country }}
+                        </span></p>
+                    <h4 class="fs18 fw_semibold text-center mt-4 mb-0">Social Media</h4>
+
+                    <div class="social-links d-flex align-items-center justify-content-center">
+                        <a><img src="assets/images/facebook_jd.svg" (click) = "goFacebook()" ></a>
+                        <a><img src="assets/images/insta_jd.svg" (click) = "goInsta()"></a>
+                        <a><img src="assets/images/youtube_jd.svg" (click) = "goYoutube()"></a>
+                        <a><img src="assets/images/tiktok_jd.svg" (click) = "goTiktok()"></a>
+                    </div>
+
+                    <div class="timeline-box">
+                        <h4 class="text_color_blue fs20 fw_semibold text-center">Timeline</h4>
+                        <div class="date-sec d-flex align-items-center justify-content-center">
+                            <h5 class="fs14 fw_semibold m-0">
+                                {{ detailCampaign?.timeline?.startDate | date:'MMMM dd , yyyy'}}
+                                <!-- June 17, 2021 -->
+                            </h5>
+                            <svg class="mx-3" xmlns="http://www.w3.org/2000/svg" width="26" height="4"
+                                viewBox="0 0 26 4">
+                                <line id="Line_26" data-name="Line 26" x2="26" transform="translate(0 2)" fill="none"
+                                    stroke="#89cff0" stroke-width="4" />
+                            </svg>
+                            <h5 class="fs14 fw_semibold m-0">
+                                {{ detailCampaign?.timeline?.endDate | date:'MMMM dd , yyyy ' }}
+                                <!-- July 20, 2021 -->
+                            </h5>
+                        </div>
+                    </div>
+
+                    <button *ngIf="type == 'completed'" type="button" class="btn btn-primary mx-auto d-block mt-2 mb-4"
+                        data-bs-toggle="modal" data-bs-target="#add_review">Rate & Review client</button>
+
+                    <h5 *ngIf="type == 'ongoing'" class="text-white status ongoing fs16 fw_normal mx-auto mt-2 mb-4">
+                        Ongoing</h5>
+                </div>
+
+                <!-- Reward box -->
+                <div class="cmn-card mb-4 p-3" *ngIf = " detailCampaign?.paymentType == 'voucher' ">
+                    <h3 class="fs18 fw_semibold mb-3">Reward</h3>
+                    <div class="voucher d-flex align-items-center justify-content-between mb-3">
+                        <div class="content-sec">
+                            <h4 class="fs20 fw_semibold text_color_blue m-0">
+                                <!-- Domino's gift card  -->
+                                {{  detailCampaign?.voucherTitle }}
+                                <!-- <br>
+                                voucher -->
+                            </h4>
+                            <p class="fs14 fw_normal my-2">Expires</p>
+                            <h5 class="fs18 fw_semibold m-0">04 July 2021</h5>
+                        </div>
+                        <div class="price-sec">
+                            <p class="fs16 text-center text-uppercase">value</p>
+                            <h2 class="fs34 fw_bold text-center m-0">
+                                <!-- $150 -->
+                                {{  detailCampaign?.currencyType }} {{  detailCampaign?.amount }}
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p class="mb-3 fs16 fw_light">
+                        {{  detailCampaign?.voucherDescription }}
+                        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
+                        cursus purus, interdum dapibus sem. -->
+                    </p>
+                    <!-- <p class="mb-0 fs16 fw_light">Donec maximus turpis eget mi pretium ultricies. Phasellus eget neque
+                        ac tellus pellentesque cursus. Morbi elementum vehicula nibh eget interdum.</p> -->
+                </div>
+
+                <div class="review-job cmn-card mb-4 d-inline-block" *ngIf="type == 'review'">
+                    <h2 class="fs22 fw_demibold text_color_blue">Client's Rating & Review</h2>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h3 class="fs18 fw_semibold m-0">Eleanor Rose</h3>
+                        <ul class="m-0 p-0 list-unstyled d-flex align-items-center justify-content-between">
+                            <li><img src="assets/images/yellow_star.svg"></li>
+                            <li><img src="assets/images/yellow_star.svg"></li>
+                            <li><img src="assets/images/yellow_star.svg"></li>
+                            <li><img src="assets/images/gray_star.svg"></li>
+                            <li><img src="assets/images/gray_star.svg"></li>
+                        </ul>
+                    </div>
+                    <p class="fs16 text_color_lightgrey m-0">
+                        Sed non euismod enim, vitae sagittis sem. Nunc massa nunc,
+                        gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut
+                        dapibus tristique.
+                     </p>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="job-detail cmn-card mb-4">
+                    <div class="head-sec d-flex align-items-center justify-content-between">
+                        <h2 class="fs24 text_color_blue fw_semibold mb-0">{{detailCampaign?.title}}</h2>
+                        <!-- <button class="btn bookmarkbtn bookmarked">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                viewBox="0 0 15.322 23.144">
+                                <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                    d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                    fill="#dcdcdc" />
+                            </svg>
+                        </button> -->
+                    </div>
+                    <span *ngIf = " detailCampaign?.paymentType == 'cash' ">
+                    <h3 class="fs18 fw_semibold mb-2 mt-4">Price </h3>
+                    <p class="mb-4 fs16 fw_light"> {{detailCampaign?.currencyType}} {{detailCampaign?.amount}} </p>
+                    </span>
+
+                    <h3 class="fs18 fw_semibold mb-2 mt-4">Description</h3>
+                    <p class="mb-4 fs16 fw_light">{{detailCampaign?.description}}</p>
+
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
+                        data-bs-interval="false" *ngFor="let post of posts">
+                        <div class="carousel-indicators" *ngIf="!posts?.length > 1 ">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="post-media mb-3">
+                                    <div class="img-wrap">
+                                        <!-- <img class="img-fluid object-cover" src="assets/images/jobimg.png"> -->
+                                      <span *ngIf="post?.type == 'image' ">  <img class="object-cover" [src]="post?.file"> </span> 
+                                      <span *ngIf="post?.type == 'video' ">  <video controls >
+                                        <source [src]="post?.file">
+                                    </video> 
+                                </span>
+
+                                    </div>
+                                    <a
+                                        class="position-relative d-flex align-items-center justify-content-center ms-auto">
+                                      <span *ngIf = " campaignDetail?.campaignFor == 'Instagram' ">  <img src="assets/images/insta_jd1.svg"> </span>
+                                      <span *ngIf = " campaignDetail?.campaignFor == 'Facebook' ">  <img src="assets/images/facebook_jd.svg"> </span>
+                                      <span *ngIf = " campaignDetail?.campaignFor == 'Youtube' ">  <img src="assets/images/youtube_jd.svg"> </span>
+                                      <span *ngIf = " campaignDetail?.campaignFor == 'TikTok' ">  <img src="assets/images/tiktok_jd.svg"> </span>
+                                        </a>
+                                    
+                                </div>
+                                <p class="mb-4 fs16 fw_light">
+                                    {{post?.description}}
+                                    <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. -->
+                                    <!-- Etiam
+                                    a cursus purus, interdum dapibus sem. Donec maximus turpis eget mi pretium
+                                    ultricies.
+                                    Phasellus eget neque ac tellus pellentesque cursus. -->
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">#hashtags</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue" *ngFor="let hashtag of post?.hashtags">
+                                    <span>
+                                        <!-- #WantAnR8 -->
+                                        {{ hashtag }}
+                                    </span> 
+                                    <!-- <span>#SpeedGoals</span> <span>#LetsDoLunch</span> -->
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">@mentions</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue" *ngFor="let mention of post?.mentions">
+                                    <span class="me-3">
+                                        {{ mention }}
+                                        <!-- @MakeAWish -->
+                                    </span> 
+                                    <!-- <span>@DisneyParks</span> -->
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">Guidelines</h3>
+                                <ul class="guidelines mb-0 p-0 list-unstyled">
+                                    <li class="fs16 fw_light">
+                                        {{post?.guidelines}}
+                                        <!-- Use a clear, direct style throughout the description -->
+                                    </li>
+                                    <!-- <li class="fs16 fw_light">Avoid the narrative form</li>
+                                    <li class="fs16 fw_light">Begin each sentence with an action verb, using parallel
+                                        structure</li>
+                                    <li class="fs16 fw_light">Focus on essential activities</li>
+                                    <li class="fs16 fw_light">Use factual, non-technical language whenever</li> -->
+                                </ul>
+                            </div>
+                            <!-- <div class="carousel-item">
+                                <div class="post-media mb-3">
+                                    <div class="img-wrap">
+                                        <img class="img-fluid object-cover" src="assets/images/jobimg.png">
+                                    </div>
+                                    <a
+                                        class="position-relative d-flex align-items-center justify-content-center ms-auto"><img
+                                            src="assets/images/insta_jd1.svg"></a>
+                                </div>
+                                <p class="mb-4 fs16 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Etiam
+                                    a cursus purus, interdum dapibus sem. Donec maximus turpis eget mi pretium
+                                    ultricies.
+                                    Phasellus eget neque ac tellus pellentesque cursus.</p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">#hashtags</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue">
+                                    <span>#WantAnR8</span> <span>#SpeedGoals</span> <span>#LetsDoLunch</span>
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">@mentions</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue">
+                                    <span class="me-3">@MakeAWish</span> <span>@DisneyParks</span>
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">Guidelines</h3>
+                                <ul class="guidelines mb-0 p-0 list-unstyled">
+                                    <li class="fs16 fw_light">Use a clear, direct style throughout the description</li>
+                                    <li class="fs16 fw_light">Avoid the narrative form</li>
+                                    <li class="fs16 fw_light">Begin each sentence with an action verb, using parallel
+                                        structure</li>
+                                    <li class="fs16 fw_light">Focus on essential activities</li>
+                                    <li class="fs16 fw_light">Use factual, non-technical language whenever</li>
+                                </ul>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="post-media mb-3">
+                                    <div class="img-wrap">
+                                        <img class="img-fluid object-cover" src="assets/images/jobimg.png">
+                                    </div>
+                                    <a
+                                        class="position-relative d-flex align-items-center justify-content-center ms-auto"><img
+                                            src="assets/images/insta_jd1.svg"></a>
+                                </div>
+                                <p class="mb-4 fs16 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Etiam
+                                    a cursus purus, interdum dapibus sem. Donec maximus turpis eget mi pretium
+                                    ultricies.
+                                    Phasellus eget neque ac tellus pellentesque cursus.</p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">#hashtags</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue">
+                                    <span>#WantAnR8</span> <span>#SpeedGoals</span> <span>#LetsDoLunch</span>
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">@mentions</h3>
+                                <p class="mb-4 fs16 fw_light text_color_light_blue">
+                                    <span class="me-3">@MakeAWish</span> <span>@DisneyParks</span>
+                                </p>
+
+                                <h3 class="fs18 fw_semibold mb-2 mt-4">Guidelines</h3>
+                                <ul class="guidelines mb-0 p-0 list-unstyled">
+                                    <li class="fs16 fw_light">Use a clear, direct style throughout the description</li>
+                                    <li class="fs16 fw_light">Avoid the narrative form</li>
+                                    <li class="fs16 fw_light">Begin each sentence with an action verb, using parallel
+                                        structure</li>
+                                    <li class="fs16 fw_light">Focus on essential activities</li>
+                                    <li class="fs16 fw_light">Use factual, non-technical language whenever</li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <img src="assets/images/slider-left-arrow.png">
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <img src="assets/images/slider-right-arrow.png">
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <span *ngIf="isApplied == 'false' &&  type == 'detail' "> 
+                        <button  type="button" class="btn btn-primary mx-auto d-block mt-4"
+                           data-bs-toggle="modal"  (click) = "applyCampaign()">Apply
+                        </button>
+                    </span> 
+
+                    <span *ngIf="isApplied == 'true' &&  type == 'detail' "> 
+                        <span class="applied mx-auto mt-4" >
+                            Applied
+                        </span>
+                    </span> 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="modal fade " id="job_apply_success" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-2">
+                    <img class="img-fluid" src="assets/images/user_graphic.svg" alt="">
+                </div>
+            </div>
+
+            <div class="modal-body p-4 text-center">
+                <h3 class="fs30 position-relative d-inline-flex text_color_pink">Awesome</h3>
+                <h4 class="text_color_lightgrey fw_normal fs20" style="color: #888888;">Your job for <span
+                        class="fw_semibold" style="color: #474747;">Hollister California</span> has been applied
+                    successfully.</h4>
+                <button type="button" class="btn btn-primary d-block mx-auto mt-4"
+                    data-bs-dismiss="modal" [routerLink]="['/campaign']" >Continue</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade " id="add_review" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Rate Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="img-wrap mx-auto">
+                    <img src="assets/images/profile1.png">
+                </div>
+                <h2 class="fs22 fw_semibold text-center mt-3 mb-2">Bobby Norton </h2>
+                <h3 class="fs18 fw_normal text_color_lightgrey text-center mb-4">How would you rate the
+                    overall<br>experience of your job?</h3>
+                <form>
+                    <ul class="list-unstyled d-flex p-0 align-items-center justify-content-center star-sec">
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li>
+                    </ul>
+                    <div class="mb-3">
+                        <label class="form-label">Leave the Comment</label>
+                        <textarea rows="4" class="form-control form-control-lg"
+                            placeholder="Additional comments..."></textarea>
+                    </div>
+                </form>
+                <a role="button" [routerLink]="['/job-detail']" [queryParams]="{ type: 'review' }"
+                    class="btn btn-primary d-block mx-auto mt-4 text-decoration-none">Add</a>
+                <a href="" class="d-block mx-auto text_color_pink fs16 later">Review Later</a>
+            </div>
+
+        </div>
+    </div>
+</div>

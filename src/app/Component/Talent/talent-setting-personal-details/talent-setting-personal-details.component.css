@@ -1,0 +1,27 @@
+.video-wrap{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.video-wrap .btn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.upload-video{
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    overflow: hidden;
+}
+.upload-video input{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+}

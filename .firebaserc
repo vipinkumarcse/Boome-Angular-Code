@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "boome-influencer": {
+      "hosting": {
+        "BooMe": [
+          "boome-influencer"
+        ]
+      }
+    }
+  }
+}

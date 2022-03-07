@@ -1,0 +1,10 @@
+<svg id="tag-cross" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+  <g id="Ellipse_191" data-name="Ellipse 191" fill="#89cff0" stroke="#fff" stroke-width="1.5">
+    <circle cx="8.5" cy="8.5" r="8.5" stroke="none"/>
+    <circle cx="8.5" cy="8.5" r="7.75" fill="none"/>
+  </g>
+  <g id="close" transform="translate(6 6)">
+    <line id="Line_31" data-name="Line 31" x2="5" y2="5" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+    <line id="Line_32" data-name="Line 32" x2="5" y2="5" transform="translate(5) rotate(90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+  </g>
+</svg>

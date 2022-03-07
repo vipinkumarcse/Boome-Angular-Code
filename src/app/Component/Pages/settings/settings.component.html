@@ -1,0 +1,320 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="account-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Account Details</h2>
+                    <form action="" class="pb-0" [formGroup]="ProfileData">
+                        <div class="mb-3">
+                            <div class="profile_img text-center">
+                                <div class="profile_img_container position-relative d-inline-block">
+                                    <div class="profile_container d-flex align-items-center justify-content-center">
+                                        <img *ngIf="!imageNAME" src="assets/images/app/user_dummy.svg" alt="">
+                                        <img *ngIf="imageNAME" [src]="imageNAME" alt="">
+                                    </div>
+                                    <div class="profile_camera position-absolute">
+                                        <img class="img-fluid" src="assets/images/app/camera_icon.svg" alt="" />
+                                        <input type="file" (change)="selectImage($event)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="First Name" formControlName="firstName" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="Last Name" formControlName="lastName" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control form-control-lg" placeholder="Email" formControlName="email" />
+                        </div>
+
+                      
+
+                        <div class="mb-3">
+                            <div class="mobno-label d-flex align-items-center justify-content-between">
+                                <label class="form-label">Mobile No.</label>
+                                <div class="btns pb-2">
+                                    <button *ngIf="!show1" (click)="onClick()" class="btn no-shadow text_color_pink px-0 ms-3">Change Number</button>
+                                    <button *ngIf="show" (click) = "verifyNumber()" class="btn btn-pink no-shadow">Verify</button>
+                                    <button *ngIf="show" (click)="onClick1()" class="btn no-shadow text_color_pink px-0 ms-3">Cancel</button>
+                                </div>
+                            </div>
+                            <input class="phoneinput form-control form-control-lg" type="tel" formControlName="mobile" ng2TelInput
+                            [ng2TelInputOptions]="initialConfig" (countryChange)="onCountryChange1($event)" (intlTelInputObject)="telInputObject($event)"
+                            />
+                            <!-- <input type="number" class="form-control form-control-lg"
+                                placeholder="Enter Mobile No." formControlName="mobile" /> -->
+                        </div>
+
+
+                       
+                        <!-- <div class="mb-3">
+                            <label class="form-label">Mobile No.</label>
+                            <button class="btn no-shadow text_color_pink px-0 " (click)="onClick()" *ngIf="!show1" >Change</button>                      
+                                  <input class="phoneinput form-control form-control-lg" type="tel" formControlName="mobile" ng2TelInput
+                            (intlTelInputObject)="telInputObject($event)"
+                            [ng2TelInputOptions]="initialConfig" (hasError)="hasError($event)"
+                            (countryChange)="onCountryChange($event)" />
+                            <div *ngIf="!ProfileData.controls.mobile.valid &&
+                            ProfileData.controls.mobile.dirty" class="error_main_div">
+                                    <div *ngIf="ProfileData.controls.mobile.hasError('required')"
+                                        class="error_message">This field is Mandatory !</div>
+                                </div>
+                                <div class="btns pb-2" >
+                                    <button class="btn btn-pink no-shadow" *ngIf="show" (click) = "verifyNumber()">Verify</button>
+                                    <button class="btn no-shadow text_color_pink px-0 ms-3" *ngIf="show" (click)="onClick1()">Cancel</button>
+                                    <div class="btn verified no-shadow text_color_pink"><img class="me-1" width="19" src="assets/images/verified_user.svg">Verified</div>
+                                </div>
+                              
+
+                        </div> -->
+
+                        <!-- <div class="mb-3">
+                            <div class="mobno-label d-flex align-items-center justify-content-between">
+                                <label class="form-label">Mobile No.</label>
+                           
+                            </div>
+                            <input type="tel" class="form-control form-control-lg"
+                                placeholder="Enter Mobile No." formControlName="mobile" />
+                        </div> -->
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            <!-- <input type="text" class="form-control form-control-lg" placeholder="dd-mm-yyyy" formControlName="dateOfBirth"/> -->
+                            <input matInput class="form-control form-control-lg" [max]="ProfileData.get('currentDate').value" placeholder="dd-mm-yy" [matDatepicker]="picker" formControlName="dateOfBirth">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bio</label>
+                            <textarea rows="4" maxlength="200" class="form-control form-control-lg" placeholder="Bio" formControlName="bio"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Select Your Interests</label>
+
+                            <div class="interest_container d-flex flex-wrap">
+                                <!-- image checkbox -->
+                                <div class="imgcheckbox_container position-relative" *ngFor="let category of list;">
+                                    <input class="position-absolute invisible" type="checkbox" [value]="category._id" [checked]="category.checked" formControlName="categoryselect" id="{{category._id}}" (click)="select($event, category._id)" />
+                                    <label for="{{category._id}}" class="img_overlay text-center"> 
+                                        <img class="img-fluid" [src]="category.icon">
+                                       <span class="mt-2 d-inline-block">{{category.name}}</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="{{category._id}}">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="culture" />
+                                    <label for="culture" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Culture.jpg">
+                                       <span class="mt-2 d-inline-block">Culture</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="culture">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                             
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="cars" />
+                                    <label for="cars" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Cars.jpg">
+                                       <span class="mt-2 d-inline-block">Culture</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="cars">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                             
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="fnd" />
+                                    <label for="fnd" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Food-Drinks.jpg">
+                                       <span class="mt-2 d-inline-block">Food & Drinks</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="fnd">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                           
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="travel" />
+                                    <label for="travel" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Travel.jpg">
+                                       <span class="mt-2 d-inline-block">Travel</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="travel">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                        
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="art" />
+                                    <label for="art" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Art.jpg">
+                                       <span class="mt-2 d-inline-block">Art</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="art">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                         
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="books" />
+                                    <label for="books" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Books.jpg">
+                                       <span class="mt-2 d-inline-block">Books</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="books">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                    
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="beauty" />
+                                    <label for="beauty" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Beauty.jpg">
+                                       <span class="mt-2 d-inline-block">Beauty</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="beauty">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                             
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="technology" />
+                                    <label for="technology" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Technology.jpg">
+                                       <span class="mt-2 d-inline-block">Technology</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="technology">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                    
+                                 <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="music" />
+                                    <label for="music" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Music.jpg">
+                                       <span class="mt-2 d-inline-block">Music</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="music">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+               
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="sports" />
+                                    <label for="sports" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Sports.jpg">
+                                       <span class="mt-2 d-inline-block">Sports</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="sports">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div>
+
+                             
+                                <div class="imgcheckbox_container position-relative">
+                                    <input class="position-absolute invisible" type="checkbox" id="gaming" />
+                                    <label for="gaming" class="img_overlay text-center"> 
+                                        <img class="img-fluid" src="assets/images/app/category-images/Gaming.jpg">
+                                       <span class="mt-2 d-inline-block">Gaming</span> 
+                                    </label>
+                                    <div class="interest_check" aria-label="gaming">
+                                        <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                    </div>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+                        <div class="mt-4 position-relative  d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" (click)="updateData()">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade " id="otp" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-5">
+                    <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Verification<i
+                            class="d-inline-flex ms-3"><img class="img-fluid"
+                                src="assets/images/features_lines.svg" alt=""></i></h3>
+                    <h4 class="fst-italic text_color_lightgrey fw_semibold fs20 mb-3">we have sent a confirmation code
+                        via email.</h4>
+                </div>
+
+                <button type="button " class="btn-close " data-bs-dismiss="modal" aria-label="Close "></button>
+
+            </div>
+            <div class="modal-body p-4">
+
+                <form method="" class="digit-group text-center" data-group-name="digits" data-autosubmit="false"
+                    autocomplete="off" [formGroup]="otpform">
+                    <input class="change_bg" type="text" id="digit-1" name="digit-1" data-next="digit-2" formControlName="one" />
+                    <input class="change_bg" type="text" id="digit-2" name="digit-2" data-next="digit-3"
+                        data-previous="digit-1" formControlName="two" />
+                    <input class="change_bg" type="text" id="digit-3" name="digit-3" data-next="digit-4"
+                        data-previous="digit-2" formControlName="three" />
+                    <input class="change_bg" type="text" id="digit-4" name="digit-4" data-next="digit-5"
+                        data-previous="digit-3" formControlName="four" />
+                        <!-- <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:4}"></ng-otp-input> -->
+
+                    <button type="button" class="btn btn-primary d-block mx-auto mt-5"  (click)="otpsubmit()">Submit</button>
+                    <!-- data-bs-toggle="modal"
+                        data-bs-target="#otp_success" -->
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- OTP Verify number success Modal -->
+<div class="modal fade " id="otp_success" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-2">
+                    <img class="img-fluid" src="assets/images/app/phone_graphic.svg" alt="">
+                </div>
+            </div>
+
+            <div class="modal-body p-4 text-center">
+                <h3 class="display-6 position-relative d-inline-flex text_color_pink">Awesome</h3>
+                <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Your phone number has been verified
+                    successfully.</h4>
+                <button type="button" class="btn btn-primary d-block mx-auto mt-4"
+                (click)="redirect()">Continue</button>
+            </div>
+
+        </div>
+    </div>
+</div>

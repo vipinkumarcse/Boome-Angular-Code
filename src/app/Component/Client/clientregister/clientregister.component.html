@@ -1,0 +1,207 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-social-client></app-left-social-client>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <div class="position-relative">
+                        <div class="card_header text-center px-4 pt-4 pb-0">
+                            <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Register<i
+                                    class="d-inline-flex ms-3"><img class="img-fluid"
+                                        src="assets/images/features_lines.svg" alt=""></i></h3>
+                            <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Fill the following detail
+                                to get into your account</h4>
+                        </div>
+                        <div class="form_container">
+                            <div class="vcScroll" id="vcScroll">
+                                <form action="" class="pb-4 pe-3 ps-1" [formGroup]="SignupData">
+                                    <div class="mb-3">
+                                        <div class="profile_img text-center">
+                                            <div class="profile_img_container position-relative d-inline-block">
+                                                <div
+                                                    class="profile_container d-flex align-items-center justify-content-center">
+                                                    <img *ngIf="!imgURL" src="assets/images/app/user_dummy.svg" alt="">
+                                                    <img class="userImg" *ngIf="imgURL" [src]="imgURL" alt="" />
+                                                </div>
+                                                <div class="profile_camera position-absolute">
+                                                    <img class="img-fluid"
+                                                        src="assets/images/app/camera_icon.svg" alt="" />
+                                                    <input type="file" (change)="selectImage($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="Enter First Name"  formControlName="firstName"  />
+                                                <div *ngIf="!SignupData.controls.firstName.valid &&
+                                                SignupData.controls.firstName.dirty" class="error_main_div">
+                                                        <div *ngIf="SignupData.controls.firstName.hasError('required')"
+                                                            class="error_message">This field is Mandatory !</div>
+                                                    </div>
+                                        </div>
+                                        <div class="mb-3 col-6">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="Enter Last Name" formControlName="lastName"  />
+                                                <div *ngIf="!SignupData.controls.lastName.valid &&
+                                                SignupData.controls.lastName.dirty" class="error_main_div">
+                                                        <div *ngIf="SignupData.controls.lastName.hasError('required')"
+                                                            class="error_message">This field is Mandatory !</div>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mb-3">
+                                        <label class="form-label">Mobile No.</label>
+                                        <input type="number" class="form-control form-control-lg"
+                                            placeholder="Enter Mobile No." />
+                                    </div> -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Mobile No.</label>
+                                        <input class="phoneinput form-control form-control-lg" type="tel" formControlName="mobile" ng2TelInput
+                                        [ng2TelInputOptions]="initialConfig" (hasError)="hasError($event)"
+                                        (countryChange)="onCountryChange($event)" />
+                                        <div *ngIf="!SignupData.controls.mobile.valid &&
+                                        SignupData.controls.mobile.dirty" class="error_main_div">
+                                                <div *ngIf="SignupData.controls.mobile.hasError('required')"
+                                                    class="error_message">This field is Mandatory !</div>
+                                            </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gender</label>
+                                        <div class="d-flex align-items-center">
+                                            <div class="radio-itm">
+                                                <input type="radio" name="gender" value="male" formControlName="gender">
+                                                <label class="radio-label"><img src="assets/images/man.svg">Male</label>
+                                            </div>
+                                            <div class="radio-itm">
+                                                <input type="radio" name="gender" value="female" formControlName="gender">
+                                                <label class="radio-label"><img src="assets/images/woman.svg">Female</label>
+                                            </div>
+                                            <div class="radio-itm">
+                                                <input type="radio" name="gender" value="other" formControlName="gender">
+                                                <label class="radio-label"><img src="assets/images/bigender.svg">Other</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="mb-3">
+                                        <label class="form-label">Country From</label>
+                                        <select class="form-select form-select-lg" formControlName="fromCountry">
+                                            <option selected disabled>Select Where are you from</option>
+                                            <option [value]="countryList"  *ngFor="let countryList of country">{{countryList}}</option>
+                                            <div *ngIf="!SignupData.controls.fromCountry.valid &&
+                                            SignupData.controls.fromCountry.dirty" class="error_main_div">
+                                                    <div *ngIf="SignupData.controls.fromCountry.hasError('required')"
+                                                        class="error_message">This field is Mandatory !</div>
+                                                </div>
+                                          </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Country living in</label>
+                                        <select class="form-select form-select-lg" formControlName="currentCountry" (change)="getCitieswithcountries($event)">
+                                            <option selected disabled>Select Current living country</option>
+                                            <option [value]="countryList"  *ngFor="let countryList of country">{{countryList}}</option>
+                                            <div *ngIf="!SignupData.controls.currentCountry.valid &&
+                                            SignupData.controls.currentCountry.dirty" class="error_main_div">
+                                                    <div *ngIf="SignupData.controls.currentCountry.hasError('required')"
+                                                        class="error_message">This field is Mandatory !</div>
+                                                </div>
+                                          </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Select City</label>
+                                        <select class="form-select form-select-lg" formControlName="city">
+                                            <option selected disabled>Select Your City</option>
+                                            <option *ngFor="let city of cities">{{city}}</option>
+                                            <div *ngIf="!SignupData.controls.city.valid &&
+                                            SignupData.controls.city.dirty" class="error_main_div">
+                                                    <div *ngIf="SignupData.controls.city.hasError('required')"
+                                                        class="error_message">This field is Mandatory !</div>
+                                                </div>
+                                          </select>
+                                    </div>
+                                    <div class="mb-3 acceptTerms form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="acceptTerms" formControlName="isAgreeWithTNC">
+                                        <label class="form-check-label ms-2" for="acceptTerms">
+                                            I accept all the <a class="text_color_pink" href="">Terms & Conditions</a>.
+                                        </label>
+                                    </div>
+                                    <div class="mt-4 position-relative  d-flex justify-content-center">
+                                        <div class="fixed_button d-flex justify-content-center position-fixed">
+                                            <button type="button" class="btn btn-primary" (click)="signupSubmit()" [disabled]="!SignupData.valid">Continue</button>
+                                            <!-- " data-bs-toggle="modal"
+                                                data-bs-target="#otp" -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade " id="otp" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-5">
+                    <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Verification<i
+                            class="d-inline-flex ms-3"><img class="img-fluid"
+                                src="assets/images/features_lines.svg" alt=""></i></h3>
+                    <h4 class="fst-italic text_color_lightgrey fw_semibold fs20 mb-3">we have sent a confirmation code
+                        via email.</h4>
+                </div>
+
+                <button type="button " class="btn-close " data-bs-dismiss="modal" aria-label="Close "></button>
+
+            </div>
+            <div class="modal-body p-4">
+
+                <form method="" class="digit-group text-center" data-group-name="digits" data-autosubmit="false"
+                    autocomplete="off" [formGroup]="otpform">
+                    <input class="change_bg" type="text" id="digit-1" name="digit-1" data-next="digit-2" formControlName="one" />
+                    <input class="change_bg" type="text" id="digit-2" name="digit-2" data-next="digit-3" formControlName="two"
+                        data-previous="digit-1" />
+                    <input class="change_bg" type="text" id="digit-3" name="digit-3" data-next="digit-4" formControlName="three"
+                        data-previous="digit-2" />
+                    <input class="change_bg" type="text" id="digit-4" name="digit-4" data-next="digit-5" formControlName="four"
+                        data-previous="digit-3" />
+
+                    <button type="button" class="btn btn-primary d-block mx-auto mt-5"
+                         (click)="otpsubmit()" [disabled]="!otpform.valid" >Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- OTP Verify number success Modal -->
+<div class="modal fade " id="otp_success" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-header border-0 text-center justify-content-center pb-0">
+                <div class="pt-2">
+                    <img class="img-fluid" src="assets/images/app/phone_graphic.svg" alt="">
+                </div>
+            </div>
+
+            <div class="modal-body p-4 text-center">
+                <h3 class="display-6 position-relative d-inline-flex text_color_pink">Awesome</h3>
+                <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Your phone number has been verified
+                    successfully.</h4>
+                <button type="button" class="btn btn-primary d-block mx-auto mt-4" (click)="done()">Continue</button>
+            </div>
+
+        </div>
+    </div>
+</div>

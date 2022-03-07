@@ -1,0 +1,140 @@
+<app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Campaign Hall</h3>
+            </div>
+            <div class="right-sec">
+                <button class="btn btn-pink px-3" [routerLink]="['/add-campaign']"><img class="me-2" src="assets/images/whiteplus.svg">Add New</button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="campaign-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="post-sec cmn-card mb-4">
+                    <div class="search_outer mt-2">
+                        <input type="text" class="form-control form-control-lg rounded-0"
+                            placeholder="Search Campaign...">
+                    </div>
+
+                    <div class="cmn-post" *ngFor="let list of campaignList">
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" [src]="list.campaignImage?list.campaignImage:assets/images/post_img.png">
+                            <button class="btn edit-btn"><img class="me-2" src="assets/images/pencil.svg"> Edit</button>
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-0">{{list.title?list.title:''}}</h4>
+                            <p class="fs14 text_color_lightgrey fw_nolrmal mb-3 mt-2"><img class="me-2 locationimg"
+                                src="assets/images/post_location.svg"><span>{{list.address.city?list.address.city:''}} {{list.address.country?list.address.country:''}}</span></p>
+                            <p class="mb-3 fs14 fw_light">{{list.description?list.description:''}}</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">{{list.currencyType?list.currencyType:''}}{{list.amount?list.amount:''}}</h5>
+                                <button class="btn btn-primary px-3" [routerLink]="['/client-job-requests',list._id]">View Requests</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="cmn-post">
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" src="assets/images/post_img.png">
+                            <button class="btn edit-btn"><img class="me-2" src="assets/images/pencil.svg"> Edit</button>
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-0">Hollister California</h4>
+                            <p class="fs14 text_color_lightgrey fw_nolrmal mb-3 mt-2"><img class="me-2 locationimg"
+                                src="assets/images/post_location.svg"><span>California 95023, USA</span></p>
+                            <p class="mb-3 fs14 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a cursus purus,
+                                interdum dapibus sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                a cursus purus, interdum dapibus sem.</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">$300.00</h5>
+                                <button class="btn btn-primary">Apply</button>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="cmn-post">
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" src="assets/images/post_img.png">
+                            <button class="btn edit-btn"><img class="me-2" src="assets/images/pencil.svg"> Edit</button>
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-0">Hollister California</h4>
+                            <p class="fs14 text_color_lightgrey fw_nolrmal mb-3 mt-2"><img class="me-2 locationimg"
+                                src="assets/images/post_location.svg"><span>California 95023, USA</span></p>
+                            <p class="mb-3 fs14 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a cursus purus,
+                                interdum dapibus sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                a cursus purus, interdum dapibus sem.</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">$300.00</h5>
+                                <button class="btn btn-primary">Apply</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <img [src]="clientprofileData?.profileImage?clientprofileData?.profileImage:'assets/images/profile_user.svg'">
+                        </div>
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">{{clientprofileData?.fullName}}</h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px" class="me-2"
+                        src="assets/images/post_location.svg"><span>California 95023, USA</span></p>
+
+                    <div class="profile-subs d-flex align-items-center mt-3">
+                        <div class="img-wrap">
+                            <img src="assets/images/diamond.svg">
+                        </div>     
+                        <div class="content-sec">
+                            <p class="fs16 text-white mb-1">Free Subscriber </p>
+                            <h2 class="fs28 text-white mb-0">Upgrade Plan</h2>
+                        </div>
+                    </div>
+                   
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Phone</h4>
+                    <p class="fs14 fw_light mb-0">{{clientprofileData?.mobileCountryCode}} {{clientprofileData?.mobile}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Gender</h4>
+                    <p class="fs14 fw_light mb-0">{{clientprofileData?.gender}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">City</h4>
+                    <p class="fs14 fw_light mb-0">{{clientprofileData?.city}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Country From</h4>
+                    <p class="fs14 fw_light mb-0">{{clientprofileData?.fromCountry}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Country living in</h4>
+                    <p class="fs14 fw_light mb-0">{{clientprofileData?.currentCountry}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

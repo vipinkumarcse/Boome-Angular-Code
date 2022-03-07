@@ -1,0 +1,72 @@
+body { background-color:#ECF0F1;}
+.position {
+  float: left;
+  margin: 100px 20px;
+}
+
+.progress-bar {
+  position: relative;
+  height: 78px;
+  width: 78px;
+  background: none;
+  
+}
+
+.progress-bar div {
+  position: absolute;
+  height: 78px;
+  width: 78px;
+  border-radius: 50%;
+}
+
+.progress-bar div span {
+  position: absolute;
+  font-size: 15px;
+  line-height: 70px;
+  height: 70px;
+  width: 70px;
+  left: 4px;
+  top: 4px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #E7F5FB;
+  color: #009EFF;
+}
+.pink .progress-bar div span{
+  background-color: #FEE4EB;
+  color: #FE6290;
+} 
+.blue .progress-bar div span{
+  background-color: #E4E5FF;
+  color: #4E5AFF;
+} 
+
+.progress-bar .background { background-color: #b3cef6; }
+
+.progress-bar .rotate {
+  clip: rect(0 39px 78px 0);
+  background-color: #4b86db;
+}
+
+.progress-bar .left {
+  clip: rect(0 39px 78px 0);
+  opacity: 1;
+  background-color: #b3cef6;
+  height: 80px;
+  width: 80px;
+}
+
+.progress-bar .right {
+  clip: rect(0 39px 78px 0);
+  transform: rotate(180deg);
+  opacity: 0;
+  background-color: #4b86db;
+}
+ @keyframes 
+toggle {  0% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}

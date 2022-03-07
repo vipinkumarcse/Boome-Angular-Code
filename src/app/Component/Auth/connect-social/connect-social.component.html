@@ -1,0 +1,105 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-side-social></app-left-side-social>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <div class="card_container">
+                        <div class="card_header text-center px-4 pt-4">
+                            <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Connect with social media account</h3>
+
+                        </div>
+
+                        <div class="steppers">
+                            <!-- Multi step form -->
+                            <div class="multi_step_form">
+
+
+                                <div class="connectTabs">
+                                    <form id="msform" class="p-4" [formGroup]="SocialData">
+                                        <ul class="nav nav-pills mb-5" id="progressbar" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link facebookBg" [ngClass]="{'active' : (facebookActive == true || SocialData.get('facebookUsername').value)}" data-bs-toggle="pill" data-bs-target="#connect_facebook" type="button" role="tab" aria-selected="true">
+                                      <svg width="11" height="20" viewBox="0 0 14.991 27.99">
+                                          <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M15.618,15.744l.777-5.066H11.535V7.392a2.533,2.533,0,0,1,2.856-2.737H16.6V.342A26.946,26.946,0,0,0,12.678,0c-4,0-6.619,2.426-6.619,6.818v3.861H1.609v5.066H6.059V27.99h5.476V15.744Z" transform="translate(-1.609)" />
+                                        </svg> Facebook</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link youtubeBg" [ngClass]="{'active' : (youtubeActive == true || SocialData.get('youtubeUsername').value)}" data-bs-toggle="pill" data-bs-target="#connect_youtube" type="button" role="tab" aria-selected="false">
+                                      <svg width="28" height="20" viewBox="0 0 28 20">
+                                          <g id="youtube" transform="translate(-552 -557.889)">
+                                            <path id="Rectangle_2995" data-name="Rectangle 2995" d="M7,2A5.006,5.006,0,0,0,2,7v6a5.006,5.006,0,0,0,5,5H21a5.006,5.006,0,0,0,5-5V7a5.006,5.006,0,0,0-5-5H7M7,0H21a7,7,0,0,1,7,7v6a7,7,0,0,1-7,7H7a7,7,0,0,1-7-7V7A7,7,0,0,1,7,0Z" transform="translate(552 557.889)" />
+                                            <path id="Polygon_32" data-name="Polygon 32" d="M4.05,0,8.1,6.864H0Z" transform="translate(570.512 563.839) rotate(90)" />
+                                          </g>
+                                        </svg>
+                                      Youtube</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link instaBg" [ngClass]="{'active' : (instagramActive == true || SocialData.get('instaUsername').value)}" data-bs-toggle="pill" data-bs-target="#connect_instagram" type="button" role="tab" aria-selected="false">
+                                      <svg  width="22" height="22" viewBox="0 0 22 22">
+                                          <path id="instagram" d="M11,7.6a5.639,5.639,0,1,0,5.639,5.639A5.63,5.63,0,0,0,11,7.6ZM11,16.9a3.666,3.666,0,1,1,3.666-3.666A3.673,3.673,0,0,1,11,16.9Zm7.185-9.536A1.315,1.315,0,1,1,16.867,6.05,1.312,1.312,0,0,1,18.182,7.365ZM21.917,8.7a6.509,6.509,0,0,0-1.777-4.609,6.552,6.552,0,0,0-4.609-1.777c-1.816-.1-7.259-.1-9.075,0A6.543,6.543,0,0,0,1.849,4.087,6.531,6.531,0,0,0,.072,8.7c-.1,1.816-.1,7.259,0,9.075a6.509,6.509,0,0,0,1.777,4.609,6.56,6.56,0,0,0,4.609,1.777c1.816.1,7.259.1,9.075,0a6.509,6.509,0,0,0,4.609-1.777,6.552,6.552,0,0,0,1.777-4.609c.1-1.816.1-7.254,0-9.07ZM19.571,19.719a3.712,3.712,0,0,1-2.091,2.091c-1.448.574-4.883.442-6.483.442s-5.04.128-6.483-.442a3.712,3.712,0,0,1-2.091-2.091c-.574-1.448-.442-4.883-.442-6.483s-.128-5.04.442-6.483A3.712,3.712,0,0,1,4.514,4.661C5.962,4.087,9.4,4.219,11,4.219s5.04-.128,6.483.442a3.712,3.712,0,0,1,2.091,2.091c.574,1.448.442,4.883.442,6.483S20.146,18.276,19.571,19.719Z" transform="translate(0.005 -2.238)" />
+                                        </svg>
+                                        Instagram<span>*</span></button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link tiktokBg" [ngClass]="{'active' : (tiktokActive == true || SocialData.get('tiktokUsername').value)}" data-bs-toggle="pill" data-bs-target="#connect_tiktok" type="button" role="tab" aria-selected="false">
+                                          <svg width="17" height="20" viewBox="0 0 24.725 28.46">
+                                              <path id="Icon_simple-tiktok" data-name="Icon simple-tiktok" d="M15.354.024C16.908,0,18.449.012,19.991,0a7.386,7.386,0,0,0,2.075,4.945,8.363,8.363,0,0,0,5.028,2.123v4.779a12.692,12.692,0,0,1-4.98-1.15,14.651,14.651,0,0,1-1.921-1.1c-.012,3.463.012,6.925-.024,10.376a9.057,9.057,0,0,1-1.6,4.672,8.835,8.835,0,0,1-7.008,3.806,8.646,8.646,0,0,1-4.838-1.221,8.942,8.942,0,0,1-4.328-6.771c-.024-.593-.036-1.186-.012-1.767a8.927,8.927,0,0,1,10.352-7.921c.024,1.755-.047,3.51-.047,5.265a4.069,4.069,0,0,0-5.194,2.514,4.7,4.7,0,0,0-.166,1.909,4.036,4.036,0,0,0,4.15,3.4,3.984,3.984,0,0,0,3.285-1.909,2.736,2.736,0,0,0,.486-1.257c.119-2.123.071-4.233.083-6.356.012-4.779-.012-9.546.024-14.313Z" transform="translate(-2.369)" />
+                                            </svg>
+                                          TikTok    </button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab_inner_sec">
+                                                <fieldset class="tab-pane fade show active" id="connect_facebook" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Email Address or Phone Number</label>
+                                                        <input type="text" class="form-control form-control-lg" placeholder="Enter email or phone number" formControlName="facebookUsername" />
+                                                    </div>
+                                                    <button type="button" class="next btn btn-primary" [disabled]="!SocialData.get('facebookUsername').value" (click)="next('youtube')">Continue</button>
+                                                    <button type="button" class="btn btn-link previous_button text_color_pink float-end next" [disabled]="SocialData.get('facebookUsername').value" (click)="next('youtube')">Skip</button>
+                                                </fieldset>
+                                                <fieldset class="tab-pane fade" id="connect_youtube" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Email or Phone</label>
+                                                        <input type="text" class="form-control form-control-lg" placeholder="Enter email or phone number" formControlName="youtubeUsername" />
+                                                    </div>
+                                                    <button type="button" class="btn btn-light previous previous_button" (click)="back('facebook')">Back</button>
+                                                    <button type="button" class="next btn btn-primary" [disabled]="!SocialData.get('youtubeUsername').value" (click)="next('instagram')">Continue</button>
+                                                    <button type="button" class="btn btn-link previous_button text_color_pink float-end next" [disabled]="SocialData.get('youtubeUsername').value" (click)="next('instagram')">Skip</button>
+                                                </fieldset>
+                                                <fieldset class="tab-pane fade" id="connect_instagram" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Phone number, username, or email</label>
+                                                        <input type="text" class="form-control form-control-lg" placeholder="Enter email, phone number or username" formControlName="instaUsername" />
+                                                    </div>
+                                                    <button type="button" class="btn btn-light previous previous_button" (click)="back('youtube')">Back</button>
+                                                    <button type="button" class="next btn btn-primary" [disabled]="!SocialData.get('instaUsername').value" (click)="next('tiktok')">Continue</button>
+                                                    <!-- <button type="button" class="btn btn-link previous_button text_color_pink float-end next" [disabled]="SocialData.get('instaUsername').value" (click)="next('tiktok')">Skip</button> -->
+                                                </fieldset>
+                                                <fieldset class="tab-pane fade" id="connect_tiktok" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Phone number or username</label>
+                                                        <input type="text" class="form-control form-control-lg" placeholder="Enter phone number or username" formControlName="tiktokUsername" />
+                                                    </div>
+                                                    <button type="button" class="btn btn-light previous previous_button" (click)="back('instagram')">Back</button>
+                                                    <button type="button" class="btn btn-primary" [disabled]="!SocialData.valid" (click)="submit()">Submit</button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

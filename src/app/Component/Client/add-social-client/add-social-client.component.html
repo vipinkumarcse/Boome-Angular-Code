@@ -1,0 +1,74 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-social-client></app-left-social-client>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <div class="position-relative">
+                        <div class="card_header text-center px-4 pt-4 pb-0">
+                            <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Add Social Media
+                                URL</h3>
+                        </div>
+                        <div class="form_container">
+                            <div class="vcScroll" id="vcScroll">
+                                <form action="" class="pe-3 ps-1" [formGroup]="SocialLinkForm">
+
+                                    <div class="mb-3 pb-2">
+                                        <label class="form-label d-flex align-items-center mb-3"><img class="me-2"
+                                                src="assets/images/add-facebook.svg"> Facebook URL</label>
+                                        <div class="input-outer position-relative">
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="https://www.facebook.com/" formControlName="facebook" />
+                                            <img src="assets/images/link_icon.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 pb-2">
+                                        <label class="form-label d-flex align-items-center mb-3"><img class="me-2"
+                                                src="assets/images/add-youtube.svg"> YouTube Channel URL</label>
+                                        <div class="input-outer position-relative">
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="https://www.youtube.com/" formControlName="youtube" />
+                                            <img src="assets/images/link_icon.svg">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 pb-2">
+                                        <label class="form-label d-flex align-items-center mb-3"><img class="me-2"
+                                                src="assets/images/add-instagram.svg"> Instagram Profile URL</label>
+                                        <div class="input-outer position-relative">
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="https://www.instagram.com/rogger/45"
+                                                formControlName="instagram" />
+                                            <img src="assets/images/link_icon.svg">
+                                            <div *ngIf="!SocialLinkForm.controls.instagram.valid &&
+                                            SocialLinkForm.controls.instagram.dirty" class="error_main_div">
+                                                <div *ngIf="SocialLinkForm.controls.instagram.hasError('required')"
+                                                    class="error_message">This field is Mandatory !</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 pb-2">
+                                        <label class="form-label d-flex align-items-center mb-3"><img class="me-2"
+                                                src="assets/images/add-tiktok.svg"> TikTok Profile URL</label>
+                                        <div class="input-outer position-relative">
+                                            <input type="text" class="form-control form-control-lg"
+                                                placeholder="https://www.tiktok.com/" formControlName="tiktok" />
+                                            <img src="assets/images/link_icon.svg">
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary d-block mx-auto"
+                                        [disabled]="!SocialLinkForm.valid" (click)="socialSubmit()"
+                                >Continue</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,274 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>
+
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="social-accounts cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Social Media Accounts</h2>
+                    <div class="row">
+                        <!-- fb -->
+                        <div class="col-3">
+                            <div class="inner-sec facebook  {{connectedAccountfb}} text-center">
+
+                                <div class="icon-outer d-flex align-items-center justify-content-center mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16.346" height="30.52" viewBox="0 0 16.346 30.52">
+                                        <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M16.884,17.167l.848-5.523h-5.3V8.06c0-1.511.74-2.984,3.114-2.984h2.409V.373A29.382,29.382,0,0,0,13.678,0C9.314,0,6.461,2.645,6.461,7.434v4.21H1.609v5.523H6.461V30.52h5.971V17.167Z" transform="translate(-1.609)" fill="#324b80"/>
+                                    </svg>
+                                </div>
+                                <h3 class="fs20 fw_semibold">Facebook</h3>
+                                <p class="fs16 text_color_lightgrey d-flex align-items-center justify-content-center">
+                                    <img class="me-2" src="assets/images/check-grey.svg">
+                                    <span *ngIf="socialdata?.facebook?.isConnected == false "> Disconnected </span>
+                                    <span class="" *ngIf="socialdata?.facebook?.isConnected == true"> Connected </span>
+                                </p>
+
+                                <div class="dropdown">
+                                    <a class="btn" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/images/more-grey.svg">
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <!-- <li><a class="dropdown-item" [routerLink]="['/settings-social-account-disconnected']">Disconnect</a></li> -->
+
+                                        <!-- <li><a class="dropdown-item" (click)="disconnectFacebook('facebook')">Disconnect</a></li> -->
+                                        <!-- <li><a class="dropdown-item" (click)="disconnectFacebook('facebook')">Disconnect</a></li> -->
+
+                                        <!-- <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#connect_facebook" >Login</a></li> -->
+                                        <!-- <li><a class="dropdown-item" *ngIf="socialdata?.facebook.isConnected==false" (click)="openConnectingModal('Facebook')">Login</a></li> -->
+                                        <li><a class="dropdown-item " *ngIf="socialdata?.facebook?.isConnected == false" (click)="openConnectingModalfb('Facebook')">Login</a></li>
+                                        <li><a class="dropdown-item" *ngIf="socialdata?.facebook?.isConnected == true " (click)="disconnectSocialConnectFB()">Disconnect</a></li>
+
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- youtube content -->
+                        <div class="col-3">
+                            <div class="inner-sec youtube {{connectedAccountyoutube}} text-center">
+                                <div class="icon-outer d-flex align-items-center justify-content-center mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28.645" height="20.7" viewBox="0 0 28.645 20.7">
+                                        <path id="youtube" d="M14.32,21.2h-.008c-.864-.006-8.505-.076-10.67-.661A4.427,4.427,0,0,1,.526,17.426,32.491,32.491,0,0,1,0,10.878a33.1,33.1,0,0,1,.525-6.6l0-.006A4.521,4.521,0,0,1,3.638,1.14l.011,0C5.79.574,13.446.506,14.312.5h.016c.867.006,8.528.076,10.673.662A4.426,4.426,0,0,1,28.112,4.27a31.521,31.521,0,0,1,.527,6.632,32.58,32.58,0,0,1-.525,6.539l0,.006A4.428,4.428,0,0,1,25,20.561l-.006,0c-2.14.562-9.8.631-10.663.637H14.32ZM2.688,4.854a32.011,32.011,0,0,0-.45,6.009v.03a30.08,30.08,0,0,0,.45,5.954,2.182,2.182,0,0,0,1.536,1.531c1.6.432,7.821.568,10.1.584,2.28-.016,8.513-.148,10.1-.563a2.184,2.184,0,0,0,1.533-1.531,30.183,30.183,0,0,0,.45-5.954c0-.012,0-.024,0-.035a29.132,29.132,0,0,0-.448-6.018v0a2.184,2.184,0,0,0-1.537-1.535c-1.582-.432-7.815-.568-10.1-.584-2.279.016-8.505.148-10.1.562A2.245,2.245,0,0,0,2.688,4.854Zm24.345,12.3h0ZM11.467,15.381V6.318L19.3,10.85Zm0,0" transform="translate(0.002 -0.5)" fill="#fe0000"/>
+                                      </svg>
+                                </div>
+                                <h3 class="fs20 fw_semibold">Youtube</h3>
+                                <p class="fs16 text_color_lightgrey d-flex align-items-center justify-content-center"><img class="me-2" src="assets/images/check-grey.svg">
+                                    <span *ngIf="socialdata?.youtube?.isConnected  == false "> Disconnected </span>
+                                    <span class="" *ngIf="socialdata?.youtube?.isConnected  == true"> Connected </span>
+                                </p>
+                                <div class="dropdown">
+                                    <a class="btn" href="social-media-accounts-disconnected.html" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/images/more-grey.svg">
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <!-- <li><a class="dropdown-item" [routerLink]="['/settings-social-account-disconnected']">Disconnect</a></li> -->
+                                        <li><a class="dropdown-item " *ngIf="socialdata?.youtube?.isConnected == false " (click)="openConnectingModalYB('Youtube')">Login</a></li>
+                                        <li><a class="dropdown-item " *ngIf="socialdata?.youtube?.isConnected == true " (click)="disconnectSocialConnectYB()"> Disconnect </a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- instagram content -->
+                        <div class="col-3">
+                            <div class="inner-sec instagram {{connectedAccount}} text-center">
+                                <div class="icon-outer d-flex align-items-center justify-content-center mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.181" height="25.181" viewBox="0 0 25.181 25.181">
+                                        <defs>
+                                          <linearGradient id="linear-gradient" x1="0.084" y1="0.916" x2="0.916" y2="0.084" gradientUnits="objectBoundingBox">
+                                            <stop offset="0" stop-color="#ffd600"/>
+                                            <stop offset="0.5" stop-color="#ff0100"/>
+                                            <stop offset="1" stop-color="#d800b9"/>
+                                          </linearGradient>
+                                          <linearGradient id="linear-gradient-2" x1="0.146" y1="0.854" x2="0.854" y2="0.146" gradientUnits="objectBoundingBox">
+                                            <stop offset="0" stop-color="#ff6400"/>
+                                            <stop offset="0.5" stop-color="#ff0100"/>
+                                            <stop offset="1" stop-color="#fd0056"/>
+                                          </linearGradient>
+                                          <linearGradient id="linear-gradient-3" x1="0.146" y1="0.854" x2="0.854" y2="0.146" gradientUnits="objectBoundingBox">
+                                            <stop offset="0" stop-color="#f30072"/>
+                                            <stop offset="1" stop-color="#e50097"/>
+                                          </linearGradient>
+                                        </defs>
+                                        <g id="instagram" transform="translate(0 0)">
+                                          <path id="Path_27804" data-name="Path 27804" d="M25.105,7.4a9.244,9.244,0,0,0-.585-3.056,6.171,6.171,0,0,0-1.452-2.23A6.173,6.173,0,0,0,20.838.661,9.242,9.242,0,0,0,17.782.076C16.439.014,16.01,0,12.59,0S8.742.014,7.4.076A9.245,9.245,0,0,0,4.343.661a6.171,6.171,0,0,0-2.23,1.452A6.172,6.172,0,0,0,.66,4.343,9.243,9.243,0,0,0,.076,7.4C.014,8.742,0,9.171,0,12.59s.015,3.849.076,5.191a9.241,9.241,0,0,0,.585,3.056,6.17,6.17,0,0,0,1.452,2.23,6.169,6.169,0,0,0,2.23,1.452,9.238,9.238,0,0,0,3.056.585c1.343.061,1.772.076,5.191.076s3.848-.014,5.191-.076a9.24,9.24,0,0,0,3.056-.585,6.437,6.437,0,0,0,3.682-3.682,9.241,9.241,0,0,0,.585-3.056c.061-1.343.076-1.772.076-5.191s-.015-3.848-.076-5.191ZM22.839,17.678a6.966,6.966,0,0,1-.433,2.338,4.169,4.169,0,0,1-2.39,2.39,6.966,6.966,0,0,1-2.338.433c-1.327.061-1.726.073-5.088.073S8.83,22.9,7.5,22.839a6.969,6.969,0,0,1-2.338-.433,3.9,3.9,0,0,1-1.448-.942,3.9,3.9,0,0,1-.942-1.448,6.966,6.966,0,0,1-.433-2.338c-.061-1.328-.073-1.726-.073-5.088s.013-3.76.073-5.088a6.971,6.971,0,0,1,.433-2.338,3.9,3.9,0,0,1,.942-1.448,3.9,3.9,0,0,1,1.448-.942A6.965,6.965,0,0,1,7.5,2.342c1.328-.061,1.726-.073,5.088-.073h0c3.362,0,3.76.013,5.088.074a6.967,6.967,0,0,1,2.338.433,3.9,3.9,0,0,1,1.448.942,3.9,3.9,0,0,1,.942,1.448A6.96,6.96,0,0,1,22.839,7.5c.061,1.328.073,1.726.073,5.088s-.013,3.76-.073,5.088Zm0,0" transform="translate(0 0)" fill="url(#linear-gradient)"/>
+                                          <path id="Path_27805" data-name="Path 27805" d="M131,124.539A6.465,6.465,0,1,0,137.47,131,6.466,6.466,0,0,0,131,124.539Zm0,10.662a4.2,4.2,0,1,1,4.2-4.2A4.2,4.2,0,0,1,131,135.2Zm0,0" transform="translate(-118.414 -118.414)" fill="url(#linear-gradient-2)"/>
+                                          <path id="Path_27806" data-name="Path 27806" d="M364.951,90.136a1.511,1.511,0,1,1-1.511-1.511A1.511,1.511,0,0,1,364.951,90.136Zm0,0" transform="translate(-344.129 -84.267)" fill="url(#linear-gradient-3)"/>
+                                        </g>
+                                      </svg>
+                                </div>
+                                <h3 class="fs20 fw_semibold">Instagram</h3>
+                                <p class="fs16 text_color_lightgrey d-flex align-items-center justify-content-center"><img class="me-2" src="assets/images/check-grey.svg">
+                                    <span *ngIf="socialdata?.instagram?.isConnected  == false "> Disconnected </span>
+                                    <span *ngIf="socialdata?.instagram?.isConnected  == true"> Connected </span>
+                                </p>
+                                <div class="dropdown">
+                                    <a class="btn" href="social-media-accounts-disconnected.html" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/images/more-grey.svg">
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <!-- <li><a class="dropdown-item" [routerLink]="['/settings-social-account-disconnected']">Disconnect</a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- tiktok content -->
+                        <div class="col-3">
+                            <div class="inner-sec tiktok {{connectedAccounttiktok}}  text-center">
+                                <div class="icon-outer d-flex align-items-center justify-content-center mx-auto">
+                                    <svg id="tiktok" xmlns="http://www.w3.org/2000/svg" width="22.656" height="26.229" viewBox="0 0 22.656 26.229">
+                                        <g id="Group_527" data-name="Group 527" transform="translate(2.353 1.699)">
+                                          <g id="Group_526" data-name="Group 526" transform="translate(0)">
+                                            <path id="Path_4115" data-name="Path 4115" d="M31.7,19.231v4.052c-.218,0-.479.044-.741.044a8.078,8.078,0,0,1-5.185-1.917v8.627A7.779,7.779,0,0,1,11.4,34.219a7.781,7.781,0,0,0,5.316,2.135A7.633,7.633,0,0,0,22.9,33.217a7.925,7.925,0,0,0,1.569-4.706v-8.67a7.764,7.764,0,0,0,5.185,1.917,4.227,4.227,0,0,0,.741-.044V19.1a5.023,5.023,0,0,0,1.133.131Z" transform="translate(-11.4 -13.349)" fill="#ff004f"/>
+                                            <path id="Path_4116" data-name="Path 4116" d="M21.608,26.244v4.488a3.629,3.629,0,0,0-.959-.131,3.543,3.543,0,0,0-3.486,3.573,3.78,3.78,0,0,0,.218,1.22A3.629,3.629,0,0,1,15.9,32.518a3.543,3.543,0,0,1,3.486-3.573,3.4,3.4,0,0,1,.959.131V26.2h.261A7.385,7.385,0,0,1,21.608,26.244Z" transform="translate(-13.939 -17.355)" fill="#ff004f"/>
+                                            <path id="Path_4117" data-name="Path 4117" d="M43.756,8.558A5.86,5.86,0,0,1,42.1,5.9h1.046v.61A6.92,6.92,0,0,0,43.756,8.558Z" transform="translate(-28.724 -5.9)" fill="#ff004f"/>
+                                          </g>
+                                        </g>
+                                        <path id="Path_4118" data-name="Path 4118" d="M28.973,11.695v2.614a3.987,3.987,0,0,1-.741.044,8.078,8.078,0,0,1-5.185-1.917v8.627A7.736,7.736,0,0,1,9.976,26.77,7.9,7.9,0,0,1,8.8,22.631a7.8,7.8,0,0,1,7.538-7.8v2.876a3.629,3.629,0,0,0-.959-.131,3.543,3.543,0,0,0-3.486,3.573,3.451,3.451,0,0,0,1.481,2.876,3.47,3.47,0,0,0,6.753-1.22V5.9h3.181a5.64,5.64,0,0,0,1.656,2.658A5.977,5.977,0,0,0,28.973,11.695Z" transform="translate(-7.58 -4.201)"/>
+                                        <g id="Group_530" data-name="Group 530">
+                                          <g id="Group_529" data-name="Group 529">
+                                            <g id="Group_528" data-name="Group 528">
+                                              <path id="Path_4119" data-name="Path 4119" d="M14.758,22.687v1.481a7.8,7.8,0,0,0-7.538,7.8A7.9,7.9,0,0,0,8.4,36.107,7.887,7.887,0,0,1,6,30.4a7.782,7.782,0,0,1,7.755-7.8A7.151,7.151,0,0,1,14.758,22.687Z" transform="translate(-6 -13.625)" fill="#00f7ef"/>
+                                              <path id="Path_4120" data-name="Path 4120" d="M29.234,3.7H26.053V20.517a3.543,3.543,0,0,1-3.486,3.573A3.428,3.428,0,0,1,19.3,21.737a3.55,3.55,0,0,0,2,.654,3.505,3.505,0,0,0,3.486-3.529V2h4.226v.087a2.121,2.121,0,0,0,.044.523A4.73,4.73,0,0,0,29.234,3.7Z" transform="translate(-13.505 -2)" fill="#00f7ef"/>
+                                            </g>
+                                          </g>
+                                          <path id="Path_4121" data-name="Path 4121" d="M49.852,13.525h0v1.569A5.967,5.967,0,0,1,45.8,12,5.659,5.659,0,0,0,49.852,13.525Z" transform="translate(-28.459 -7.643)" fill="#00f7ef"/>
+                                        </g>
+                                      </svg>
+                                </div>
+                                <h3 class="fs20 fw_semibold">TikTok</h3>
+                                <p class="fs16 text_color_lightgrey d-flex align-items-center justify-content-center"><img class="me-2" src="assets/images/check-grey.svg">
+                                    <span *ngIf="socialdata?.tiktok?.isConnected  == false "> Disconnected </span>
+                                    <span  *ngIf="socialdata?.tiktok?.isConnected  == true"> Connected </span>
+                                </p>
+                                <div class="dropdown">
+                                    <a class="btn" href="social-media-accounts-disconnected.html" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/images/more-grey.svg">
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <!-- <li><a class="dropdown-item" [routerLink]="['/settings-social-account-disconnected']">Disconnect</a></li> -->
+                                        <li><a class="dropdown-item " *ngIf="socialdata?.tiktok?.isConnected == false " (click)="openConnectingModalTiktok('Tiktok')">Login</a></li>
+                                        <li><a class="dropdown-item " *ngIf="socialdata?.tiktok?.isConnected == true " (click)=" disconnectSocialConnectTiktok()">Disconnect</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="fs18 text_color_lightgrey text-center mt-5 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor magna sed hendrerit lacinia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- login modal -->
+<!-- fb -->
+
+<div class="modal fade " id="connect_facebook" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content facebook-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Connect with {{connectSocialType}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form [formGroup]="socialConnectfb">
+                    <div class="mb-3">
+                        <label class="form-label">Email/Phone</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="Email id or phone number" formControlName="email" />
+                    </div>
+                    <div *ngIf="!socialConnectfb.controls.email.valid &&
+                    socialConnectfb.controls.email.dirty" class="error_main_div">
+                        <div *ngIf="socialConnectfb.controls.email.hasError('required')" class="error_message">This field is Mandatory !</div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()" [disabled]="!socialConnectfb.valid">Connect</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- tiktok -->
+
+<div class="modal fade " id="connect_tiktok" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content facebook-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Connect with {{connectSocialType}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form [formGroup]="socialConnecttiktok">
+                    <div class="mb-3">
+                        <label class="form-label">Email/Phone</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="Email id or phone number" formControlName="email" />
+                    </div>
+                    <div *ngIf="!socialConnecttiktok.controls.email.valid &&
+                    socialConnecttiktok.controls.email.dirty" class="error_main_div">
+                        <div *ngIf="socialConnecttiktok.controls.email.hasError('required')" class="error_message">This field is Mandatory !</div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()" [disabled]="!socialConnecttiktok.valid">Connect</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- youtube -->
+
+<div class="modal fade " id="connect_youtube" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content facebook-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Connect with {{connectSocialType}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form [formGroup]="socialConnectyoutube">
+                    <div class="mb-3">
+                        <label class="form-label">Email/Phone</label>
+                        <input type="text" class="form-control form-control-lg" placeholder="Email id or phone number" formControlName="email" />
+                    </div>
+                    <div *ngIf="!socialConnectyoutube.controls.email.valid &&
+                    socialConnectyoutube.controls.email.dirty" class="error_main_div">
+                        <div *ngIf="socialConnectyoutube.controls.email.hasError('required')" class="error_message">This field is Mandatory !</div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submit()" [disabled]="!socialConnectyoutube.valid">Connect</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

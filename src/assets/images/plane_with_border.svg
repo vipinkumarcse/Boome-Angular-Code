@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="463.253" height="126.932" viewBox="0 0 463.253 126.932">
+  <g id="plane_with_border" transform="translate(-374.529 -20.426)">
+    <path id="Path_331" data-name="Path 331" d="M354.825,146.52S477.2,211.836,568.618,127.1" transform="translate(20.175 -24.273)" fill="none" stroke="#009eff" stroke-width="2" stroke-dasharray="10"/>
+    <path id="Path_332" data-name="Path 332" d="M610.793,127.1c109.448-84.734,190.652-56.49,190.652-56.49" transform="translate(-16 -28.37)" fill="none" stroke="#009eff" stroke-width="2" stroke-dasharray="10"/>
+    <g id="paper-plane" transform="translate(830.359 20.426) rotate(81)">
+      <path id="Path_333" data-name="Path 333" d="M8.75,17.612v9.17a1.482,1.482,0,0,0,2.677.878l5.364-7.3Z" transform="translate(8.55 17.209)" fill="#fe6290"/>
+      <path id="Path_334" data-name="Path 334" d="M46.829.275A1.483,1.483,0,0,0,45.282.168L.8,23.4A1.483,1.483,0,0,0,1,26.118l12.367,4.227L39.707,7.826,19.327,32.38l20.726,7.084a1.517,1.517,0,0,0,.478.079A1.482,1.482,0,0,0,42,38.279L47.436,1.7A1.485,1.485,0,0,0,46.829.275Z" transform="translate(0 0)" fill="#fe6290"/>
+    </g>
+  </g>
+</svg>

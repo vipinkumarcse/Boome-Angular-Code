@@ -1,0 +1,144 @@
+<app-talent-header></app-talent-header>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/blue_settings.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Settings</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-talent-settings-sidebar></app-talent-settings-sidebar>
+            </div>
+            <!-- Payment Method -->
+            <div class="col-md-12 col-lg-8">
+                <div class="payment-methods cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Payment Methods</h2>
+
+                    <div class="saved-card d-flex aligin-items-start justify-content-between mb-3">
+                        <div class="d-flex align-items-center justify-content-start">
+                            <div class="img-wrap me-4">
+                                <img src="assets/images/cardimg.svg">
+                            </div>
+                            <div class="content-sec">
+                                <h3 class="fs18 fw_semibold mb-0">0123 4567 8901 2345</h3>
+                                <div class="d-flex aligin-items-start justify-content-between">
+                                    <div>
+                                        <p class="fs14 text_color_lightgrey">Card Holder</p>
+                                        <h4 class="fs14 fw_semibold m-0">Jeffery Erhunse</h4>
+                                    </div>
+                                    <div>
+                                        <p class="fs14 text_color_lightgrey">Exp. Date</p>
+                                        <h4 class="fs14 fw_semibold m-0">14/25</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn no-shadow p-0"><img
+                                src="assets/images/trash-pink.svg"></button>
+                    </div>
+
+                    <div class="add-card-box d-flex align-items-center justify-content-between">
+                        <div class="content-sec">
+                            <h3 class="fs16 fw_medium mb-1">Add Debit/Credit Card</h3>
+                            <p class="fs14 fw_semibold m-0">Add another card for payment</p>
+                        </div>
+                        <button type="button" class="btn p-0 no-shadow" data-bs-toggle="modal"
+                            data-bs-target="#add_card"><img
+                                src="assets/images/plus-gray.svg"></button>
+                    </div>
+
+                    <h3 class="fs22 fw_semibold mb-3 mt-4">Transactions</h3>
+
+                    <div class="transaction-itm d-flex align-items-center justify-content-between" data-bs-toggle="modal"
+                    data-bs-target="#transaction_detail">
+                        <div class="d-flex align-items-center">
+                            <div class="img-wrap me-2">
+                                <img class="object-cover" src="assets/images/transaction-user.svg">
+                            </div>
+                            <div class="content-sec flex-1">
+                                <h2 class="fs18 fw_semibold mb-1">Josua Cannon</h2>
+                                <p class="fs14 mb-0"><span class="me-4">Jul 12, 2021</span> <span>06:17 PM</span></p>
+                            </div>
+                        </div>
+                        <div class="price-sec">
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-1">Received</h3>
+                            <h4 class="fs18 fw_bold text_color_pink mb-0">$155.00</h4>
+                        </div>
+                    </div>
+
+                    <div class="transaction-itm d-flex align-items-center justify-content-between" data-bs-toggle="modal"
+                    data-bs-target="#transaction_detail">
+                        <div class="d-flex align-items-center">
+                            <div class="img-wrap me-2">
+                                <img class="object-cover" src="assets/images/transaction-user.svg">
+                            </div>
+                            <div class="content-sec flex-1">
+                                <h2 class="fs18 fw_semibold mb-1">Max Titov</h2>
+                                <p class="fs14 mb-0"><span class="me-4">Jul 12, 2021</span> <span>06:17 PM</span></p>
+                            </div>
+                        </div>
+                        <div class="price-sec">
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-1">Received</h3>
+                            <h4 class="fs18 fw_bold text_color_pink mb-0">$155.00</h4>
+                        </div>
+                    </div>
+
+                    <div class="transaction-itm d-flex align-items-center justify-content-between" data-bs-toggle="modal"
+                    data-bs-target="#transaction_detail">
+                        <div class="d-flex align-items-center">
+                            <div class="img-wrap me-2">
+                                <img class="object-cover" src="assets/images/transaction-user.svg">
+                            </div>
+                            <div class="content-sec flex-1">
+                                <h2 class="fs18 fw_semibold mb-1">Josua Cannon</h2>
+                                <p class="fs14 mb-0"><span class="me-4">Jul 12, 2021</span> <span>06:17 PM</span></p>
+                            </div>
+                        </div>
+                        <div class="price-sec">
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-1">Received</h3>
+                            <h4 class="fs18 fw_bold text_color_pink mb-0">$155.00</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transaction detail -->
+<div class="modal fade " id="transaction_detail" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content transaction-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4 text-center">
+                <div class="img-wrap mx-auto mb-3">
+                    <img class="object-cover" src="assets/images/transaction-user.svg">
+                </div>
+                <h2 class="fs22 fw_semibold mb-0">Max Titov</h2>
+                <p class="fs16 mt-2 mb-1">Received</p>
+                <h3 class="fs28 text_color_pink mb-4 pb-2">$155.00</h3>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-3"><span>Payment ID</span><span class="fs16 fw_normal text_color_lightgrey">#5269784615</span></h4>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-3"><span>Payment Date</span><span class="fs16 fw_normal text_color_lightgrey">Jul 12, 2021</span></h4>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-3"><span>Payment Time</span><span class="fs16 fw_normal text_color_lightgrey">06:17 PM</span></h4>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-3"><span>Booking Date</span><span class="fs16 fw_normal text_color_lightgrey">Friday - 23 July, 2021</span></h4>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-3"><span>Booking Time</span><span class="fs16 fw_normal text_color_lightgrey">5:00 PM - 12:00 AM</span></h4>
+                <h4 class="fs18 fw_semibold d-flex align-items-center justify-content-between mb-0"><span>Total Hours</span><span class="fs16 fw_normal text_color_lightgrey">5Hrs</span></h4>
+            </div>
+        </div>
+    </div>
+</div>

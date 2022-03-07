@@ -1,0 +1,31 @@
+.radio-itm{
+    position: relative;
+}
+.radio-itm input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+.radio-itm label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    height: 42px;
+    width: 120px;
+    font-size: 16px;
+    margin-right: 14px;
+} 
+.radio-itm label img{
+    margin-right: 12px;
+}
+.radio-itm input:checked + label{
+    border-color: #FE6290;
+    border-width: 2px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+}

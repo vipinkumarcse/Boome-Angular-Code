@@ -1,0 +1,239 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>
+
+
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="personal-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Address Details</h2>
+                    <form action="" class="pb-0" [formGroup]="ProfileData">
+
+                        <div class="mb-3">
+                            <label class="form-label w-100">Choose Height</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="heightRadio" name="radioSelection" id="Centimeter" formControlName="radioSelection" value="Centimeter">
+
+                                <label class="form-check-label" for="centimeter">Centimeter</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="heightRadio" id="Inches" name="radioSelection" formControlName="radioSelection" value="Inches">
+                                <label class="form-check-label" for="inches">Inches</label>
+                            </div>
+                        </div>
+
+                      
+                        <ng-container *ngIf="ProfileData.get('radioSelection').value =='Centimeter'">
+                             <!-- <label  class="form-label" for="floatingLength">Enter Height</label> -->
+                            <div class="mb-3">
+                                <label class="form-label" for="floatingLength">Enter Height</label>
+                                <input type="text" class="form-control form-control-lg" id="floatingLength" placeholder="Enter Height" formControlName="heightCm">
+                                
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="ProfileData.get('radioSelection').value =='Inches'">
+                        
+                            <div class="mb-3">
+                                <label class="form-label" for="floatingLength">Enter Height</label>
+                                <input type="text" class="form-control form-control-lg" id="floatingLength" placeholder="Enter Height" formControlName="heightInches">
+                                
+                            </div>
+                        </ng-container>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Jeans Length</label>
+                            <select class="form-select form-select-lg" formControlName="jeanLength">
+                                <option value="" disabled selected>Select jean length</option>
+
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31"> 31</option>
+                                <option value="32" >32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Jeans Waist</label>
+                            <select class="form-select form-select-lg" formControlName="jeanWaist">
+                                <option value="" disabled selected>Select Jeans Waist</option>
+                                <option value="26">26</option>
+                                <option value="28">28</option>
+                                <option value="30">30</option>
+                                <option value="32">32</option>
+                                <option value="34">34</option>
+                                <option value="36">36</option>
+                                <option value="38"> 38</option>
+                                <option value="40">40</option>
+                                <option value="42">42</option>
+                                <option value="44">44</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Shoe size</label>
+                            <select class="form-select form-select-lg" formControlName="shoeSize">
+                                <option value="" disabled selected>Select Shoe size</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>                            
+                                <option value="47">47</option>                            
+                                <option value="48">48</option>                            
+                            
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Shirt</label>
+                            <select class="form-select form-select-lg" formControlName="shirt">
+                                <option value="" disabled selected>Select Shirt size</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                         </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ethnicity</label>
+                            <select class="form-select form-select-lg" formControlName="ethnicity">
+                                <option value="" disabled selected>Select Ethnicity</option>
+                                <option value="Asian">Asian</option>
+                                <option value="African/Black">African/Black</option>
+                                <option value="Caucasian">Caucasian</option>
+                                <option value="Hispanic/Latin">Hispanic/Latin</option>
+                                <option value="Middle American">Middle American</option>
+                                <option value="Native American">Native American</option>
+                                <option value="Other">Other</option>
+
+                            </select>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Hair Color</label>
+                            <select class="form-select form-select-lg" formControlName="hairColor">
+                                <option value="" disabled selected>Select Hair Color</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Black">Black</option>
+                                <option value="White">White</option>
+                                <option value="Sandy">Sandy</option>
+                                <option value="Gray or Partially Gray">Gray or Partially Gray</option>
+                                <option value="Red/Auburn">Red/Auburn</option>
+                                <option value="Blond">Blond</option>
+                                <option value="Partly or Completely Bald">Partly or Completely Bald</option>
+                                <option value="Other">Other</option>
+
+
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Hair Length</label>
+                            <select class="form-select form-select-lg" formControlName="hairLength">
+                                <option value="" disabled selected>Select Hair Length</option>
+                                <option value='10" Neck Line'>10" Neck Line</option>
+                                <option value='12" Shoulder Length'>12" Shoulder Length</option>
+                                <option value='2"Past Shoulder'>14" 2"Past Shoulder</option>
+                                <option value='16" Shoulder blades'>16" Shoulder blades</option>
+                                <option value='18" Mid Back'>18" Mid Back</option>
+                                <option value='20" Waist length'>20" Waist length</option>
+                                <option value='22" Lower Back'>22" Lower Back</option>
+                                <option value='22" Lower Back'>22" Lower Back</option>
+                                <option value='24" Down to Bottom'>24" Down to Bottom</option>
+                                <option value='26" Tail Bone'>26" Tail Bone</option>                            
+                            
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Eyes Color</label>
+                            <select class="form-select form-select-lg" formControlName="eyesColor">
+                                <option value="" disabled selected>Select Eyes Color</option>
+                                <option value="Black">Black</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Brown">Brown</option>
+                                <option value="Gray">Gray</option>
+                                <option value="Green">Green</option>
+                                <option value="Hazel">Hazel</option>
+                                <option value="Multicolored">Multicolored</option>
+                              </select>
+                        </div>
+
+                        <div class="mb-3 add-shots">
+                            <label class="form-label w-100">Add Pictures</label>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="inner-sec uploaded">
+                                        <div class="img-wrap">
+                                            <img *ngIf="!headshot" src="assets/images/user-headshot.svg">
+                                            <img *ngIf="headshot" [src]="headshot">
+                                            <h3 class="fs16 fw_semibold mb-0">Headshot</h3>
+                                        </div>
+                                        <div class="btn uploadbtn btn-light-pink no-shadow mx-auto d-block">
+                                            <input type="file" (change)="selectImage($event,'headshot')"> Change
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="inner-sec uploaded">
+                                        <div class="img-wrap">
+                                            <img *ngIf="!beautyshot" src="assets/images/user-beautyshot.svg">
+                                            <img *ngIf="beautyshot" [src]="beautyshot">
+                                            <h3 class="fs16 fw_semibold mb-0">Beauty shot</h3>
+                                        </div>
+                                        <div class="btn uploadbtn btn-light-pink no-shadow mx-auto d-block">
+                                            <input type="file" (change)="selectImage($event, 'beauty')"> Change
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="inner-sec uploaded">
+                                        <div class="img-wrap">
+                                            <img *ngIf="!fullshot" src="assets/images/user-bodyshot.svg">
+                                            <img *ngIf="fullshot" [src]="fullshot">
+                                            <h3 class="fs16 fw_semibold mb-0">Full Length</h3>
+                                        </div>
+                                        <div class="btn uploadbtn btn-light-pink no-shadow mx-auto d-block">
+                                            <input type="file" (change)="selectImage($event, 'fulllenght')"> Change
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 position-relative  d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" (click)="submit()">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+.chart_outer{
+    margin-left: auto;
+    max-width: 250px;
+}
+canvas{
+    margin-left: auto;
+}
+.area {
+    max-width: 500px;
+    height: 400px;
+    margin: 0 auto;
+  }
+  /* .engagement-sec.cmn-card{
+      background-color: #89CFF0;
+  } */
+
+  .engagement-sec p{
+    font-size: 16px;
+    color: #474747;
+    line-height: 20px;
+    margin-bottom: 7px;
+    font-weight: 400;
+    opacity: 1 !important;
+  }
+  .engagement-sec h5{
+    font-size: 28px;
+    font-weight: bold;
+    color: #009EFF;
+    margin-bottom: 10px;
+  }

@@ -1,0 +1,104 @@
+<app-client-talentheader></app-client-talentheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card py-3">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Talents</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Talent Details</h2>
+            </div>
+            <div class="right-sec">
+                <button class="btn btn-pink px-3" 
+                (click)= "hireTalent()"
+               >Hire Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="talent-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-4">
+                <div class="cmn-card user-details client-talent mb-4 px-0 pb-0">
+                    <div class="content-box px-3">
+                        <div class="top-sec pb-2 border-0">
+                            <div class="img-wrap">
+                                <!-- <img src="assets/images/review_user1.png"> -->
+                                <img *ngIf="!details?.user?.profileImage" src="assets/images/profile_user.svg">
+                                <img *ngIf="details?.user?.profileImage" src="{{details?.user?.profileImage}}">
+                            </div>
+                            <h3 class="fs20 text_color_light_blue fw_semibold text-center mt-2 mb-0 pt-1">
+                                <!-- Bobby Norton -->
+                                {{ details?.user?.boomeId}}
+                            </h3>
+                            <!-- <p class="fs14 text_color_lightgrey fw_nolrmal my-2 text-center"><img style="margin-top: -3px" class="me-2"
+                                src="assets/images/post_location.svg"><span>California 95023, USA</span></p> -->
+
+
+                            <div class="d-flex badge-row align-items-center justify-content-center py-1" *ngFor="let category of details?.user?.categories">
+                                <p class="light-gray mb-0">
+                                    <!-- Designer -->
+                                    {{ category?.name}}
+                                </p>
+                                <!-- <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p> -->
+                            </div>
+                            <!-- <div class="rating-sec d-flex align-items-start justify-content-center my-3">
+                                <h5 class="fs28 fw_bold me-2">4.0</h5>
+                                <div class="right-sec">
+                                    <div class="star-sec d-flex align-items-center">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                    </div>
+                                    <span class="fs14 fw_normal text_color_lightgrey mt-2 d-block">120 reviews</span>
+                                </div>
+                            </div>  -->
+                            <div class="d-flex align-items-center justify-content-center info-row">
+                                <!-- <h4 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>
+                                    26
+                                </span></h4> -->
+                                <h4 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>
+                                    <!-- $34 -->
+                                   {{ details?.user?.pricePerHour}} /hr
+                                </span></h4>
+                                <!-- <h4 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>
+                                    5 
+                                </span></h4> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8">
+                <div class="cmn-card rating-sec mb-4">
+                    <h2 class="border-bottom-heading fs22 fw_semibold text_color_blue d-flex align-items-center justify-content-between">Rating & Reviews <span class="fw_normal text_color_lightgrey">234</span></h2>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

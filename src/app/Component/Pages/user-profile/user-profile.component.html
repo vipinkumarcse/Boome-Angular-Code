@@ -1,0 +1,276 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>    
+<section class="main-profile">
+    <div class="container">
+        <div class="row">
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <!-- <img src="assets/images/profile_user.svg"> -->
+                            <img *ngIf="!profileData?.user?.profileImage" src="assets/images/profile_user.svg">
+                            <img *ngIf="profileData?.user?.profileImage" src="{{profileData?.user?.profileImage}}">
+                        </div>
+                        <span *ngIf="profileData?.user?.isProfileVerified == true "><img class="verifyimg" src="assets/images/verified_user.svg"></span>
+                        <span *ngIf="!profileData?.user?.isProfileVerified"> </span>
+
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">{{profileData?.user?.firstName}} {{profileData?.user?.lastName}}</h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px"
+                            class="me-2" src="assets/images/post_location.svg"><span>{{addressData?.address?.city}} {{addressData?.address?.postalCode}}, {{addressData?.address?.country}}</span></p>
+                    <div class="follower-sec d-flex aligin-items-start">
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Posts</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                <!-- 150 -->
+                                {{user?.socialAccount?.instagram?.data?.postsCount | numberFormat}}
+                                <!-- {{ user?.socialAccount?.instagram?.data?.postsCount}} -->
+
+                            </h3>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Following</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                <!-- 256 -->
+                                {{user?.socialAccount?.instagram?.data?.followingCount | numberFormat}}
+                                <!-- {{ user?.socialAccount?.instagram?.data?.followingCount}} -->
+                            </h3>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Followers</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                <!-- 22.8K -->
+                                {{user?.socialAccount?.instagram?.data?.followerCount | numberFormat}}
+                                <!-- {{ user?.socialAccount?.instagram?.data?.followerCount}} -->
+                            </h3>
+                        </div>
+                    </div>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Bio</h4>
+                    <p class="fs14 fw_light mb-0">{{profileData?.user?.bio}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Date of Birth</h4>
+                    <p class="fs14 fw_light mb-0">
+                        {{profileData?.user?.dateOfBirth | date: 'dd MMMM yyyy'}}
+                        <!-- {{profileData?.user?.dob}} -->
+                    </p>
+
+                </div>
+            </div>
+
+            
+
+            <div class="col-md-12 col-lg-8">
+               
+
+                <div class="insights-sec cmn-card mb-4">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="inner-sec pink border-0 mt-0">
+                                <div class="content-sec">
+                                    <h2 class="fs20 text_color_blue mb-4">Insights</h2>
+                                    <h4 class="fs16 fw_semibold text_color_lightgrey">Followers</h4>
+                                    <h3 class="fs20 text_color_darkgrey"><img
+                                            src="assets/images/pink_up.svg"><span>
+                                                <!-- 83 -->
+                                              {{follwers}}  %                                                
+                                            </span></h3>
+                                    <!-- <p class="m-0 fs10">In Last 7 Days</p> -->
+
+                                    <h4 class="fs16 fw_semibold text_color_lightgrey mt-3">Following</h4>
+                                    <h3 class="fs20 text_color_darkgrey"><img
+                                            src="assets/images/blue_up.svg"><span>
+                                                <!-- 25 -->
+                                               {{follwings}} %
+                                            </span></h3>
+                                    <p class="m-0 fs10">
+                                        <!-- In Last 7 Days -->
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="chart_outer">
+                                <canvas id="myChart" ></canvas>
+                                 
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <!-- Engagement box -->
+                <div class="engagement-sec cmn-card mb-4">
+                    <p>Engagement Rate</p>
+                    <h5>
+                        <!-- 11,04 -->
+                      {{ engagementRate }}  %
+                    </h5>
+                    <apx-chart
+                        [series]="chartOptions.series"
+                        [chart]="chartOptions.chart"
+                        [xaxis]="chartOptions.xaxis"
+                        [stroke]="chartOptions.stroke"
+                        [dataLabels]="chartOptions.dataLabels"
+                        [yaxis]="chartOptions.yaxis"
+                        [labels]="chartOptions.labels"
+                        [legend]="chartOptions.legend"
+                        [title]="chartOptions.title"
+                        [subtitle]="chartOptions.subtitle"
+                        [fill]="chartOptions.fill"
+                    ></apx-chart>
+                </div>
+
+
+
+                <!-- Tabs -->
+                <div class="saved post cmn-card mb-4">
+                    <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="gallary-tab" data-bs-toggle="tab"
+                                data-bs-target="#gallary" type="button" role="tab" aria-controls="gallary"
+                                aria-selected="true">Gallary</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="post-tab" data-bs-toggle="tab" data-bs-target="#post"
+                                type="button" role="tab" aria-controls="post" aria-selected="false">Saved
+                                Post</button>
+                        </li>
+                    </ul>
+
+
+                    <div class="tab-content" id="myTabContent">
+                        <!-- Gallary sec -->
+                        <div class="tab-pane gallary-content fade show active pt-4" id="gallary" role="tabpanel"
+                            aria-labelledby="gallary-tab">
+                            <div class="row g-3">
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile1.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile2.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile3.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile4.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile5.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3">
+                                    <div class="img-wrapper">
+                                        <img src="assets/images/profile6.png">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6 col-lg-3 d-flex align-items-strech">
+                                    <button class="btn see-all d-flex align-items-center justify-content-center">
+                                        See All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Saved post -->
+
+                       
+
+                        <div class="tab-pane posts-content fade" id="post" role="tabpanel"
+                            aria-labelledby="post-tab">
+                            <div class="col-12" *ngIf="!posts?.length ">
+                                <h4 class="text-center py-5">No Saved Post Found</h4>
+                              </div>
+                            <div class="cmn-post" *ngFor="let post of posts">
+                                <div class="head-sec d-flex align-items-start justify-content-between">
+                                    <div class="user-sec d-flex align-items-center">
+                                        <div class="img-wrap me-3">
+                                            <!-- <img class="object-cover" src="assets/images/post_user1.svg"> -->
+                                            <img class="object-cover" [src]="post?.creatorInfo.profilePic">
+
+                                        </div>
+                                        <div class="content-sec">
+                                            <h3 class="fs18 text_color_light_blue fw_semibold mb-1">
+                                                <!-- Colton Sturgeon -->
+                                                {{ post?.creatorInfo.name }}
+                                            </h3>
+                                            <p class="fs14 text_color_lightgrey fw_nolrmal m-0"><img class="me-2"
+                                                    src="assets/images/post_location.svg"><span>
+                                                        <!-- California 95023,USA -->
+                                                        {{ post?.address?.city }} {{ post?.address?.country }}
+                                                    
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <button class="btn bookmarkbtn" *ngIf="post?.isSaved == false "> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                            viewBox="0 0 15.322 23.144" >
+                                            <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                                d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                                fill="#dcdcdc" />
+                                        </svg>
+                                    </button> 
+                                    <button class="btn bookmarkbtn bookmarked" *ngIf="post?.isSaved == true" (click)= "unsavePost(post.id)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                            viewBox="0 0 15.322 23.144" >
+                                            <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                                d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                                fill="#dcdcdc" />
+                                        </svg>
+                                    </button> 
+                                </div>
+                                <div class="post-media mt-3 mb-3">
+                                    <img class="object-cover" [src]="post?.campaignImage">
+                                    <!-- <img class="img-fluid object-cover" src="assets/images/post_img.png"> -->
+                                </div>
+                                <div class="post-content">
+                                    <h4 class="fs18 fw_semibold mb-2">
+                                        <!-- Hollister California -->
+                                        {{ post?.title }}
+                                    </h4>
+                                    <p class="mb-3 fs14 fw_light">
+                                        {{ post?.description }}
+                                        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit.
+                                        Etiam a cursus purus,
+                                        interdum dapibus sem. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit. Etiam
+                                        a cursus purus, interdum dapibus sem. -->
+                                    </p>
+                                    <div class="price-sec d-flex align-items-center justify-content-between">
+                                        <h5 class="fs18 text_color_pink m-0">
+                                            <!-- $300.00 -->
+                                            {{ post?.currencyType }} {{ post?.amount }}
+                                        </h5>
+                                        <!-- <button class="btn btn-primary">Apply</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

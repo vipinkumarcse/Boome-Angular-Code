@@ -1,0 +1,63 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-side-social></app-left-side-social>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card card_top_shape">
+                    <div class="card_container">
+                        <div class="card_circle_btn position-relative mb-3">
+                            <button [routerLink]="['/login']" class="btn p-0 position-absolute mx-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="existing_user" width="25.953"
+                                    height="22.709" viewBox="0 0 25.953 22.709">
+                                    <path id="Path_4108" data-name="Path 4108"
+                                        d="M96.146,5.407A5.407,5.407,0,1,1,90.739,0,5.407,5.407,0,0,1,96.146,5.407Zm0,0"
+                                        transform="translate(-81.007)" fill="#fff" />
+                                    <path id="Path_4109" data-name="Path 4109"
+                                        d="M14.328,256H5.136A5.142,5.142,0,0,0,0,261.136v3.785a.811.811,0,0,0,.811.811H18.653a.811.811,0,0,0,.811-.811v-3.785A5.142,5.142,0,0,0,14.328,256Zm0,0"
+                                        transform="translate(0 -243.024)" fill="#fff" />
+                                    <path id="Path_4110" data-name="Path 4110"
+                                        d="M309.223,110.417l-3.785-3.514a.813.813,0,0,0-1.364.595v2.433h-4.325a1.081,1.081,0,1,0,0,2.163h4.325v2.433a.812.812,0,0,0,1.364.595l3.785-3.514a.814.814,0,0,0,0-1.19Zm0,0"
+                                        transform="translate(-283.529 -101.28)" fill="#fff" />
+                                </svg>
+                            </button>
+                            <p class="m-0 fs20 text-center pt-4">Login to existing account</p>
+                        </div>
+                        <div class="card_header text-center px-4 py-2">
+                            <h3 class="display-6 position-relative d-inline-flex heading_with_lines">Signup <i
+                                    class="d-inline-flex ms-3"><img class="img-fluid"
+                                        src="assets/images/features_lines.svg" alt=""></i></h3>
+                            <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Choose the account type
+                                from the following.</h4>
+                        </div>
+
+                        <form action="" class="p-4">
+                            <div class="selectType_container px-5">
+
+                            
+                            <div class="mb-4 d-grid">
+                                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" (click)="select('Client')">
+                                <label class="btn btn_lighter_blue btn-info" for="option1">Client</label>
+                            </div>
+                            <div class="mb-4 d-grid">
+                                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" (click)="select('Influencer')">
+                                <label class="btn btn_lighter_blue btn-info" for="option2">Influencer</label>
+
+                            </div>
+                            <div class="mb-4 d-grid">
+                                <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" (click)="select('Talent')">
+                                <label class="btn btn_lighter_blue btn-info" for="option3">Talent</label>
+                            </div>
+
+                            <div class="mt-5 text-center">
+                                <button type="button" class="btn btn-primary" [disabled]="!role" (click)="redirect()">Continue <i class="ms-2"><img src="assets/images/app/btn_right_arrow.svg" alt=""></i></button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

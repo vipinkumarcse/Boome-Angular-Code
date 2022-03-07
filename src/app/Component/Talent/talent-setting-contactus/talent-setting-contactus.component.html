@@ -1,0 +1,95 @@
+<app-talent-header></app-talent-header>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/blue_settings.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Settings</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-talent-settings-sidebar></app-talent-settings-sidebar>
+            </div>
+            <!-- Payment Method -->
+            <div class="col-md-12 col-lg-8">
+                <div class="account-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Contact Us</h2>
+                    <div class="contact-itm d-flex align-items-center mb-3">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/contact_email.svg">
+                        </div>
+                        <div class="contact-sec flex-1">
+                            <h3 class="fs16 fw_semibold mb-1">Email</h3>
+                            <p class="fs14 fw_normal mb-0">info@boome-wm.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-itm d-flex align-items-center mb-3">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/contact_web.svg">
+                        </div>
+                        <div class="contact-sec flex-1">
+                            <h3 class="fs16 fw_semibold mb-1">Website</h3>
+                            <p class="fs14 fw_normal mb-0">www.boome-wm.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-itm d-flex align-items-center mb-3">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/contact_location.svg">
+                        </div>
+                        <div class="contact-sec flex-1">
+                            <h3 class="fs16 fw_semibold mb-1">Address</h3>
+                            <p class="fs14 fw_normal mb-0">16533 Steuber Crossroad, United Arab Emirates, AE</p>
+                        </div>
+                    </div>
+                    <form action="" class="pb-0 pt-3" [formGroup]="ContactUs">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Enter first name" formControlName="name"  />
+                                <div *ngIf="!ContactUs.controls.name.valid &&
+                                ContactUs.controls.name.dirty" class="error_main_div">
+                                        <div *ngIf="ContactUs.controls.name.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control form-control-lg"
+                                placeholder="Your email id" formControlName="email"  />
+                                <div *ngIf="!ContactUs.controls.email.valid &&
+                                ContactUs.controls.email.dirty">
+                                        <div *ngIf="ContactUs.controls.email.hasError('invalidEmail') && ContactUs.controls.email.value"
+                                            class="error_message">Invalid email !</div>
+                                        <div *ngIf="ContactUs.controls.email.hasError('required')">This field
+                                            is
+                                            Mandatory !</div>
+                                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea rows="5" class="form-control form-control-lg" placeholder="Write Message..." formControlName="message" ></textarea>
+                            <div *ngIf="!ContactUs.controls.message.valid &&
+                            ContactUs.controls.message.dirty" class="error_main_div">
+                                    <div *ngIf="ContactUs.controls.message.hasError('required')"
+                                        class="error_message">This field is Mandatory !</div>
+                                </div>
+                        </div>
+                       
+                        <div class="mt-4 position-relative  d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" [disabled]="!ContactUs.valid" (click)="sendContactUs()" >Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

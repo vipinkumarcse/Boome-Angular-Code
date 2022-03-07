@@ -1,0 +1,55 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>
+
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+            <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="account-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Bank Details</h2>
+                    <form action="" class="pb-0" [formGroup]="ProfileData">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Account Number</label>
+                            <input type="text" class="form-control form-control-lg"
+                            maxlength="16"  placeholder="Account Numbers" formControlName="accountNumber" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">IBAN Number</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="IBAN Number" formControlName="ibanNumber" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Routing Number</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="Bank routing number (Optional)" formControlName="routingNumber"  />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Swift Code</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Swift Code" formControlName="swiftCode" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bank Name</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Bank Name" formControlName="bankName" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bank Address</label>
+                            <input type="text" class="form-control form-control-lg"
+                                placeholder="Bank Address" formControlName="bankAddress" />
+                        </div>
+                       
+                        <div class="mt-4 position-relative  d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" (click)="submit()">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

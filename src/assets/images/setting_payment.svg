@@ -1,0 +1,7 @@
+<svg id="setting_payment" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33">
+  <circle id="Ellipse_161" data-name="Ellipse 161" cx="16.5" cy="16.5" r="16.5" fill="#aefffa" opacity="0.4"/>
+  <g id="credit-card" transform="translate(6.083 -70.013)">
+    <path id="Path_27115" data-name="Path 27115" d="M20.4,83.307V82.231A2.231,2.231,0,0,0,18.169,80H2.231A2.231,2.231,0,0,0,0,82.231v1.076a.2.2,0,0,0,.2.2h20A.2.2,0,0,0,20.4,83.307Z" fill="#009da1"/>
+    <path id="Path_27116" data-name="Path 27116" d="M0,200.2v6.813a2.231,2.231,0,0,0,2.231,2.231H18.169a2.231,2.231,0,0,0,2.231-2.231V200.2a.2.2,0,0,0-.2-.2H.2A.2.2,0,0,0,0,200.2Zm5.1,5.22a.638.638,0,0,1-.638.638H3.825a.638.638,0,0,1-.638-.638v-.637a.638.638,0,0,1,.638-.638h.638a.638.638,0,0,1,.638.638Z" transform="translate(0 -115.219)" fill="#009da1"/>
+  </g>
+</svg>

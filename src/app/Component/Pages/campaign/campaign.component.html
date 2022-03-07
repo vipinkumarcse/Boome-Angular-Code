@@ -1,0 +1,246 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>   
+<section class="campaign-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="post-sec cmn-card mb-4">
+                    <!-- <form [formGroup]="Search"> -->
+                    <div class="search_outer mt-2" *ngIf="campaignList?.length">
+                        <input type="search" class="form-control form-control-lg rounded-0" placeholder="Search Jobs..." [(ngModel)]="title" (ngModelChange)="getSearchTalent()" name="search">
+                        <!-- <input type="text" class="form-control form-control-lg rounded-0"
+                            placeholder="Search Campaign..." formControlName="search" > -->
+                    </div>
+                <!-- </form> -->
+
+                <div class="col-12" *ngIf="!campaignList?.length ">
+                    <h4 class="text-center py-5">No Campaign Found</h4>
+                  </div>
+
+                    <div class="cmn-post" *ngFor="let list of campaignList">
+                        <div class="head-sec d-flex align-items-start justify-content-between">
+                            <div class="user-sec d-flex align-items-center">
+                                <div class="img-wrap me-3">
+                                    <img class="object-cover" [src]="list?.creatorInfo.profilePic"  (click)="redirect(list.id ,list.isApplied )">
+                                </div>
+                                <div class="content-sec">
+                                    <h3 class="fs18 text_color_light_blue fw_semibold mb-1">{{list?.creatorInfo.name}}</h3>
+                                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0"><img class="me-2"
+                                            src="assets/images/post_location.svg"><span> {{list?.address?.city}}, {{list.address.country}}</span></p> 
+                                            <!-- California 95023, USA -->
+                                </div>
+                            </div>
+                            <button class="btn bookmarkbtn" *ngIf="list?.isSaved == false" (click)= "savePost(list.id)"> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                    viewBox="0 0 15.322 23.144" >
+                                    <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                        d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                        fill="#dcdcdc" />
+                                </svg>
+                            </button> 
+                            <button class="btn bookmarkbtn bookmarked" *ngIf="list?.isSaved == true ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                    viewBox="0 0 15.322 23.144">
+                                    <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                        d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                        fill="#dcdcdc" />
+                                </svg>
+                            </button> 
+                        </div>
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" [src]="list?.campaignImage" (click)="redirect(list.id ,list.isApplied )">
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-2">{{list?.title}}</h4>
+                            <p class="mb-3 fs14 fw_light">{{list?.description}}</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">{{list?.currencyType}} {{list?.amount}}</h5>
+                                <span *ngIf="list?.isApplied == true ">
+                                    <span class="applied" >
+                                        Applied
+                                    </span>
+                                </span>
+                                <span *ngIf="list?.isApplied == false ">
+                                    <button class="btn btn-primary" (click)="redirect(list.id)" [queryParams]="{ type: 'detail' }">
+                                        Apply
+                                    </button>
+                                </span>
+                              
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="cmn-post">
+                        <div class="head-sec d-flex align-items-start justify-content-between">
+                            <div class="user-sec d-flex align-items-center">
+                                <div class="img-wrap me-3">
+                                    <img class="object-cover" src="assets/images/post_user1.svg">
+                                </div>
+                                <div class="content-sec">
+                                    <h3 class="fs18 text_color_light_blue fw_semibold mb-1">Colton Sturgeon</h3>
+                                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0"><img class="me-2"
+                                            src="assets/images/post_location.svg"><span>California 95023, USA</span></p>
+                                </div>
+                            </div>
+                            <button class="btn bookmarkbtn bookmarked">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                    viewBox="0 0 15.322 23.144">
+                                    <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                        d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                        fill="#dcdcdc" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" src="assets/images/post_img1.png">
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-2">Hollister California</h4>
+                            <p class="mb-3 fs14 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a cursus purus,
+                                interdum dapibus sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                a cursus purus, interdum dapibus sem.</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">$300.00</h5>
+                                <button class="btn btn-primary">Apply</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="cmn-post">
+                        <div class="head-sec d-flex align-items-start justify-content-between">
+                            <div class="user-sec d-flex align-items-center">
+                                <div class="img-wrap me-3">
+                                    <img class="object-cover" src="assets/images/post_user.svg">
+                                </div>
+                                <div class="content-sec">
+                                    <h3 class="fs18 text_color_light_blue fw_semibold mb-1">Colton Sturgeon</h3>
+                                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0"><img class="me-2"
+                                            src="assets/images/post_location.svg"><span>California 95023, USA</span></p>
+                                </div>
+                            </div>
+                            <button class="btn bookmarkbtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.322" height="23.144"
+                                    viewBox="0 0 15.322 23.144">
+                                    <path id="Icon_awesome-bookmark" data-name="Icon awesome-bookmark"
+                                        d="M0,23.144V2.17A2.054,2.054,0,0,1,1.915,0H13.407a2.054,2.054,0,0,1,1.915,2.17V23.144L7.661,18.081Z"
+                                        fill="#dcdcdc" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="post-media mt-3 mb-3">
+                            <img class="img-fluid object-cover" src="assets/images/post_img.png">
+                        </div>
+                        <div class="post-content">
+                            <h4 class="fs18 fw_semibold mb-2">Hollister California</h4>
+                            <p class="mb-3 fs14 fw_light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Etiam a cursus purus,
+                                interdum dapibus sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                a cursus purus, interdum dapibus sem.</p>
+                            <div class="price-sec d-flex align-items-center justify-content-between">
+                                <h5 class="fs18 text_color_pink m-0">$300.00</h5>
+                                <button class="btn btn-primary" onclick="location.href='job_detail.html';">Apply</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <img *ngIf="!profileData?.user?.profileImage" src="assets/images/profile_user.svg">
+                            <img *ngIf="profileData?.user?.profileImage" src="{{profileData?.user?.profileImage}}">
+                        </div>
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">{{profileData?.user?.firstName}} {{profileData?.user?.lastName}}</h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px" class="me-2"
+                        src="assets/images/post_location.svg"><span>{{addressData?.address?.city}} {{addressData?.address?.postalCode}}, {{addressData?.address?.country}}</span></p>
+                    <div class="follower-sec d-flex aligin-items-start">
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Posts</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                {{user?.socialAccount?.instagram?.data?.postsCount | numberFormat}}
+                                <!-- 150 -->
+                            </h3>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Following</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                <!-- 256 -->
+                                {{user?.socialAccount?.instagram?.data?.followingCount | numberFormat}}
+                            </h3>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="item-sec">
+                            <p class="fs16 text-white fw_normal text-center mb-1">Followers</p>
+                            <h3 class="fs24 text-white text-center m-0">
+                                <!-- 22.8K -->
+                                {{user?.socialAccount?.instagram?.data?.followerCount | numberFormat}}
+                            </h3>
+                        </div>
+                    </div>
+                     <h4 class="fs16 fw_semibold mb-1 mt-4">Bio</h4>
+                    <p class="fs14 fw_light mb-0">{{profileData?.user?.bio}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Date of Birth</h4>
+                    <!-- <p class="fs14 fw_light mb-0">{{profileData?.user?.dob}}</p> -->
+                    <p class="fs14 fw_light mb-0">
+                        <!-- {{profileData?.user?.dob}} -->
+                        {{profileData?.user?.dateOfBirth | date: 'dd MMMM yyyy'}}
+                    </p>
+
+
+                    <h4 class="fs16 fw_semibold mb-3 mt-4">Photo Gallary</h4>
+                    <div class="row gallary">
+                        <div class="col-sm-6">
+                            <div class="img-wrapper">
+                                <img src="assets/images/gallary1.svg">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="img-wrapper">
+                                <img src="assets/images/gallary2.svg">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="img-wrapper">
+                                <img src="assets/images/gallary2.svg">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="img-wrapper">
+                                <img src="assets/images/gallary1.svg">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mx-auto d-block">See All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

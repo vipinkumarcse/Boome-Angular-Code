@@ -1,0 +1,55 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>    
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="account-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Contact Us</h2>
+                    <form action="" class="pb-0" [formGroup]="ContactUsForm">
+        
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="email" class="form-control form-control-lg"
+                                placeholder="Enter name" formControlName="name"/>
+                                <div *ngIf="!ContactUsForm.controls.name.valid &&
+                                ContactUsForm.controls.name.dirty" class="error_main_div">
+                                            <div *ngIf="ContactUsForm.controls.name.hasError('required')"
+                                                class="error_message">This field is Mandatory !</div>
+                                        </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="tel" class="form-control form-control-lg"
+                                placeholder="Enter email id" formControlName="email" />
+                                <div *ngIf="!ContactUsForm.controls.email.valid &&
+                                ContactUsForm.controls.email.dirty" class="error_main_div">
+                                <div *ngIf="ContactUsForm.controls.email.hasError('invalidEmail') && ContactUsForm.controls.email.value"
+                                class="error_message">Invalid email !</div>
+                                            <div *ngIf="ContactUsForm.controls.email.hasError('required')"
+                                                class="error_message">This field is Mandatory !</div>
+                                        </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea rows="5" class="form-control form-control-lg" placeholder="Write Message..." formControlName="message"></textarea>
+                            <div *ngIf="!ContactUsForm.controls.message.valid &&
+                            ContactUsForm.controls.message.dirty" class="error_main_div">
+                                        <div *ngIf="ContactUsForm.controls.message.hasError('required')"
+                                            class="error_message">This field is Mandatory !</div>
+                                    </div>
+                        </div>
+                       
+                        <div class="mt-4 position-relative  d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" [disabled]="!ContactUsForm.valid" (click)="submit()" >Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="242.617" height="108.221" viewBox="0 0 242.617 108.221">
+  <defs>
+    <filter id="top_curve_shape" x="0" y="0" width="242.617" height="108.221" filterUnits="userSpaceOnUse">
+      <feOffset dy="-20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#top_curve_shape)">
+    <path id="top_curve_shape-2" data-name="top_curve_shape" d="M0,48.221C37.638,38.211,43.846,0,90.095,0c45.477,0,57.506,37.348,92.522,48.221Z" transform="translate(30 50)" fill="#fff"/>
+  </g>
+</svg>

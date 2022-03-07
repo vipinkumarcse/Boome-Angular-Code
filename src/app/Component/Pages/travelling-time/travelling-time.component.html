@@ -1,0 +1,43 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>    
+
+
+<section class="travelling-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <div class="img-wrapper text-center mt-4 mb-5">
+                <img class="img-fluid" src="assets/images/travelling_img.svg">
+            </div>
+            <div class="content-sec mx-auto">
+                <h2 class="fs24 fw_semibold mb-5 mt-0">Fill all the details: </h2>
+                <form [formGroup]="destinationForm"  >
+                    <div class="mb-3">
+                        <label class="form-label">Destination</label>
+                        <input type="text" class="form-control form-control-lg" 
+                            placeholder="Where are you going?"  id="pac-input"   formControlName="destinationValues"/>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Depart</label>
+                            <input matInput class="form-control form-control-lg" [min]="date" placeholder="dd-mm-yy" [matDatepicker]="picker" formControlName="departDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <!-- <input type="date" formControlName="departDate" [max]="destinationForm.get('currentDate').value" class="form-control form-control-lg" placeholder="DD-MM-YY" /> -->
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Return</label>
+                            <input matInput class="form-control form-control-lg" [min]="date" placeholder="dd-mm-yy" [matDatepicker]="picker1" formControlName="returnDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <!-- <input type="date" formControlName="returnDate" class="form-control form-control-lg" placeholder="dDD-MM-YY" /> -->
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3 mb-1 d-block mx-auto" (click)="travellingTime()">Save</button>
+                    <!-- <button class="btn btn-primary mt-3 mb-1 d-block mx-auto" (click)="travellingTime()">Update</button> -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,133 @@
+<app-talent-header></app-talent-header>
+<app-talent-topbar></app-talent-topbar>
+
+<section class="campaign-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="post-sec cmn-card mb-4">
+                    <div class="search_outer mt-2 pb-3">
+                        <input type="search" class="form-control form-control-lg rounded-0" placeholder="Search Jobs..." [(ngModel)]="search" (ngModelChange)="getSearchTalent()" name="search">
+                    </div>
+                    <div *ngIf="taskDetail.length>0">
+                        <div class="task-itm d-flex align-items-start" *ngFor="let task of taskDetail" (click)="routeToTaskDetail(task._id)">
+
+                            <div class="img-wrap me-3">
+                                <img [src]="task.profileImage ? task.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <div class="content-sec">
+                                <h2 class="fs20 fw_semibold mb-0">{{task?.title}}</h2>
+                                <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">{{task?.description}}</p>
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">{{startingDate}}</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">{{startTime}} - {{endTime}}</span></h3>
+                                <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3">Accept</button>
+                                    <button class="btn btn-reject" (click)="acceptAndRejectBookingRequest(task._id, 'rejected')">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                            <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div *ngIf="taskDetail.length==0"> No Data Found</div>
+
+
+                    <!-- <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">We are hiring ManagerSr Manager Content Technology for one of the OTT platform man...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3" [routerLink]="['/task-detail']">Apply</button>
+                                <button class="btn btn-reject">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">We are hiring ManagerSr Manager Content Technology for one of the OTT platform man...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3" [routerLink]="['/task-detail']">Apply</button>
+                                <button class="btn btn-reject">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">We are hiring ManagerSr Manager Content Technology for one of the OTT platform man...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3" [routerLink]="['/task-detail']">Apply</button>
+                                <button class="btn btn-reject">Reject</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+                </div>
+            </div>
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <img [src]="detail?.user?.profileImage">
+                        </div>
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">{{detail?.user?.firstName}} {{detail?.user?.lastName}}</h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px" class="me-2" src="assets/images/post_location.svg"><span>{{detail?.user?.address?.city}} {{detail?.user?.address?.postalCode}}, {{detail?.user?.address?.country}}</span></p>
+
+                    <div class="profile-subs d-flex align-items-center mt-3">
+                        <div class="img-wrap">
+                            <img src="assets/images/diamond.svg">
+                        </div>
+                        <div class="content-sec">
+                            <p class="fs16 text-white mb-1">Free Subscriber </p>
+                            <h2 class="fs28 text-white mb-0">Upgrade Plan</h2>
+                        </div>
+                    </div>
+
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Phone</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.mobileCountryCode}} {{detail?.user?.mobile}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Email</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.email}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Experience</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.experience}} Years</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

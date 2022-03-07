@@ -1,0 +1,139 @@
+<app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Campaign Hall</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Campaigns Requests</h2>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>
+            </div>
+        </div>
+    </div>   
+</section>     
+       
+<section class="request-sec">     
+    <div class="container">       
+        <div class="cmn-card mb-4">    
+            <div class="border-bottom-heading d-flex align-items-center justify-content-between pb-3">   
+                <h2 class="fs22 fw_semibold text_color_blue m-0">Requests</h2>
+                <div class="d-flex align-items-center">    
+                    <label class="fs14 fw_normal text_color_lightgrey me-3 text-nowrap">Filter By Ratings</label>
+                    <!-- <label class="form-label">Country</label> -->
+                    <select class="form-select">
+                        <option selected>All</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Star</option>
+                        <option value="3">3 Star</option>
+                      </select>
+                </div>
+            </div>
+            <ng-container *ngIf="requestList?.length != 0">
+            <div class="requests-itm d-flex align-items-center justify-content-between" *ngFor="let list of requestList">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" [src]="list.sentBy.profileImage?list.sentBy.profileImage:assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">{{list.sentBy.fullName}}</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">{{list.sentBy.address.city?list.sentBy.address.city:''}} {{list.sentBy.address.postalCode?list.sentBy.address.postalCode:''}}, {{list.sentBy.address.country?list.sentBy.address.country:''}}</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign',list.campaign]">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3" (click)="requestStatus('accept',list._id)">Accept</button>
+                    <button class="btn btn-reject" (click)="requestStatus('reject',list._id)">Reject</button>
+                </div>  
+            </div>
+        </ng-container>
+        <ng-container *ngIf="requestList?.length == 0">No Data</ng-container>
+
+            <!-- <div class="requests-itm d-flex align-items-center justify-content-between">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" src="assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">Josua Csizmadia</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">California 95023, USA</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign']">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3">Accept</button>
+                    <button class="btn btn-reject">Reject</button>
+                </div>  
+            </div>
+
+            <div class="requests-itm d-flex align-items-center justify-content-between">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" src="assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">Josua Csizmadia</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">California 95023, USA</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign']">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3">Accept</button>
+                    <button class="btn btn-reject">Reject</button>
+                </div>  
+            </div>
+
+            <div class="requests-itm d-flex align-items-center justify-content-between">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" src="assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">Josua Csizmadia</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">California 95023, USA</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign']">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3">Accept</button>
+                    <button class="btn btn-reject">Reject</button>
+                </div>  
+            </div>
+
+            <div class="requests-itm d-flex align-items-center justify-content-between">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" src="assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">Josua Csizmadia</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">California 95023, USA</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign']">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3">Accept</button>
+                    <button class="btn btn-reject">Reject</button>
+                </div>  
+            </div>
+
+            <div class="requests-itm d-flex align-items-center justify-content-between">
+                <div class="user-sec d-flex align-items-center">
+                    <div class="img-wrap me-4">
+                        <img class="object-cover" src="assets/images/userimage2.png">
+                    </div>
+                    <div class="content-sec">
+                        <h3 class="fs20 fw_semibold mb-0 d-flex align-items-center flex-wrap" [routerLink]="['/client-influncer-details']"><span class="me-3">Josua Csizmadia</span> <img width="24" src="assets/images/verified_user.svg"></h3>
+                        <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2"><img class="me-2" src="assets/images/post_location.svg" style="margin-top: -3px;">California 95023, USA</p>
+                        <button class="btn text_color_blue p-0 no-shadow fs14 text-decoration-underline" [routerLink]="['/client-campaign']">View Job Details</button>
+                    </div>
+                </div>
+                <div class="btn-sec d-flex align-items-center pt-3">
+                    <button class="btn btn-primary me-3">Accept</button>
+                    <button class="btn btn-reject">Reject</button>
+                </div>  
+            </div> -->
+        </div>
+    </div>
+</section>

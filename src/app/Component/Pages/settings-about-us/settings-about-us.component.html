@@ -1,0 +1,52 @@
+<app-user-header></app-user-header>
+<app-top-bar [data]="topBar"></app-top-bar>    
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-settings-sidebar></app-settings-sidebar>
+            </div>
+            <div class="col-md-12 col-lg-8">
+                <div class="about-boome cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">About BooMe</h2>
+                    <div class="video-sec position-relative mb-4">
+                        <img class="img-fluid w-100" src="assets/images/about-video.svg">
+                        <a class="playbtn position-absolute" data-bs-toggle="modal" data-bs-target="#about_boome_video"><img src="assets/images/playimg.svg"></a>
+                    </div>
+                    <h3 class="fs22 fw_semibold mb-3">
+                        <!-- Lorem ipsum dolor sit amet -->
+                        <!-- {{staticData.data.type}} -->
+                    </h3>
+                    <p class="fs16 fw_light mb-3" [innerHtml]="staticData?.data?.text">
+                        {{staticData?.data?.text}} 
+                        <!-- In scelerisque est sit amet elit faucibus sagittis in nec nisl. 
+                        Pellentesque erat libero, consequat sit amet eros nec, auctor elementum libero. 
+                        Vivamus pulvinar eu dolor at posuere. Interdum et malesuada fames ac ante ipsum primis in faucibus. -->
+                    </p>
+                    <!-- <p class="fs16 fw_light mb-3">Nunc egestas orci sed tempus lacinia. Maecenas at mi nec neque volutpat cursus non vitae velit. Aliquam in hendrerit neque, sit amet ullamcorper libero. Ut lobortis, ligula eu malesuada euismod, diam augue mollis magna, nec vulputate diam dolor nec magna. Suspendisse eleifend sem ut congue ullamcorper. Nunc egestas orci sed tempus lacinia. Maecenas at mi nec neque volutpat cursus non vitae velit. Aliquam in hendrerit neque, sit amet ullamcorper libero. Ut lobortis, ligula eu malesuada euismod, diam augue mollis magna, nec vulputate diam dolor nec magna. Suspendisse eleifend sem ut congue ullamcorper. </p>
+                    <h3 class="fs22 fw_semibold mb-3">Lorem ipsum dolor sit amet</h3>
+                    <p class="fs16 fw_light mb-3">Nunc egestas orci sed tempus lacinia. Maecenas at mi nec neque volutpat cursus non vitae velit. Aliquam in hendrerit neque, sit amet ullamcorper libero. Ut lobortis, ligula eu malesuada euismod, diam augue mollis magna, nec vulputate diam dolor nec magna. Suspendisse eleifend sem ut congue ullamcorper. Nunc egestas orci sed tempus lacinia. Maecenas at mi nec neque volutpat cursus non vitae velit. Aliquam in hendrerit neque, sit amet ullamcorper libero. Ut lobortis, ligula eu malesuada euismod</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade " id="about_boome_video" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h4 class="modal-title ">About BooMe</h4>
+                <button type="button " class="btn-close " data-bs-dismiss="modal" aria-label="Close "></button>
+            </div>
+            <div class="modal-body ">
+                <div class="embed-responsive embed-responsive-16by9 ">
+                    <iframe id="wedo_video " class="embed-responsive-item " width="100% " height="450 "
+                        src="//www.youtube.com/embed/YE7VzlLtp-4 " allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

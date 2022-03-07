@@ -1,0 +1,57 @@
+<header class="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" [routerLink]="['/client']"><img src="assets/images/inner-logo.svg"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link usertogl dropdown-toggle d-flex align-items-center" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="img-wrap">
+                                    <img src="assets/images/header_user.svg">
+                                </div>
+                                <div class="content-sec">
+                                    <h5 class="fs18 fw_normal text-white m-0">Jenifer Roose</h5>
+                                    <p class="fs14 fw_normal text-white m-0">jenifer@gmail.com</p>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_user.svg"></span>
+                                        My Profile
+                                    </a></li>
+                                    <li><a class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_setting.svg"></span>
+                                        Settings
+                                    </a></li>
+                                <li><a class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_privacy.svg"></span>
+                                        Privacy Policies
+                                    </a></li>
+                                <li><a [routerLink]="['/']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative">
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_logout.svg"></span>
+                                        Logout
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

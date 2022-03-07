@@ -1,0 +1,50 @@
+.multi_step_form #msform #progressbar li.active:before,
+.multi_step_form #msform #progressbar li.active:after,
+.multi_step_form #msform #progressbar li:before,
+.multi_step_form #msform #progressbar li:after {
+    display: none;
+}
+
+.multi_step_form #msform #progressbar li {
+    width: unset;
+    float: unset;
+}
+
+.connectTabs .nav-pills .nav-item.active .nav-link {
+    color: #fff;
+}
+
+.connectTabs .nav-pills .nav-item.active .nav-link svg {
+    fill: #fff;
+}
+
+.connectTabs .nav-pills .nav-item.active .facebookBg.nav-link {
+    background-color: #3A5794;
+}
+
+.connectTabs .nav-pills .nav-item.active .youtubeBg.nav-link {
+    background-color: #FE0000;
+}
+
+.connectTabs .nav-pills .nav-item.active .instaBg.nav-link {
+    background-color: #E73085;
+}
+
+.connectTabs .nav-pills .nav-item.active .tiktokBg.nav-link {
+    background-color: #000000;
+}
+
+.connectTabs .nav-pills .nav-link {
+    pointer-events: none;
+}
+
+.connectTabs {
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab_inner_sec {
+    position: relative;
+    min-height: 151px;
+}

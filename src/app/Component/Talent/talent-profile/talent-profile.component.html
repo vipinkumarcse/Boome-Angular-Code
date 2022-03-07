@@ -1,0 +1,482 @@
+<app-talent-header></app-talent-header>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/user_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">My Profile</h3>
+            </div>
+            <!-- <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<section class="campaign-sec"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="talent-profile cmn-card mb-4">
+                    <!-- tabs here -->
+                    <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                aria-selected="true">Edit Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="subcription-tab" data-bs-toggle="tab"
+                                data-bs-target="#subcription" type="button" role="tab" aria-controls="subcription"
+                                aria-selected="false">Subcription</button>
+                        </li>
+                    </ul>
+
+                    <!-- tabs content here -->
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel"
+                            aria-labelledby="profile-tab">
+                            <div class="editprofile-talent pt-5">
+                                <form action="" class="" [formGroup]="talentData">
+                                    <div class="mb-3">
+                                        <div class="profile_img text-center">
+                                            <div class="profile_img_container position-relative d-inline-block">
+                                                <div
+                                                    class="profile_container d-flex align-items-center justify-content-center">
+                                                    <img class="object-cover" *ngIf="!imgURL"
+                                                        src="assets/images/profile_user.svg" alt="">
+                                                    <img class="object-cover" *ngIf="imgURL"
+                                                        [src]="imgURL" alt="">
+                                                </div>
+                                                <div class="profile_camera position-absolute">
+                                                    <img class="img-fluid"
+                                                        src="assets/images/app/camera_icon.svg" alt="" />
+                                                    <input type="file" (change)="selectImage($event)" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                            placeholder="Erhunse" formControlName="firstName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                            placeholder="Enter Last Name" formControlName="lastName" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control form-control-lg"
+                                            placeholder="Enter Email" formControlName="email" />
+                                    </div>
+
+
+                                   
+
+                                    <div class="mb-3">
+                                        <div class="mobno-label d-flex align-items-center justify-content-between">
+                                            <label class="form-label">Mobile No.</label>
+                                            <div class="btns pb-2">
+                                                <div class="btn verified no-shadow text_color_pink">
+                                                    <img class="me-1" width="19" src="assets/images/verified_user.svg">Verified
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input class="phoneinput form-control form-control-lg" type="tel" formControlName="mobile" ng2TelInput
+                                        [ng2TelInputOptions]="initialConfig" (countryChange)="onCountryChange1($event)" (intlTelInputObject)="telInputObject($event)"
+                                        />
+                                        <!-- <input type="number" class="form-control form-control-lg"
+                                            placeholder="Enter Mobile No." formControlName="mobile" /> -->
+                                    </div>
+            
+
+
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Bio</label>
+                                        <textarea class="form-control" maxlength="200" rows="4" placeholder="Description..." formControlName="bio"></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="mb-3">Choose Categories +4</h6>
+
+                                        <div class="interest_container talent d-flex flex-wrap">
+                                            <!-- category checkbox -->
+                                            <!-- <div class="category-check" *ngFor="let category of list">
+                                                <input type="checkbox" class="btn-check" id="{{category._id}}" (click)="select($event, category._id)"> 
+                                                <label class="btn" for="{{category._id}}">🎸 {{category.name}}</label>
+                                            </div> -->
+
+                                            <div class="category-check" *ngFor="let category of list">
+                                                <input class="btn-check" type="checkbox" [value]="category._id" [checked]="category.checked" formControlName="categoryselect" id="{{category._id}}" (click)="select($event, category._id)" />
+                                                <label for="{{category._id}}" class="btn"> 
+                                                    <!-- <img class="img-fluid" [src]="category.icon"> -->
+                                                   🎸 {{category.name}}
+                                                </label>
+                                                <!-- <div class="interest_check" aria-label="{{category._id}}">
+                                                    <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                </div> -->
+                                            </div>
+
+                                            <!-- <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="singer">
+                                                <label class="btn" for="singer">🎙 Singer</label>
+                                            </div>
+
+                                       
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="manager">
+                                                <label class="btn" for="manager">📽 Production manager</label>
+                                            </div>
+
+                                      
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="designer">
+                                                <label class="btn" for="designer">🖌 Designer</label>
+                                            </div>
+
+                                        
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="writer">
+                                                <label class="btn" for="writer">📝 Script Writer</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="artist">
+                                                <label class="btn" for="artist">🎹 Piano artist</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="photography">
+                                                <label class="btn" for="photography">📷 Photography</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="film">
+                                                <label class="btn" for="film">🎬 Film Making</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="event">
+                                                <label class="btn" for="event">🎉 Event planner</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="fashion">
+                                                <label class="btn" for="fashion">👠 Fashion designer</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="interior">
+                                                <label class="btn" for="interior">💠 Interior designer</label>
+                                            </div>
+
+                                    
+                                            <div class="category-check">
+                                                <input type="checkbox" class="btn-check" id="tattoo">
+                                                <label class="btn" for="tattoo">💯 Tattoo artist</label>
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary mx-auto d-block" (click)="saveChanges()">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade pt-3" id="subcription" role="tabpanel"
+                            aria-labelledby="subcription-tab">
+                            <div class="talent-subs">
+                                <div class="active-plan d-flex align-items-center justify-content-between mt-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="img-wrap">
+                                            <img class="me-3" width="80" src="assets/images/bg-dimond.svg">
+                                        </div>
+                                        <div class="content-sec flex-1">
+                                            <h3 class="fs16 fw_normal mb-2">
+                                                <!-- 6 Months Plan -->
+                                                 {{ subscription?.plan}}
+                                            </h3>
+                                            <p class="fs14 text_color_lightgrey fw_normal mb-0">Expire on: 
+                                                <!-- 05 Dec, 2021 -->
+                                                {{ planExpireDate }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <h2 class="fs30 fw_bold text_color_pink mb-0">
+                                        <!-- $181.50 -->
+                                        {{ subscription?.currency}}  {{ subscription?.amount}}
+                                    </h2>
+                                </div>
+                                <div class="payment-meth pt-2">
+                                    <h2 class="fs22 fw_semibold mt-4 mb-3">Select Payment Method</h2>
+                                    <div class="saved-card d-flex aligin-items-start justify-content-between mb-3" *ngFor="let cards of cardsData">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-0" type="radio" id="card1"
+                                                    name="savedcards">
+                                            </div>
+                                            <div class="img-wrap me-4">
+                                                <img src="assets/images/cardimg.svg">
+                                            </div>
+                                            <div class="content-sec">
+                                                <h3 class="fs18 fw_semibold mb-0">
+                                                    <!-- 0123 4567 8901 2345 -->
+                                                    XXXX XXXX XXXX {{ cards.last4}}
+                                                </h3>
+                                                <div class="d-flex aligin-items-start justify-content-between">
+                                                    <div>
+                                                        <p class="fs14 text_color_lightgrey">Card Holder</p>
+                                                        <h4 class="fs14 fw_semibold m-0">
+                                                            <!-- Jeffery Erhunse -->
+                                                            {{ cards.name}}
+                                                        </h4>
+                                                    </div>
+                                                    <div>
+                                                        <p class="fs14 text_color_lightgrey">Exp. Date</p>
+                                                        <h4 class="fs14 fw_semibold m-0">
+                                                            <!-- 14/25 -->
+                                                            {{ cards.exp_month}}/{{cards.exp_year}}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn no-shadow p-0" ><img
+                                            (click) = "delcard(cards.id)"   src="assets/images/trash-pink.svg"></button>
+                                    </div>
+
+                                    <!-- <div class="saved-card d-flex aligin-items-start justify-content-between mb-3">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input me-0" type="radio" id="card2"
+                                                    name="savedcards">
+                                            </div>
+                                            <div class="img-wrap me-4">
+                                                <img src="assets/images/cardimg.svg">
+                                            </div>
+                                            <div class="content-sec">
+                                                <h3 class="fs18 fw_semibold mb-0">0123 4567 8901 2345</h3>
+                                                <div class="d-flex aligin-items-start justify-content-between">
+                                                    <div>
+                                                        <p class="fs14 text_color_lightgrey">Card Holder</p>
+                                                        <h4 class="fs14 fw_semibold m-0">Jeffery Erhunse</h4>
+                                                    </div>
+                                                    <div>
+                                                        <p class="fs14 text_color_lightgrey">Exp. Date</p>
+                                                        <h4 class="fs14 fw_semibold m-0">14/25</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn no-shadow p-0"><img
+                                                src="assets/images/trash-pink.svg"></button>
+                                    </div> -->
+
+                                    <div class="add-card-box d-flex align-items-center justify-content-between">
+                                        <div class="content-sec">
+                                            <h3 class="fs16 fw_medium mb-1">Add Debit/Credit Card</h3>
+                                            <p class="fs14 fw_semibold m-0">Add another card for payment</p>
+                                        </div>
+                                        <button type="button" class="btn p-0 no-shadow" data-bs-toggle="modal"
+                                            data-bs-target="#add_card"><img
+                                                src="assets/images/plus-gray.svg"></button>
+                                    </div>
+
+                                    <h2 class="fs22 fw_semibold mt-4 mb-1 pt-3">Renew Subscription</h2>
+                                    <p class="fs16 fw_normal text_color_lightgrey mb-4">20% amount will be taken by the
+                                        admin.</p>
+                                    <div class="subs-item month" *ngFor="let plan of plans">
+                                        <h2 class="fs30 fw_bold text-white text-center mb-1">
+                                            <!-- $181.50 -->
+                                            {{ plan.currency}} {{ plan.unit_amount}}
+                                        </h2>
+                                        <p class="fs18 fw_normal text-center text-white mb-0">
+                                            <!-- 6 Months Unlimited -->
+                                            {{plan.nickname}}
+                                        </p>
+                                        <input class="position-absolute" type="radio" name="planRadio">
+                                        <img class="position-absolute check-img"
+                                            src="assets/images/plan-check.svg">
+                                    </div>
+
+                                    <!-- <div class="subs-item year">
+                                        <h2 class="fs30 fw_bold text-white text-center mb-1">$280.25</h2>
+                                        <p class="fs18 fw_normal text-center text-white mb-0">1 Year Unlimited</p>
+                                        <input class="position-absolute" type="radio" name="planRadio">
+                                        <img class="position-absolute check-img"
+                                            src="assets/images/plan-check.svg">
+                                    </div> -->
+                                    <button class="btn btn-primary mx-auto d-block">Buy Subscription</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <img [src]="detail?.user?.profileImage">
+                        </div>
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">{{detail?.user?.firstName}} {{detail?.user?.lastName}}</h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px"
+                            class="me-2" src="assets/images/post_location.svg"><span>{{detail?.user?.address?.city}} {{detail?.user?.address?.postalCode}}, {{detail?.user?.address?.country}}</span></p>
+
+                    <div class="profile-subs d-flex align-items-center mt-3" *ngIf="subscription?.type == 'free'">
+                        <div class="img-wrap">
+                            <img src="assets/images/diamond.svg">
+                        </div>
+                        <div class="content-sec">
+                            <p class="fs16 text-white mb-1">Free Subscriber </p>
+                            <h2 class="fs28 text-white mb-0">Upgrade Plan</h2>
+                        </div>
+                    </div>
+                    <div class="profile-subs d-flex align-items-center mt-3" *ngIf="subscription?.type == 'paid'">
+                        <div class="img-wrap">
+                            <img src="assets/images/diamond.svg">
+                        </div>
+                        <div class="content-sec">
+                            <p class="fs16 text-white mb-1">Paid Subscriber </p>
+                            <h2 class="fs28 text-white mb-0">Amount : {{subscription?.amount}} </h2>
+                        </div>
+                    </div>
+
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Phone</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.mobileCountryCode}} {{detail?.user?.mobile}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Email</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.email}}</p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Experience</h4>
+                    <p class="fs14 fw_light mb-0">{{detail?.user?.experience}} Years</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add card payment -->
+<!-- <div class="modal fade " id="add_card" tabindex="-1 " aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Add Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form class="" novalidate  [formGroup]="stripeForm" (ngSubmit)="createToken()">
+                        <input type="text" formControlName="name" placeholder="Jane Doe">
+                        <ngx-stripe-card
+                          [options]="cardOptions"
+                          [elementsOptions]="elementsOptions"
+                        ></ngx-stripe-card>
+                        <button type="submit">
+                          CREATE TOKEN
+                        </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<!-- Add card payment -->
+<!-- <div class="modal fade " id="add_card" tabindex="-1 " aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Add Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <form class=""  [formGroup]="stripeForm">
+                    <div class="mb-3">
+                        <label class="form-label">Card Holder Name</label>
+                        <input type="text" formControlName="name" class="form-control form-control-lg" placeholder="Card Holder Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Card Number</label>
+                        <input type="number" class="form-control form-control-lg"
+                        formControlName="number"   placeholder="Credit/Debit card number" />
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field appearance="standard"
+                        [ngClass]="jpCustomFormFieldClass">
+          <input matInput
+                 (click)="_openDatepickerOnClick(datepicker)"
+                 (keydown.arrowdown)="_openDatepickerOnClick(datepicker)"
+                 (keydown.enter)="_openDatepickerOnClick(datepicker)"
+                 [formControl]="_inputCtrl"
+                 [matDatepickerFilter]="_customFilter"
+                 [matDatepicker]="datepicker"
+                 [max]="_max"
+                 [min]="_min"
+                 readonly>
+        </mat-form-field>
+        <mat-datepicker #datepicker
+                        (closed)="_takeFocusAway(datepicker)"
+                        (monthSelected)="_monthSelectedHandler($event,datepicker)"
+                        [touchUi]="touchUi"
+                        panelClass="jp-month-picker"
+                        startView="multi-year">
+        </mat-datepicker>
+        
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">CVV</label>
+                        <input type="nomber" formControlName="cvc"  class="form-control form-control-lg" placeholder="CVV" />
+                    </div>
+                    <button class="btn btn-primary mx-auto d-block"  (click)="pay()">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- Add card payment -->
+<div class="modal fade " id="add_card" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Add Card</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="row">
+                    <form class="col-md-12" [formGroup]="stripeForm" (ngSubmit)="createToken()">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control" type="text" formControlName="name">
+                      </div>
+                      <div class="form-group">
+                        <ngx-stripe-card
+                          [options]="cardOptions"
+                          (on)="onChange($event)"
+                          [elementsOptions]="elementsOptions"
+                        ></ngx-stripe-card>
+                      </div>
+                      <button 
+                        class="btn btn-success"
+                      >CLICK</button>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

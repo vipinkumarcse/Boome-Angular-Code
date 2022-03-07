@@ -1,0 +1,17 @@
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3"><img width="23px" [src]="data.icon"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">{{data.name}}</h3>
+                <h2 *ngIf="data.jobD" class="mb-0 text_color_pink fs16 fw_normal">{{data.jobD}}</h2>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">
+                    <!-- {{data.date | date: 'dd/MM/yyyy'}} -->
+                    <!-- {{data.date}} -->
+                </p>
+            </div>
+        </div>
+    </div>   
+</section>

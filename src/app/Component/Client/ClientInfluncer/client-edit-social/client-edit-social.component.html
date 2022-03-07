@@ -1,0 +1,71 @@
+<app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/blue_settings.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Settings</h3>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="settings-sec">
+    <div class="container">
+        <div class="row">
+            <!-- Settings side menu -->
+            <div class="col-md-12 col-lg-4">
+                <app-client-setting-sidebar></app-client-setting-sidebar>
+            </div>
+            <!-- Payment Method -->
+            <div class="col-md-12 col-lg-8">
+                <div class="account-details cmn-card mb-4">
+                    <h2 class="settings-heading fs22 fw_semibold text_color_blue">Contact Us</h2>
+                  
+                    <form action="" class="pe-3 ps-1" [formGroup]="SocialLinkForm">
+                                   
+                        <div class="mb-3 pb-2">
+                            <label class="form-label d-flex align-items-center mb-3"><img class="me-2" src="assets/images/add-facebook.svg"> Facebook URL</label>
+                            <div class="input-outer position-relative">
+                                <input type="text" class="form-control form-control-lg"
+                                placeholder="https://www.facebook.com/" formControlName="facebook" />
+                                <img src="assets/images/link_icon.svg">
+                            </div>
+                        </div>
+                        <div class="mb-3 pb-2">
+                            <label class="form-label d-flex align-items-center mb-3"><img class="me-2" src="assets/images/add-youtube.svg"> YouTube Channel URL</label>
+                            <div class="input-outer position-relative">
+                                <input type="text" class="form-control form-control-lg"
+                                placeholder="https://www.youtube.com/" formControlName="youtube" />
+                                <img src="assets/images/link_icon.svg">
+                            </div>
+                        </div>
+                        <div class="mb-3 pb-2">
+                            <label class="form-label d-flex align-items-center mb-3"><img class="me-2" src="assets/images/add-instagram.svg"> Instagram Profile URL</label>
+                            <div class="input-outer position-relative">
+                                <input type="text" class="form-control form-control-lg"
+                                placeholder="https://www.instagram.com/rogger/45" formControlName="instagram" />
+                                <img src="assets/images/link_icon.svg">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 pb-2">
+                            <label class="form-label d-flex align-items-center mb-3"><img class="me-2" src="assets/images/add-tiktok.svg"> TikTok Profile URL</label>
+                            <div class="input-outer position-relative">
+                                <input type="text" class="form-control form-control-lg"
+                                placeholder="https://www.tiktok.com/" formControlName="tiktok" />
+                                <img src="assets/images/link_icon.svg">
+                            </div>
+                        </div>
+                      
+                        <button type="button" class="btn btn-primary d-block mx-auto" [disabled]="!SocialLinkForm.valid" (click)="update()">Save</button>
+                     
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

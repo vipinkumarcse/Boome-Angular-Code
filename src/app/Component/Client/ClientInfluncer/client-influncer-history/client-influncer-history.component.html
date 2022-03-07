@@ -1,0 +1,240 @@
+<app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/booking_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">History</h3>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="clienthistory-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming"
+                        type="button" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ongoing-tab" data-bs-toggle="tab" data-bs-target="#ongoing" type="button"
+                        role="tab" aria-controls="ongoing" aria-selected="false">Ongoing</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button"
+                        role="tab" aria-controls="completed" aria-selected="false">Completed</button>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Upcoming sec -->
+                <ng-container *ngIf="historyList?.upcomingCampaign?.length != 0">
+                <div class="tab-pane fade show active pt-2" id="upcoming" role="tabpanel"
+                    aria-labelledby="upcoming-tab">
+
+                    <div class="collabs-itm d-flex align-items-center" [routerLink]="['/client-history-upcoming',upcomingList._id]" *ngFor="let upcomingList of historyList?.upcomingCampaign">
+                        <div class="img-wrap me-4">
+                            <img [src]="upcomingList.campaignImage?upcomingList.campaignImage:assets/images/collabsimg.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">{{upcomingList.title}}</h2>
+                            <p class="mb-4">{{upcomingList.description}}</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>{{upcomingList.statedTimeLine}}</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>{{upcomingList.endTimeLine}}</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">{{upcomingList.currencyType}} {{upcomingList.amount}}</span></h4>
+                                <h5 class="status signed mb-0 py-2"><img class="me-1" src="assets/images/signed.svg"> Signed</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg1.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status signed mb-0 py-2"><img class="me-1" src="assets/images/signed.svg"> Signed</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status unsigned mb-0 py-2"><img class="me-1" src="assets/images/signed.svg"> Unsigned</h5>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+                </ng-container>
+                <ng-container *ngIf="historyList?.upcomingCampaign?.length == 0">No Data</ng-container>
+
+                <!-- Ongoing sec -->
+                <ng-container *ngIf="historyList?.ongoingCampaign?.length != 0">
+                <div class="tab-pane fade pt-2" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+ 
+                    <div class="collabs-itm d-flex align-items-center" [routerLink]="['/client-history-ongoing',ongoing._id]" *ngFor="let ongoing of historyList?.ongoingCampaign">
+                        <div class="img-wrap me-4">
+                            <img [src]="ongoing.campaignImage?ongoing.campaignImage:assets/images/collabsimg.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">{{ongoing.title}}</h2>
+                            <p class="mb-4">{{ongoing.description}}</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>{{ongoing.statedTimeLine}}</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>{{ongoing.endTimeLine}}</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">{{ongoing.currencyType}} {{ongoing.amount}}</span></h4>
+                                <h5 class="status ongoing mb-0 py-2">Ongoing</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg1.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status ongoing mb-0 py-2">Ongoing</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status ongoing mb-0 py-2">Ongoing</h5>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">         
+                            <ul class="pagination mb-0">                                       
+                                <li class="page-item">                      
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link">2</a></li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                </ng-container>
+                <ng-container *ngIf="historyList?.ongoingCampaign?.length == 0">No Data</ng-container>
+
+                <!-- Completed sec -->
+                <ng-container *ngIf="historyList?.completedCampaign?.length != 0">
+                <div class="tab-pane fade pt-2" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+
+                    <div class="collabs-itm d-flex align-items-center" [routerLink]="['/client-history-completed',completed._id]" *ngFor="let completed of historyList?.completedCampaign">
+                        <div class="img-wrap me-4">
+                            <img [src]="completed.campaignImage?completed.campaignImage:assets/images/collabsimg.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">{{completed.title}}</h2>
+                            <p class="mb-4">{{completed.description}}</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>{{completed.statedTimeLine}}</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>{{completed.endTimeLine}}</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">{{completed.currencyType}} {{completed.amount}}</span></h4>
+                                <h5 class="status completed mb-0 py-2">Completed <img class="ms-2" src="assets/images/white_check.svg"></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg1.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status completed mb-0 py-2">Completed <img class="ms-2" src="assets/images/white_check.svg"></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collabs-itm d-flex align-items-center">
+                        <div class="img-wrap me-4">
+                            <img src="assets/images/collabsimg1.svg">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <h2 class="fs20 fw_semibold mb-2">Hollister Campaign</h2>
+                            <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text...</p>
+                            <h3 class="fs14 fw_normal text_color_lightgrey mb-2"><span>June 17, 2021</span><img class="mx-2" src="assets/images/next_arrow.svg"><span>July 20, 2021</span></h3>
+                            <div class="d-flex align-items-center pt-2">
+                                <h4 class="fs14 fw_normal text_color_lightgrey me-4 mb-0 ps-1">Price: <span class="fs16 fw_bold text_color_pink ps-1">$300</span></h4>
+                                <h5 class="status completed mb-0 py-2">Completed <img class="ms-2" src="assets/images/white_check.svg"></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </ng-container>
+                <ng-container *ngIf="historyList?.completedCampaign?.length == 0">No Data</ng-container>
+            </div>
+        </div>
+
+    </div>
+</section>

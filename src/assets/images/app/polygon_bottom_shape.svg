@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="265" height="292" viewBox="0 0 265 292">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2985" data-name="Rectangle 2985" width="265" height="292" transform="translate(0 687)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="polygon_bottom_shape" transform="translate(0 -687)" clip-path="url(#clip-path)">
+    <path id="Polygon_15" data-name="Polygon 15" d="M249.356,0a55,55,0,0,1,47.911,27.99l62.822,111.433a55,55,0,0,1,0,54.021L297.267,304.876a55,55,0,0,1-47.911,27.99H125.96a55,55,0,0,1-47.911-27.99L15.228,193.443a55,55,0,0,1,0-54.021L78.05,27.99A55,55,0,0,1,125.96,0Z" transform="matrix(0.799, -0.602, 0.602, 0.799, -157.032, 848.128)" fill="#89cff0" opacity="0.15"/>
+  </g>
+</svg>

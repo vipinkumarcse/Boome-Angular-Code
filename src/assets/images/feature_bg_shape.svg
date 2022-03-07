@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="698" height="985" viewBox="0 0 698 985">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_2978" data-name="Rectangle 2978" width="698" height="985" transform="translate(0 805)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="feature_bg_shape" transform="translate(0 -805)" clip-path="url(#clip-path)">
+    <path id="Polygon_3" data-name="Polygon 3" d="M717.147,0a105,105,0,0,1,91.474,53.449l200.326,355.468a105,105,0,0,1,0,103.1L808.621,867.487a105,105,0,0,1-91.474,53.449H320.852a105,105,0,0,1-91.474-53.449L29.052,512.019a105,105,0,0,1,0-103.1L229.378,53.449A105,105,0,0,1,320.852,0Z" transform="translate(-493.722 1363.145) rotate(-47)" fill="#89cff0" opacity="0.35"/>
+  </g>
+</svg>

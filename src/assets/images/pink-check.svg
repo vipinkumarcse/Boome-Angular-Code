@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="pink-check" transform="translate(-0.595 0.303)">
+    <g id="Fan" transform="translate(0.596 -0.303)">
+      <g id="Group_3726" data-name="Group 3726" transform="translate(0 0)">
+        <circle id="Ellipse_230" data-name="Ellipse 230" cx="12" cy="12" r="12" transform="translate(-0.001)" fill="#fe6290"/>
+      </g>
+    </g>
+    <g id="Group_3518" data-name="Group 3518" transform="translate(7.907 8.835)">
+      <path id="Icon_feather-check" data-name="Icon feather-check" d="M15.092,9,8.841,15.251,6,12.409" transform="translate(-6 -9)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

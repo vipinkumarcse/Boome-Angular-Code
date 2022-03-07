@@ -1,0 +1,405 @@
+<app-talent-header></app-talent-header>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/booking_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Booking History</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="booking-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ongoing-tab" data-bs-toggle="tab" data-bs-target="#ongoing" type="button" role="tab" aria-controls="ongoing" aria-selected="false">Ongoing</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="false">Completed</button>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+                <!-- upcoming bookings -->
+                <div class="tab-pane fade show active pt-2" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+
+                    <div *ngIf="bookingDetail?.upcomingBooking?.length>0">
+                        <div class="task-itm d-flex align-items-start" *ngFor="let upcomingbooking of bookingDetail.upcomingBooking">
+
+                            <div class="img-wrap me-3">
+                                <img [src]="upcomingbooking.profileImage ? upcomingbooking.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <div class="content-sec">
+                                <h2 class="fs20 fw_semibold mb-0">{{upcomingbooking?.title}}</h2>
+                                <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">{{upcomingbooking?.description}}</p>
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">{{startingDateUpcoming}}</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">{{startTimeUpcoming}} - {{endTimeUpcoming}}</span></h3>
+                                <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button (click)="upcomingBookingDetails(upcomingbooking.id)" class="btn btn-primary me-3">View Details</button>
+                                </div>
+                                <!-- <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3">Accept</button>
+                                    <button class="btn btn-reject" (click)="acceptAndRejectBookingRequest(task._id, 'rejected')">Reject</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                            <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div *ngIf="bookingDetail?.upcomingBooking?.length==0"> No Data Found</div>
+
+                    <!-- <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button [routerLink]="['/booking-details']" class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div> -->
+
+                </div>
+
+                <!-- Ongoing bookings -->
+                <div class="tab-pane fade pt-2" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+                    <div *ngIf="bookingDetail?.ongoingBooking?.length>0">
+                        <div class="task-itm d-flex align-items-start" *ngFor="let ongoingbooking of bookingDetail.ongoingBooking" (click)="routeToTaskDetail(task._id)">
+
+                            <div class="img-wrap me-3">
+                                <img [src]="ongoingbooking.profileImage ? ongoingbooking.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <div class="content-sec">
+                                <h2 class="fs20 fw_semibold mb-0">{{ongoingbooking?.title}}</h2>
+                                <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">{{ongoingbooking?.description}}</p>
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">{{startingDateOngoing}}</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">{{startTimeOngoing}} - {{endTimeOngoing}}</span></h3>
+                                <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3" (click)="onGoingBookingDetails(ongoingbooking.id)">View Details</button>
+                                </div>
+                                <!-- <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3">Accept</button>
+                                    <button class="btn btn-reject" (click)="acceptAndRejectBookingRequest(task._id, 'rejected')">Reject</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                            <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div *ngIf="bookingDetail?.ongoingBooking?.length==0"> No Data Found</div>
+                    <!-- <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button [routerLink]="['/booking-detail-ongoing']" class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div> -->
+                </div>
+
+                <!-- Completed bookings -->
+                <div class="tab-pane fade pt-2" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                    <div *ngIf="bookingDetail?.completedBooking?.length>0">
+                        <div class="task-itm d-flex align-items-start" *ngFor="let completedbooking of bookingDetail?.completedBooking" (click)="routeToTaskDetail(task?._id)">
+
+                            <div class="img-wrap me-3">
+                                <img [src]="completedbooking.profileImage ? completedbooking.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <div class="content-sec">
+                                <h2 class="fs20 fw_semibold mb-0">{{completedbooking?.title}}</h2>
+                                <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">{{completedbooking?.description}}</p>
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">{{startingDateCompleted}}</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">{{startTimeCompleted}} - {{endTimeCompleted}}</span></h3>
+                                <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3" (click)="completedBookingDetails(completedbooking.id)">View Details</button>
+                                </div>
+                                <!-- <div class="btn-sec d-flex align-items-center pt-3">
+                                    <button class="btn btn-primary me-3">Accept</button>
+                                    <button class="btn btn-reject" (click)="acceptAndRejectBookingRequest(task._id, 'rejected')">Reject</button>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                            <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div *ngIf="bookingDetail?.completedBooking?.length==0"> No Data Found</div>
+                    <!-- <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button [routerLink]="['/booking-details-completed']" class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-itm d-flex align-items-start">
+                        <div class="img-wrap me-3">
+                            <img src="assets/images/review_user1.png">
+                        </div>
+                        <div class="content-sec">
+                            <h2 class="fs20 fw_semibold mb-0">Manager/Senior Manager - Conten...</h2>
+                            <p class="fs16 text_color_lightgrey fw_normal mt-2 mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non quam lacinia, gravida metus eu, bibendum elit. Phasellus nibh est, pulvinar in magna ut...</p>
+                            <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> <span class="datetxt me-4 d-flex align-items-center"><img src="assets/images/review_calendar.svg">Jul 30, 2021</span><span class="timetxt d-flex align-items-center"><img src="assets/images/review_clock.svg">5:00 PM - 12:00 AM</span></h3>
+                            <div class="btn-sec d-flex align-items-center pt-3">
+                                <button class="btn btn-primary me-3">View Details</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div> -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>

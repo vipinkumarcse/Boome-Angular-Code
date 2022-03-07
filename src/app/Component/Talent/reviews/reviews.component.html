@@ -1,0 +1,367 @@
+<app-talent-header></app-talent-header>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/blue_star.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Reviews & Ratings</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="my-reviews-tab" data-bs-toggle="tab" data-bs-target="#my-reviews" type="button" role="tab" aria-controls="my-reviews" aria-selected="true">Your Reviews</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="client-reviews-tab" data-bs-toggle="tab" data-bs-target="#client-reviews" type="button" role="tab" aria-controls="client-reviews" aria-selected="false">Client Reviews</button>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Gallary sec -->
+                <div class="tab-pane fade show active pt-2" id="my-reviews" role="tabpanel" aria-labelledby="my-reviews-tab">
+                    <!-- <div *ngIf="reviewDetail.myReviews.length>0"> -->
+                    <!-- <div class="review-itm d-flex align-items-start" *ngFor="let myreviews of reviewDetail.myReviews">
+                            <div class="img-wrap me-3">
+                                <img [src]="myreviews.userInfo.profileImage ? myreviews.userInfo.profileImage : 'assets/images/review_user.png'">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">{{myreviews.userInfo.fullName}}</h2>
+                                    <button class="btn btn-primary no-shadow" data-bs-toggle="modal" data-bs-target="#add_review" (click)="getBookingId(myreviews)">Give Rating</button>
+                                </div>
+                                <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>{{moment(myreviews.booking.timeline.startDate).format('MMM DD , YYYY')}}</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: {{myreviews.booking.timeline.totalHour}} hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">{{myreviews.booking.currencyType}}{{myreviews.booking.totalAmount}}</span></h4>
+
+                            </div>
+
+                        </div> -->
+                    <div *ngIf="reviewDetail?.myReviews?.length > 0">
+                        <div class="review-itm d-flex align-items-start" *ngFor="let myreviews of reviewDetail.myReviews">
+                            <div class="img-wrap me-3">
+                                <img [src]="myreviews.userInfo.profileImage ? myreviews.userInfo.profileImage : 'assets/images/review_user.png'">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">{{myreviews.userInfo.fullName}}</h2>
+                                    <div class="star-sec d-flex align-items-center">
+                                        <ng-template #t let-fill="fill">
+                                            <span class="star" [class.full]="fill === 100">
+                                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                            </span>
+                                        </ng-template>
+
+                                        <ngb-rating [(rate)]="myreviews.starCount" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                        </ngb-rating>
+                                    </div>
+                                </div>
+                                <!-- <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p> -->
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>{{moment(myreviews.booking.timeline.startDate).format('MMM DD , YYYY')}}</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: {{myreviews.booking.timeline.totalHour}} hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">{{myreviews.booking.currencyType}}{{myreviews.booking.totalAmount}}</span></h4>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <!-- <div *ngIf="reviewDetail.myReviews.length==0">No Record Found</div> -->
+                        <!-- 
+                        <div class="review-itm d-flex align-items-start">
+                            <div class="img-wrap me-3">
+                                <img src="assets/images/review_user.png">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">Rivva Chaudhry</h2>
+                                    <div class="star-sec d-flex align-items-center">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                    </div>
+                                </div>
+                                <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>Jul 28, 2021</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: 5 hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">$300</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="review-itm d-flex align-items-start">
+                            <div class="img-wrap me-3">
+                                <img src="assets/images/review_user1.png">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">Rivva Chaudhry</h2>
+                                    <div class="star-sec d-flex align-items-center">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                    </div>
+                                </div>
+                                <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>Jul 28, 2021</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: 5 hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">$300</span></h4>
+                            </div>
+                        </div> -->
+
+                        <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                            <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div *ngIf="reviewDetail?.myReviews?.length == 0">No Record Found</div>
+
+                </div>
+
+                <!-- Saved post -->
+                <div class="tab-pane fade pt-2" id="client-reviews" role="tabpanel" aria-labelledby="client-reviews-tab">
+                    <div>
+                        <div class="review-itm client d-flex align-items-center">
+                            <div class="img-wrap me-4 ms-2">
+                                <img [src]="profileImage ? profileImage : 'assets/images/review_user.png'">
+                            </div>
+
+                            <div class="content-sec flex-grow-1">
+                                <h2 class="fs20 fw_semibold mb-2">Average rating</h2>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="fs28 fw_bold m-0"> {{ Avgratings }}<span class="fs18 fw_normal">/5</span></h3>
+                                    <div class="ps-4">
+                                        <div class="star-sec d-flex align-items-center">
+                                            <!-- <img class="ms-0" src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/gray_star.svg">
+                                            <img src="assets/images/gray_star.svg"> -->
+                                            <ng-template #star let-fill="fill">
+                                                <span class="star" [class.full]="fill === 100">
+                                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                                </span>
+                                            </ng-template>
+                                            <ngb-rating [(rate)]="Avgratings" [starTemplate]="star" [readonly]="true" [max]="5">
+                                            </ngb-rating>
+                                        </div>
+                                        <p class="m-0 fs16 fw_normal" *ngIf="reviewDetail?.clientReviews?.length != 0">
+                                            {{ reviewDetail?.clientReviews?.length }} 
+                                            reviews</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="content-sec flex-grow-1">
+                                <h2 class="fs20 fw_semibold mb-2">Average rating</h2>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="fs28 fw_bold m-0">{{averageRating}}<span class="fs18 fw_normal">/5</span></h3>
+                                    <div class="ps-4">
+                                        <div class="star-sec d-flex align-items-center">
+                                            <ng-template #t let-fill="fill">
+                                                <span class="star" [class.full]="fill === 100">
+                                                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                                </span>
+                                            </ng-template>
+
+                                            <ngb-rating [(rate)]="averageRating" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                            </ngb-rating>
+                                        </div>
+                                        <p class="m-0 fs16 fw_normal">{{reviewDetail.clientReviews.length}} reviews</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+
+
+                        <div *ngIf="reviewDetail?.clientReviews?.length>0">
+                            <div class="review-itm d-flex align-items-start" *ngFor="let clientreviews of reviewDetail.clientReviews">
+                                <div class="img-wrap me-3">
+                                    <img [src]="clientreviews.userInfo.profileImage ? clientreviews.userInfo.profileImage : 'assets/images/review_user1.png'">
+                                </div>
+                                <div class="content-sec flex-grow-1">
+                                    <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                        <h2 class="fs20 fw_semibold mb-2">{{clientreviews.userInfo.fullName}}</h2>
+                                        <div class="star-sec d-flex align-items-center">
+
+                                            <ng-template #t let-fill="fill">
+                                                <span class="star" [class.full]="fill === 100">
+                                                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                                </span>
+                                            </ng-template>
+
+                                            <ngb-rating [(rate)]="clientreviews.starCount" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                            </ngb-rating>
+                                            <!-- <img src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/yellow_star.svg">
+                                            <img src="assets/images/gray_star.svg">
+                                            <img src="assets/images/gray_star.svg"> -->
+                                        </div>
+                                    </div>
+                                    <!-- <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p> -->
+                                    <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>{{moment(clientreviews.booking.timeline.startDate).format('MMM DD , YYYY')}}</span></p>
+                                    <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: {{clientreviews.booking.timeline.totalHour}} hr</span></p>
+                                    <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">{{clientreviews.booking.currencyType}}{{clientreviews.booking.totalAmount}}</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="!reviewDetail?.clientReviews?.length ">
+                            <h4 class="text-center py-5">No Client Reviews Found</h4>
+                          </div>
+                        <!-- <div *ngIf="reviewDetail.clientReviews.length==0">No record found</div> -->
+                    </div>
+
+                    <!-- <div class="review-itm d-flex align-items-start">
+                            <div class="img-wrap me-3">
+                                <img src="assets/images/review_user.png">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">Rivva Chaudhry</h2>
+                                    <div class="star-sec d-flex align-items-center">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                    </div>
+                                </div>
+                                <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>Jul 28, 2021</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: 5 hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">$300</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="review-itm d-flex align-items-start">
+                            <div class="img-wrap me-3">
+                                <img src="assets/images/review_user1.png">
+                            </div>
+                            <div class="content-sec flex-grow-1">
+                                <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                    <h2 class="fs20 fw_semibold mb-2">Rivva Chaudhry</h2>
+                                    <div class="star-sec d-flex align-items-center">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                        <img src="assets/images/gray_star.svg">
+                                    </div>
+                                </div>
+                                <p class="fs16 text_color_lightgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_location.svg"><span>California 95023, USA</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-1"><img style="margin-top: -3px" class="me-2" src="assets/images/review_calendar.svg"><span>Jul 28, 2021</span></p>
+                                <p class="fs16 text_color_darkgrey fw_normal mb-2"><img style="margin-top: -3px" class="me-2" src="assets/images/review_clock.svg"><span>Total hours: 5 hr</span></p>
+                                <h4 class="fs14 fw_normal text_color_lightgrey m-0">Total Paid: <span class="fs16 fw_bold text_color_pink">$300</span></h4>
+                            </div>
+                        </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="modal fade " id="add_review" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Rate Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="img-wrap mx-auto">
+                    <img src="assets/images/profile1.png">
+                </div>
+                <h2 class="fs22 fw_semibold text-center mt-3 mb-2">Bobby Norton </h2>
+                <h3 class="fs18 fw_normal text_color_lightgrey text-center mb-4">How would you rate the overall
+                    <br>experience of your job?</h3>
+                <form [formGroup]="ratingForm">
+                    <ul class="list-unstyled d-flex p-0 align-items-center justify-content-center star-sec">
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                            </span>
+                        </ng-template>
+
+                        <ngb-rating [starTemplate]="t" [max]="5" formControlName="ratingCount">
+                        </ngb-rating>
+                        <!-- <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li> -->
+                    </ul>
+                    <div *ngIf="!ratingForm.controls.comments.valid &&
+                    ratingForm.controls.ratingCount.dirty" class="error_main_div">
+                        <div *ngIf="ratingForm.controls.ratingCount.hasError('required')" class="error_message">This field is Mandatory !</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Leave the Comment</label>
+                        <textarea rows="4" class="form-control form-control-lg" placeholder="Additional comments..." formControlName="comments"></textarea>
+                    </div>
+                    <div *ngIf="!ratingForm.controls.comments.valid &&
+                    ratingForm.controls.comments.dirty" class="error_main_div">
+                        <div *ngIf="ratingForm.controls.comments.hasError('required')" class="error_message">This field is Mandatory !</div>
+                    </div>
+                    <button role="button" class="btn btn-primary d-block mx-auto mt-4 text-decoration-none" [disabled]="!ratingForm.valid" (click)="ratingSubmit()">Add</button>
+
+                </form>
+                <!-- <button role="button" class="btn btn-primary d-block mx-auto mt-4 text-decoration-none">Add</button> -->
+                <!-- <a href="" class="d-block mx-auto text_color_pink fs16 later">Review Later</a> -->
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,284 @@
+<!-- <app-influncerheader></app-influncerheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Campaign Hall</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Add Campaign</h2>
+            </div>
+            <div class="right-sec">
+                <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> 
+            </div>
+        </div>
+    </div>   
+</section>      -->
+
+<section class="add_campagin" >
+    <div class="container">
+        <div class="cmn-card mb-4">
+            <form [formGroup]="CreateCampaign" >
+                <h3 class="text-center fw_semibold fs20 mb-3">Campaign For</h3>
+                <div class="campaign-for d-flex align-items-center justify-content-center">
+                    <div class="radio-itm">
+                        <input type="radio" name="campaignFor" value="facebook" formControlName="campaignFor" >
+                        <label class="facebook"><svg width="11" height="20" viewBox="0 0 14.991 27.99"><path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M15.618,15.744l.777-5.066H11.535V7.392a2.533,2.533,0,0,1,2.856-2.737H16.6V.342A26.946,26.946,0,0,0,12.678,0c-4,0-6.619,2.426-6.619,6.818v3.861H1.609v5.066H6.059V27.99h5.476V15.744Z" transform="translate(-1.609)"></path></svg></label>
+                    </div>
+                    <div class="radio-itm">
+                        <input type="radio" name="campaignFor" value="youtube" formControlName="campaignFor" >
+                        <label class="youtube"><svg width="28" height="20" viewBox="0 0 28 20"><g id="youtube" transform="translate(-552 -557.889)"><path  id="Rectangle_2995" data-name="Rectangle 2995" d="M7,2A5.006,5.006,0,0,0,2,7v6a5.006,5.006,0,0,0,5,5H21a5.006,5.006,0,0,0,5-5V7a5.006,5.006,0,0,0-5-5H7M7,0H21a7,7,0,0,1,7,7v6a7,7,0,0,1-7,7H7a7,7,0,0,1-7-7V7A7,7,0,0,1,7,0Z" transform="translate(552 557.889)"></path><path id="Polygon_32" data-name="Polygon 32" d="M4.05,0,8.1,6.864H0Z" transform="translate(570.512 563.839) rotate(90)"></path></g></svg></label>
+                    </div>
+                    <div class="radio-itm">
+                        <input type="radio" name="campaignFor"  value="instagram" formControlName="campaignFor" >
+                        <label class="instagram"><svg width="22" height="22" viewBox="0 0 22 22"><path id="instagram" d="M11,7.6a5.639,5.639,0,1,0,5.639,5.639A5.63,5.63,0,0,0,11,7.6ZM11,16.9a3.666,3.666,0,1,1,3.666-3.666A3.673,3.673,0,0,1,11,16.9Zm7.185-9.536A1.315,1.315,0,1,1,16.867,6.05,1.312,1.312,0,0,1,18.182,7.365ZM21.917,8.7a6.509,6.509,0,0,0-1.777-4.609,6.552,6.552,0,0,0-4.609-1.777c-1.816-.1-7.259-.1-9.075,0A6.543,6.543,0,0,0,1.849,4.087,6.531,6.531,0,0,0,.072,8.7c-.1,1.816-.1,7.259,0,9.075a6.509,6.509,0,0,0,1.777,4.609,6.56,6.56,0,0,0,4.609,1.777c1.816.1,7.259.1,9.075,0a6.509,6.509,0,0,0,4.609-1.777,6.552,6.552,0,0,0,1.777-4.609c.1-1.816.1-7.254,0-9.07ZM19.571,19.719a3.712,3.712,0,0,1-2.091,2.091c-1.448.574-4.883.442-6.483.442s-5.04.128-6.483-.442a3.712,3.712,0,0,1-2.091-2.091c-.574-1.448-.442-4.883-.442-6.483s-.128-5.04.442-6.483A3.712,3.712,0,0,1,4.514,4.661C5.962,4.087,9.4,4.219,11,4.219s5.04-.128,6.483.442a3.712,3.712,0,0,1,2.091,2.091c.574,1.448.442,4.883.442,6.483S20.146,18.276,19.571,19.719Z" transform="translate(0.005 -2.238)"></path></svg></label>
+                    </div>
+                    <div class="radio-itm">
+                        <input type="radio" name="campaignFor" value="tiktok" formControlName="campaignFor" >
+                        <label class="tiktok"><svg width="17" height="20" viewBox="0 0 24.725 28.46"><path id="Icon_simple-tiktok" data-name="Icon simple-tiktok" d="M15.354.024C16.908,0,18.449.012,19.991,0a7.386,7.386,0,0,0,2.075,4.945,8.363,8.363,0,0,0,5.028,2.123v4.779a12.692,12.692,0,0,1-4.98-1.15,14.651,14.651,0,0,1-1.921-1.1c-.012,3.463.012,6.925-.024,10.376a9.057,9.057,0,0,1-1.6,4.672,8.835,8.835,0,0,1-7.008,3.806,8.646,8.646,0,0,1-4.838-1.221,8.942,8.942,0,0,1-4.328-6.771c-.024-.593-.036-1.186-.012-1.767a8.927,8.927,0,0,1,10.352-7.921c.024,1.755-.047,3.51-.047,5.265a4.069,4.069,0,0,0-5.194,2.514,4.7,4.7,0,0,0-.166,1.909,4.036,4.036,0,0,0,4.15,3.4,3.984,3.984,0,0,0,3.285-1.909,2.736,2.736,0,0,0,.486-1.257c.119-2.123.071-4.233.083-6.356.012-4.779-.012-9.546.024-14.313Z" transform="translate(-2.369)"></path></svg></label>
+                    </div>
+                </div>
+                </form>
+                <!-- tabs here -->
+                <ul class="nav nav-tabs custom-tabs mt-4 pt-1 mb-2 justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item me-4" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': tabValue == 'Post'}" id="post-tab" data-bs-toggle="tab"
+                            data-bs-target="#post" type="button" role="tab" aria-controls="post"
+                            aria-selected="true" (click)="tabClick('Post')">{{CreateCampaign.get('campaignFor').value}} Post</button>
+                    </li>
+                    <li class="nav-item ms-4" role="presentation">
+                        <button class="nav-link" [ngClass]="{'active': tabValue == 'Story'}" id="story-tab" data-bs-toggle="tab"
+                            data-bs-target="#story" type="button" role="tab" aria-controls="story"
+                            aria-selected="false" (click)="tabClick('Story')">{{CreateCampaign.get('campaignFor').value}} Story</button>
+                    </li>
+                </ul>
+
+
+                <div class="tab-content pt-1" id="myTabContent">
+                    <!-- Post Content -->
+                    <div class="tab-pane fade pt-2" [ngClass]="{'show active': tabValue == 'Post'}" id="post" role="tabpanel"
+                        aria-labelledby="post-tab">
+                        <form [formGroup]="postForm">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 mx-auto">
+                                <div class="mb-3">
+                                    <label class="form-label">Number of Posts</label>
+                                    <select class="form-select form-select-lg" formControlName="number" (change)="NumberPost($event.target.value)">
+                                        <option selected value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-steps d-flex align-items-center justify-content-center mb-4 pt-2" *ngIf="numberPost?.length != 1">
+                            <div class="step-item-outer" [ngClass]="number.activeClass" *ngFor="let number of numberPost; let i = index ">
+                                <div class="step-item">
+                                    <span> <span class="step-number">{{number.id}}</span> <img src="assets/images/white_check_tab.svg"></span>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        <div class="story-itm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea rows="4" class="form-control form-control-lg"
+                                        placeholder="Type..." formControlName="postsdescription"></textarea>
+                                    </div> 
+
+                                    <div class="mb-3">
+                                        <label class="form-label">#hashtags</label>
+                                        <div class="addbtn-input">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Add #hashtags" formControlName="postshashtags" />
+                                            <button class="btn btn-pink no-shadow" (click)="hastags()" [disabled]="!postForm.get('postshashtags').value">Add</button>
+                                        </div>
+                                        <div class="tags-row d-flex align-items-center">
+                                            <div class="tag-itm" *ngFor="let hash of postshashtagsarray">
+                                                <p class="fs13 text-white m-0">{{hash}}</p>
+                                                <img src="assets/images/tag-cross.svg">
+                                            </div>
+                                            <!-- <div class="tag-itm">
+                                                <p class="fs13 text-white m-0">#SpeedGoals</p>
+                                                <img src="assets/images/tag-cross.svg">
+                                            </div> -->
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">@mentions</label>
+                                        <div class="addbtn-input">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Add @mentions" formControlName="postsmentions"  />
+                                            <button class="btn btn-pink no-shadow" (click)="mentions()" [disabled]="!postForm.get('postsmentions').value">Add</button>
+                                        </div>
+                                        <div class="tags-row d-flex align-items-center">
+                                            <div class="tag-itm" *ngFor="let mentionss of postsmentionssarray">
+                                                <p class="fs13 text-white m-0">{{mentionss}}</p>
+                                                <img src="assets/images/tag-cross.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="upload-img-wrap position-relative d-flex align-items-center justify-content-center flex-column mb-3 mt-2">
+                                        <img *ngIf="!pastImage" src="assets/images/image-gallery.svg" id='Post'>
+                                        <img *ngIf="pastImage && typeOfPost == 'image'" class="img-fluid" [src]="trustedPastImage" id='Post'>
+
+                                        <video controls *ngIf="pastImage && typeOfPost == 'video'"  [src]="trustedPastImage" id='Post'>
+                                        
+                                        </video>
+                                        <p *ngIf="!pastImage" class="mt-3 mb-0">Upload Campaign Image</p>
+                                        <input type="file" (change)="selectImage($event, 'Post')">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Guidelines</label>
+                                        <!-- <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                                            <ngx-editor
+                                              [editor]="editor"
+                                              [ngModel]="html"
+                                              [placeholder]="'Type here...'"
+                                            ></ngx-editor>
+                                          </div> -->
+                                          
+                                          <angular-editor [config]="editorConfig" formControlName="postsguidelines"></angular-editor>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary d-block mx-auto mt-3" *ngIf="numberPost?.length != 1 && NumberOfPost !== posts.length " [disabled]="!postForm.valid"  (click)="add_post()">Next</button>
+                        <button class="btn btn-primary d-block mx-auto mt-3" *ngIf="numberPost?.length == 1" [disabled]="!postForm.valid"   (click)="confirmModal()">Next</button>
+                        <button class="btn btn-primary d-block mx-auto mt-3" *ngIf="NumberOfPost === posts.length" (click)="createpost()">Add Post</button>
+                        <!-- [routerLink]="['/clientInfluncer']" -->
+                    </form>
+                    </div>
+                
+
+                    <!-- Story content -->
+                    
+                    <div class="tab-pane fade pt-2" [ngClass]="{'show active': tabValue == 'Story'}" id="story" role="tabpanel" aria-labelledby="story-tab">
+                        <form [formGroup]="storyForm">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 mx-auto">
+                                <div class="mb-3">
+                                    <label class="form-label">Number of Stories</label>
+                                    <select class="form-select form-select-lg" formControlName="number_story"  (change)="NumberStory($event.target.value)">
+                                        <option selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-steps d-flex align-items-center justify-content-center mb-4 pt-2" *ngIf="numberStory?.length != 1">
+                            <div class="step-item-outer" [ngClass]="numbers.activeClass" *ngFor="let numbers of numberStory; let i = index ">
+                                <div class="step-item">
+                                    <span> <span class="step-number">{{numbers.id}}</span> <img src="assets/images/white_check_tab.svg"></span>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="story-itm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <textarea rows="4" class="form-control form-control-lg"
+                                        placeholder="Type..." formControlName="storydescription"></textarea>
+                                    </div> 
+
+                                    <div class="mb-3">
+                                        <label class="form-label">#hashtags</label>
+                                        <div class="addbtn-input">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Add #hashtags" formControlName="storyhashtags" />
+                                            <button class="btn btn-pink no-shadow" [disabled]="!storyForm.get('storyhashtags').value" (click)="hastagstories()">Add</button>
+                                        </div>
+                                        <div class="tags-row d-flex align-items-center">
+                                            <div class="tag-itm" *ngFor="let hashs of storyhashtagsarray">
+                                                <p class="fs13 text-white m-0">{{hashs}}</p>
+                                                <img src="assets/images/tag-cross.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">@mentions</label>
+                                        <div class="addbtn-input">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Add Add @mentions" formControlName="storymentions" />
+                                            <button class="btn btn-pink no-shadow" [disabled]="!storyForm.get('storymentions').value" (click)="mentionstories()">Add</button>
+                                        </div>
+                                        <div class="tags-row d-flex align-items-center">
+                                            <div class="tag-itm" *ngFor="let mentions of storymentionssarray">
+                                                <p class="fs13 text-white m-0">{{mentions}}</p>
+                                                <img src="assets/images/tag-cross.svg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="upload-img-wrap position-relative d-flex align-items-center justify-content-center flex-column mb-3 mt-2">
+                                        <img *ngIf="!StoryImage" src="assets/images/image-gallery.svg">
+                                        <img *ngIf="StoryImage && typeOfPost == 'image'" class="img-fluid" [src]="StorytrustedPastImage">
+                                        <!-- <video controls *ngIf="StoryImage">
+                                            <source src="{{StoryImage}}" />
+                                        </video> -->
+                                        <video controls  *ngIf="StoryImage && typeOfPost == 'vedio'">
+                                            <source [src]="StorytrustedPastImage">
+                                        </video>
+                                        <p *ngIf="!StoryImage" class="mt-3 mb-0">Upload Campaign Image</p>
+                                        <input type="file" (change)="selectImage($event, 'Story')">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Guidelines</label>
+                                        <!-- <div class="NgxEditor__Wrapper">
+                                            <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                                            <ngx-editor
+                                              [editor]="editor"
+                                              [ngModel]="html"
+                                              [placeholder]="'Type here...'"
+                                            ></ngx-editor>
+                                          </div> -->
+                                          <angular-editor [config]="editorConfig" formControlName="storyguidelines"></angular-editor>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button class="btn btn-primary mt-3 d-block mx-auto" (click)="addStory()" >Add Story</button> -->
+                        <button class="btn btn-primary mt-3 d-block mx-auto" *ngIf="NumberOfStory != 1 && NumberOfStory !== stories.length " [disabled]="!storyForm.valid"  (click)="addStory()">Next</button>
+                        <button class="btn btn-primary mt-3 d-block mx-auto" *ngIf="NumberOfStory === stories.length"   (click)="createpost()">Add Post</button>
+                        <button class="btn btn-primary mt-3 d-block mx-auto" *ngIf="NumberOfStory == 1" [disabled]="!storyForm.valid"   (click)="createpost()">Add Post</button>
+                        <!-- [routerLink]="['/clientInfluncer']"  -->
+                    </form>
+                    </div>
+                </div>
+                
+            <!-- </form> -->
+        </div>
+    </div>
+</section>
+
+<div class="modal fade " id="shareStory" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content ">
+            <div class="modal-body p-4 text-center">
+                <h3 class="display-6 position-relative d-inline-flex text_color_pink">Add Story</h3>
+                <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Are you want to add story?</h4>
+                <div class="button-sec d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-pink no-shadow d-block me-2 mt-4" (click)="no()">No</button>
+                    <button type="button" class="btn btn-primary d-block ms-2 mt-4" (click)="AddStory()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

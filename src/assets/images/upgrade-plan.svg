@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="347.5" height="134.946" viewBox="0 0 347.5 134.946">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-0.097" y1="-0.083" x2="1.134" y2="1.136" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a2a9ff"/>
+      <stop offset="1" stop-color="#4e5aff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-0.097" y1="-0.083" x2="1.134" y2="1.136" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a2a9ff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#4e5aff"/>
+    </linearGradient>
+    <filter id="Intersection_2" x="0" y="0" width="160.999" height="115" filterUnits="userSpaceOnUse">
+      <feOffset dy="8" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#009eff" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="upgrade-plan" transform="translate(-2.5 -254.5)">
+    <path id="Path_27804" data-name="Path 27804" d="M20,0H305a20,20,0,0,1,20,20v80a20,20,0,0,1-20,20H20A20,20,0,0,1,0,100V20A20,20,0,0,1,20,0Z" transform="translate(25 269)" fill="url(#linear-gradient)"/>
+    <g transform="matrix(1, 0, 0, 1, 2.5, 254.5)" filter="url(#Intersection_2)">
+      <path id="Intersection_2-2" data-name="Intersection 2" d="M0,53.354V30A30,30,0,0,1,30,0h86A70.5,70.5,0,0,1,45.5,70,70.223,70.223,0,0,1,0,53.354Z" transform="translate(22.5 14.5)" opacity="0.4" fill="url(#linear-gradient-2)"/>
+    </g>
+    <path id="Path_26970" data-name="Path 26970" d="M2195.484,1448s-80.49,13.491-41.159,42.375S2097.616,1568,2097.616,1568" transform="translate(-1884.365 -1179)" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="4" opacity="0.3"/>
+  </g>
+</svg>

@@ -1,0 +1,334 @@
+<app-client-talentheader></app-client-talentheader>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/booking_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Bookings</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p>      -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="booking-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming"
+                        type="button" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ongoing-tab" data-bs-toggle="tab" data-bs-target="#ongoing" type="button"
+                        role="tab" aria-controls="ongoing" aria-selected="false">Ongoing</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button"
+                        role="tab" aria-controls="completed" aria-selected="false">Completed</button>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+                <!-- upcoming bookings -->
+                <div class="tab-pane fade show active pt-2" id="upcoming" role="tabpanel"
+                    aria-labelledby="upcoming-tab">
+
+                    <div class="col-12" *ngIf="!upcomingBooking?.length ">
+                        <h4 class="text-center py-5">No Upcoming Bookings  Found</h4>
+                      </div>
+
+
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-booking-upcoming']" *ngFor="let data of upcomingBooking">
+                        <div class="img-wrap">
+                            <img *ngIf="!data?.talentInfo?.profileImage" src="assets/images/talentuser.svg">
+                            <img *ngIf="data?.talentInfo?.profileImage" src="{{data?.talentInfo?.profileImage}}">
+                            <!-- <img class="object-cover" src="assets/images/talentuser.svg"> -->
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">
+                                    {{ data?.talentInfo?.fullName }}
+                                </h2>
+                               
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1" >
+                                <p class="light-gray mb-0" *ngFor="let category of data?.talentInfo?.categoryList">
+                                    {{ category.name}}
+                                </p>
+                            </div>
+
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> 
+                                    <span class="datetxt me-4 d-flex align-items-center" >
+                                        <img src="assets/images/review_calendar.svg">
+                                        {{data?.timeline?.startDate | date : 'dd-MMM-YYYY'}}
+                                    </span>
+                                    <span class="timetxt d-flex align-items-center">
+                                        <img src="assets/images/review_clock.svg">
+                                        {{data?.timeline?.totalHour}} hours
+                                    </span>
+                                </h3>
+                            </div>
+                           
+
+                        
+                          
+                        </div>
+                    </div>
+
+                  
+                    
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+
+                <!-- Ongoing bookings -->
+                <div class="tab-pane fade pt-2" id="ongoing" role="tabpanel" aria-labelledby="ongoing-tab">
+
+                    <div class="col-12" *ngIf="!ongoingBooking?.length ">
+                        <h4 class="text-center py-5">No Ongoing Bookings  Found</h4>
+                      </div>
+
+                    <div class="talent-itm d-flex align-items-center" *ngFor="let data of ongoingBooking" [routerLink]="['/client-booking-ongoing']">
+                        <div class="img-wrap">
+                            <img *ngIf="!data?.talentInfo?.profileImage" src="assets/images/talentuser.svg">
+                            <img *ngIf="data?.talentInfo?.profileImage" src="{{data?.talentInfo?.profileImage}}">
+                            <!-- <img class="object-cover" src="assets/images/talentuser.svg"> -->
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">
+                                    {{ data?.talentInfo?.fullName }}
+                                </h2>
+                               
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1" >
+                                <p class="light-gray mb-0" *ngFor="let category of data?.talentInfo?.categoryList">
+                                    {{ category.name}}
+                                </p>
+                            </div>
+
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> 
+                                    <span class="datetxt me-4 d-flex align-items-center" >
+                                        <img src="assets/images/review_calendar.svg">
+                                        {{data?.timeline?.startDate | date : 'dd-MMM-YYYY'}}
+                                    </span>
+                                    <span class="timetxt d-flex align-items-center">
+                                        <img src="assets/images/review_clock.svg">
+                                        {{data?.timeline?.totalHour}} hours
+                                    </span>
+                                </h3>
+                            </div>
+                           
+
+                        
+                          
+                        </div>
+                    </div>
+
+                    <!-- <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-booking-ongoing']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser1.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-booking-ongoing']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser2.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Completed bookings -->
+                <div class="tab-pane fade pt-2" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+
+                    <div class="col-12" *ngIf="!completedBooking?.length ">
+                        <h4 class="text-center py-5">No Completed Bookings  Found</h4>
+                      </div>
+                    <div class="talent-itm d-flex align-items-center" *ngFor="let data of completedBooking"  
+                    >
+                        <div class="img-wrap" (click)="completedBookingDetails(data._id)">
+                            <img *ngIf="!data?.talentInfo?.profileImage" src="assets/images/talentuser.svg">
+                            <img *ngIf="data?.talentInfo?.profileImage" src="{{data?.talentInfo?.profileImage}}">
+                            <!-- <img class="object-cover" src="assets/images/talentuser.svg"> -->
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">
+                                    {{ data?.talentInfo?.fullName }}
+                                </h2>
+                               
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1" >
+                                <p class="light-gray mb-0" *ngFor="let category of data?.talentInfo?.categoryList">
+                                    {{ category.name}}
+                                </p>
+                            </div>
+
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <h3 class="fs14 fw_normal mb-0 d-flex align-items-center py-1"> 
+                                    <span class="datetxt me-4 d-flex align-items-center" >
+                                        <img src="assets/images/review_calendar.svg">
+                                        {{data?.timeline?.startDate | date : 'dd-MMM-YYYY'}}
+                                    </span>
+                                    <span class="timetxt d-flex align-items-center">
+                                        <img src="assets/images/review_clock.svg">
+                                        {{data?.timeline?.totalHour}} hours
+                                    </span>
+                                </h3>
+                            </div>
+                           
+
+                        
+                          
+                        </div>
+                    </div>
+
+                    <!-- <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-booking-completed']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser1.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

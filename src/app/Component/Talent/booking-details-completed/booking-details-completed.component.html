@@ -1,0 +1,237 @@
+<app-talent-header></app-talent-header>
+
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/booking_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Booking History</h3>
+                <h2 class="mb-0 text_color_pink fs16 fw_normal">Booking Details</h2>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="task-detail">
+    <div class="container">
+        <div class="row" *ngIf="completedBookingDetail?.booking?.status=='completed'">
+            <div class="col-md-12 col-lg-4">
+                <div class="cmn-card user-details mb-4 px-0 pb-0">
+                    <div class="content-box px-3">
+                        <div class="top-sec pb-2">
+                            <div class="img-wrap">
+                                <img [src]="completedBookingDetail?.booking?.bookedBy?.profileImage ? completedBookingDetail?.booking?.bookedBy?.profileImage : 'assets/images/review_user1.png'">
+                            </div>
+                            <h6>{{completedBookingDetail?.booking?.bookedBy?.city}}, {{completedBookingDetail?.booking?.bookedBy?.currentCountry}}</h6>
+                            <h3 class="fs20 text_color_light_blue fw_semibold text-center my-2">{{completedBookingDetail?.booking?.bookedBy?.firstName}} {{completedBookingDetail?.booking?.bookedBy?.lastName}}</h3>
+                            <div class="rating-sec d-flex align-items-start justify-content-center">
+                                <h5 class="fs28 fw_bold me-2">{{completedBookingDetail?.booking?.bookedBy?.averageRating.toFixed(1)}}/5</h5>
+                                <div class="right-sec">
+                                    <div class="star-sec d-flex align-items-center">
+                                        <!-- <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/yellow_star.svg">
+                                        <img src="assets/images/gray_star.svg"> -->
+                                        <ng-template #t let-fill="fill">
+                                            <span class="star" [class.full]="fill === 100">
+                                                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                            </span>
+                                        </ng-template>
+
+                                        <ngb-rating [(rate)]="completedBookingDetail.booking.bookedBy.averageRating" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                        </ngb-rating>
+                                    </div>
+                                    <span class="fs14 fw_normal text_color_lightgrey mt-2 d-block">{{completedBookingDetail?.booking?.bookedBy?.allReviews?.length}} reviews</span>
+                                </div>
+                            </div>
+                            <!-- <button class="btn btn-primary mx-auto d-block my-3">Send Message</button> -->
+                            <!-- <button class="btn btn-primary mx-auto d-block my-3">View Profile</button> -->
+
+                        </div>
+                        <h4 class="fs18 fw_semibold mt-3 mb-2">{{completedBookingDetail?.booking?.title}}</h4>
+                        <p class="fs16 fw_light mb-3">{{completedBookingDetail?.booking?.description}}</p>
+                        <!-- <p class="fs16 fw_light mb-3">Their textiles and designs range from Patola, Kalamkari, Banarasi, South silk, cotton, Lucknowi and many more, each that celebrates Indian-ness with an eclectic vibe</p> -->
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_calendar.svg"> Booking Date</span><span class="fs16 fw_normal text_color_lightgrey">{{completedBookingDayName}} - {{completedBookingStartDate}}</span></h2>
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_clock.svg"> Booking Time</span><span class="fs16 fw_normal text_color_lightgrey">{{completedBookingStartTime}} - {{completedBookingEndTime}}</span></h2>
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_clock.svg"> Total Hours</span><span class="fs16 fw_normal text_color_lightgrey">{{(completedBookingDetail?.booking?.timeline?.totalHour).toFixed(2)}} Hrs</span></h2>
+                        <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"> <img src="assets/images/review_clock.svg"> Payment Details</span><button type="button" class="fs16 fw_normal text_color_pink btn btn-link border-0 shadow-none p-0" data-bs-toggle="modal"
+                                data-bs-target="#payment_details">View Reciept</button></h2>
+                    </div>
+                    <!-- <button class="btn bottom-btn rating-btn w-100 fs18 fw_normal d-flex align-items-center justify-content-center mt-2" data-bs-toggle="modal" data-bs-target="#add_review"><img class="me-2" src="assets/images/star-rating-btn.svg"><span>No Rating and Review Yet</span></button> -->
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8">
+                <div class="cmn-card rating-sec mb-4">
+                    <h2 class="border-bottom-heading fs22 fw_semibold text_color_blue d-flex align-items-center justify-content-between">Rating & Reviews <span class="fw_normal text_color_lightgrey">{{completedBookingDetail?.booking?.bookedBy?.allReviews?.length}}</span></h2>
+                    <div *ngIf="completedBookingDetail.booking.bookedBy.allReviews?.length>0">
+                        <div class="rating-itmbox d-flex align-items-start" *ngFor="let reviews of completedBookingDetail?.booking?.bookedBy?.allReviews">
+                            <div class="img-wrap">
+                                <img [src]="reviews.review.sender.profileImage ? reviews.review.sender.profileImage : 'assets/images/rating-user.svg'">
+                            </div>
+                            <div class="content-sec">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h2 class="fs18 fw_semibold mb-0">{{reviews?.review?.sender?.fullName}}</h2>
+                                    <div class="star-sec">
+                                        <!-- <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg"> -->
+
+                                        <ngb-rating [(rate)]="reviews.review.starCount" [starTemplate]="t" [max]="5" [readonly]='true'>
+                                        </ngb-rating>
+                                    </div>
+                                </div>
+                                <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">{{reviews?.review?.text}} </h3>
+                                <p class="fs12 fw_normal text_color_lightgrey m-0">{{timeAgo(reviews?.review?.createdAt)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="completedBookingDetail.booking.bookedBy.allReviews.length==0">
+                        <p>No Rating and Review Yet</p>
+                    </div>
+                    <!-- <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-itmbox d-flex align-items-start">
+                        <div class="img-wrap">
+                            <img src="assets/images/rating-user.svg">
+                        </div>
+                        <div class="content-sec">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Eleanor Rose</h2>
+                                <div class="star-sec">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/yellow_star.svg">
+                                    <img width="16px" class="me-1" src="assets/images/gray_star.svg">
+                                    <img width="16px" class="" src="assets/images/gray_star.svg">
+                                </div>
+                            </div>
+                            <h3 class="fs16 fw_normal text_color_lightgrey mt-1 mb-1">Sed non euismod enim, vitae sagittis sem. Nunc massa nunc, gravida a tincidunt nec, luctus eget turpis. Aliquam erat volutpat. Proin pellentesque augue ut dapibus tristique. </h3>
+                            <p class="fs12 fw_normal text_color_lightgrey m-0">Yesterday 05:15 PM</p>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+        <div *ngIf="completedBookingDetail?.booking?.status!='completed'"> No Record Found</div>
+    </div>
+</section>
+
+<!-- Add rating and review modal-->
+<div class="modal fade " id="add_review" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Rate Client</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <div class="img-wrap mx-auto">
+                    <img src="assets/images/profile1.png">
+                </div>
+                <h2 class="fs22 fw_semibold text-center mt-3 mb-2">Bobby Norton </h2>
+                <h3 class="fs18 fw_normal text_color_lightgrey text-center mb-4">How would you rate the overall
+                    <br>experience of your job?</h3>
+                <form>
+                    <ul class="list-unstyled d-flex p-0 align-items-center justify-content-center star-sec">
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/yellow_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li>
+                        <li class="mx-1"><img src="assets/images/gray_star.svg"></li>
+                    </ul>
+                    <div class="mb-3">
+                        <label class="form-label">Leave the Comment</label>
+                        <textarea rows="4" class="form-control form-control-lg" placeholder="Additional comments..."></textarea>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-primary d-block mx-auto mt-4 text-decoration-none" data-bs-dismiss="modal">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment details modal-->
+<div class="modal fade " id="payment_details" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content review-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Payment Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center mb-3"><span>Payment ID</span><span class="fs16 fw_normal text_color_lightgrey">#{{completedBookingDetail?.booking?.bookingId}}</span></h2>
+                <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center mb-3"><span>Date</span><span class="fs16 fw_normal text_color_lightgrey">{{paymentDate}}</span></h2>
+                <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center mb-3"><span>Time</span><span class="fs16 fw_normal text_color_lightgrey">{{paymentTime}}</span></h2>
+                <h2 class="fs18 fw_semibold d-flex justify-content-between align-items-center"><span>Total Paid</span><span class="fs16 fw_normal text_color_blue">{{completedBookingDetail?.booking?.currencyType}} {{(completedBookingDetail?.booking?.totalAmount).toFixed(1)}}</span></h2>
+            </div>
+        </div>
+    </div>
+</div>

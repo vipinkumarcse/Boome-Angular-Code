@@ -1,0 +1,197 @@
+<app-client-talentheader></app-client-talentheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img width="23px" src="assets/images/blue_star.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Reviews & Ratings</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews-sec">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="cmn-card mb-4">
+            <ul class="nav cmn-tabs nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="my-reviews-tab" data-bs-toggle="tab" data-bs-target="#my-reviews"
+                        type="button" role="tab" aria-controls="my-reviews" aria-selected="true">Your Reviews</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="talent-reviews-tab" data-bs-toggle="tab" data-bs-target="#talent-reviews" type="button"
+                        role="tab" aria-controls="talent-reviews" aria-selected="false">Talent Reviews</button>
+                </li>
+            </ul>
+
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Gallary sec -->
+                <div class="tab-pane fade show active pt-2" id="my-reviews" role="tabpanel"
+                    aria-labelledby="my-reviews-tab">
+                    <div class="col-12" *ngIf="!myReviews?.length ">
+                        <h4 class="text-center py-5">No Reviews Found</h4>
+                      </div>
+
+                    <div class="review-itm d-flex align-items-start" *ngFor="let list of myReviews">
+                        <div class="img-wrap me-3">
+                            <!-- <img src="assets/images/review_user1.png"> -->
+                            <img class="object-cover" [src]="list.userInfo?.profileImage">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                <h2 class="fs20 fw_semibold mb-2">
+                                    {{list?.userInfo?.fullName}}
+                                    <!-- Rivva Chaudhry -->
+                                </h2>
+                                <div class="star-sec d-flex align-items-center">
+                                    <ng-template #star let-fill="fill">
+                                        <span class="star" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                        </span>
+                                    </ng-template>
+                                    <ngb-rating [(rate)]="list.starCount" [starTemplate]="star" [readonly]="true" [max]="5">
+                                    </ngb-rating>
+                                      </div>
+                                    <!-- {{list.starCount}}
+                                    <ngb-rating class="text-warning rating-star"  [starTemplate]="t" [readonly]="true" [(rate)]="list.starCount" [max]="5"
+                                    ></ngb-rating> -->
+                                    <!-- <rating [(ngModel)]="list.starCount" [max]="5"  [float]="true" [disabled]="false" [required]="true"  iconClass="fa-star" fullIcon="★" [readonly]="false"  emptyIcon="☆" >
+                                    </rating> -->
+                                    <!-- <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg"> -->
+                            </div>
+                            <p class="fs16 text_color_lightgrey fw_normal m-0"><img style="margin-top: -3px" class="me-2" src="assets/images/post_location.svg">
+                                <span>
+                                    <!-- {{list?.completeAddress}} -->
+                                    {{list?.booking?.address?.country}}, {{list?.booking?.address?.city}}
+                                    <!-- California 95023, USA -->
+                                </span></p>
+                            <h3 class="fs14 fw_normal my-2">
+                                <span>
+                                    {{list?.booking?.timeline?.startTime | date: 'MMMM dd, yyyy'}}
+                                    <!-- June 17, 2021 -->
+                                </span>
+                                <img class="mx-2" src="assets/images/next_arrow.svg"><span>
+                                    {{list?.booking?.timeline?.endTime | date: 'MMMM dd, yyyy'}}
+                                    <!-- July 20, 2021 -->
+                                </span></h3>
+                            <h4 class="fs14 fw_normal text_color_lightgrey m-0">Price: <span class="fs16 fw_bold text_color_pink">
+                                {{list?.booking?.currencyType}}  {{list?.booking?.totalAmount}}
+                                <!-- $300 -->
+                            </span></h4>
+                        </div>
+                    </div>
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+
+                <!-- Saved post -->
+                <div class="tab-pane fade pt-2" id="talent-reviews" role="tabpanel" aria-labelledby="talent-reviews-tab">
+
+                    <div class="col-12" *ngIf="!talentReviews?.length ">
+                        <h4 class="text-center py-5">No Talent Reviews Found</h4>
+                      </div>
+
+                    <div class="review-itm d-flex align-items-start" *ngFor="let list of talentReviews">
+                        <div class="img-wrap me-3">
+                            <!-- <img src="assets/images/review_user1.png"> -->
+                            <img class="object-cover" [src]="list.userInfo?.profileImage">
+                        </div>
+                        <div class="content-sec flex-grow-1">
+                            <div class="name-sec d-flex align-items-start justify-content-between position-relative">
+                                <h2 class="fs20 fw_semibold mb-2">
+                                    <!-- Rivva Chaudhry -->
+                                    {{list?.userInfo?.fullName}}
+                                </h2>
+                                <!-- <div class="star-sec d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                </div> -->
+                                <div class="star-sec d-flex align-items-center">
+                                    <ng-template #star let-fill="fill">
+                                        <span class="star" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                        </span>
+                                    </ng-template>
+                                    
+                                    <ngb-rating [(rate)]="list.starCount" [starTemplate]="star" [readonly]="true" [max]="5"></ngb-rating>
+                                      </div>
+                            </div>
+                            <p class="fs16 text_color_lightgrey fw_normal m-0"><img style="margin-top: -3px" class="me-2" src="assets/images/post_location.svg"><span>
+                                <!-- California 95023, USA -->
+                                {{list?.campaign.address.country}}, {{list?.campaign.address.city}}
+                            </span></p>
+                            <h3 class="fs14 fw_normal my-2">
+                                <span>
+                                    <!-- June 17, 2021 -->
+                                    {{list?.campaign.timeline?.startDate | date: 'MMMM dd, yyyy'}}
+                                </span>
+                                <img class="mx-2" src="assets/images/next_arrow.svg">
+                                <span>
+                                    {{list?.campaign.timeline?.endDate | date: 'MMMM dd, yyyy'}}
+                                    <!-- July 20, 2021 -->
+                                </span></h3>
+                            <h4 class="fs14 fw_normal text_color_lightgrey m-0">Price: <span class="fs16 fw_bold text_color_pink">
+                                <!-- $300 -->
+                                {{list?.campaign.currencyType}}  {{list?.campaign.amount}}
+                            </span></h4>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-side-social></app-left-side-social>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card verification-crd">
+                    <div class="position-relative">
+                        <div class="card_header text-center px-4 pt-4 pb-0">
+                            <h3 class="display-6 position-relative d-inline-flex">Identity Verification</h3>
+                        </div>
+                         
+                        <div class="vcScroll pb-3" id="vcScroll">
+                            <div class="identity-content me-3">
+                                <h5 class="fs24 text_color_pink fw_semibold text-center mb-2">Take A selfie</h5>
+                            <h4 class="fst-italic text_color_lightgrey fw_semibold fs20 text-center mb-4 pb-3">Please provide us with a good <br>photo of yourself.</h4>
+
+                            <div class="uploaded-img-wrap mx-auto text-center mb-4">
+                                <img class="" *ngIf="!image" src="assets/images/userimage.svg">
+                                <img class="" *ngIf="image" src="{{image}}">
+                            </div>
+
+                          
+                            <div class="btns-sec center-btns pt-3">
+                                <button type="button" class="next btn btn-primary me-2" [routerLink]="['/identity-verification']">Retake</button>
+                                <button type="button" class="btn btn-primary-outline ms-2" (click)="imageUpload()">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

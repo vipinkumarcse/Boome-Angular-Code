@@ -1,0 +1,121 @@
+
+<header class="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand"><img src="assets/images/inner-logo.svg"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link cstm fs18 fw_normal text-white" [routerLink]="['/clientTalent']" routerLinkActive="active">Talents</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/client-talent-messages']" routerLinkActive="active" class="nav-link cstm fs18 fw_normal text-white">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/client-talent-bookings']" class="nav-link cstm fs18 fw_normal text-white" routerLinkActive="active">Bookings</a>    
+                        </li>   
+                        <li class="nav-item">   
+                            <a [routerLink]="['/client-talent-reviews']" class="nav-link cstm fs18 fw_normal text-white" routerLinkActive="active">Reviews</a>   
+                        </li>   
+                        <li class="nav-item dropdown">   
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <div
+                                    class="notification-outer d-flex align-items-center justify-content-center position-relative">
+                                    <img src="assets/images/bell.svg">
+                                    <span class="status"></span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu notification" aria-labelledby="navbarDropdown" >
+                                <h3 class="fs20 fw_semibold text_color_darkgrey" >Notifications <span> {{ notifications?.length }} </span></h3>
+
+                                <div *ngFor="let notification of notifications">
+
+                                <div class="item-sec d-flex align-items-start" >
+                                    <div class="img-wrap">
+                                        <!-- <img src="assets/images/header_user.svg"> -->
+                                        <img class="object-cover" [src]="notification.body?.senderImage">
+                                    </div>
+                                    <div class="content-sec">
+                                        <h4 class="fs18 fw_normal text_color_lightgrey"> <span
+                                                class="fw_semibold text_color_darkgrey">
+                                                <!-- Albert Eintein -->
+                                                {{notification?.title}}
+                                            </span> 
+                                            <!-- has
+                                            accept your
+                                            proposal. -->
+                                        </h4>
+                                        <p class="fs14 fw_normal text_color_lightgrey">
+                                            {{notification?.createdAt}}
+                                            <!-- 12 hrs ago -->
+                                        </p>
+                                    </div>
+                                </div>
+
+                                </div>
+                                <a class="btn btn-light-pink rounded-0 w-100">View All</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link usertogl dropdown-toggle d-flex align-items-center" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="img-wrap">
+                                    <img [src]="clientprofileData?.user?.profileImage?clientprofileData?.user?.profileImage:'assets/images/header_user.svg'">
+                                </div>
+                                <div class="content-sec">
+                                    <h5 class="fs18 fw_normal text-white m-0">{{clientprofileData?.user?.fullName}}</h5>
+                                    <p class="fs14 fw_normal text-white m-0">{{clientprofileData?.user?.email}}</p>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a [routerLink]="['/client-talent-profile']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"
+                                        >
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_user.svg"></span>
+                                        My Profile
+                                    </a></li>
+                                    <li><a [routerLink]="['/clientInfluncer']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"
+                                        >
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_switch.svg"></span>
+                                        Switch to Influencer
+                                    </a></li>
+                                    <li><a [routerLink]="['/client-talent-settings']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"
+                                        >
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_setting.svg"></span>
+                                        Settings
+                                    </a></li>
+                                <li><a [routerLink]="['/client-privacy-policy']" class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"
+                                        >
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_privacy.svg"></span>
+                                        Privacy Policies
+                                    </a></li>
+                                <li><a  class="dropdown-item fs18 fw_normal text_color_lightgrey position-relative"
+                                    (click) = "logout()" >
+                                        <span
+                                            class="icn-outer d-flex align-items-center justify-content-center"><img
+                                                src="assets/images/drop_logout.svg"></span>
+                                        Logout
+                                    </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

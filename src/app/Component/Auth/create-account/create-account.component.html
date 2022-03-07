@@ -1,0 +1,562 @@
+<section class="banner position-relative d-flex align-items-center vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <app-left-side-social></app-left-side-social>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card">
+                    <div class="position-relative">
+                        <div class="card_header text-center px-4 pt-4 pb-0">
+                            <h3 class="display-6 position-relative d-inline-flex">Create Account</h3>
+                            <h4 class="fst-italic text_color_lightgrey fw_semibold fs20">Fill the following detail to continue</h4>
+                        </div>
+                        <!-- Steppers div -->
+                        <div class="steppers">
+                            <!-- Multi step form -->
+                            <div class="multi_step_form">
+                                <form id="msform" [formGroup]="intersetForm">
+                                    <!-- progressbar -->
+                                    <ul id="progressbar" class="text-center">
+                                        <li class="active">Interest</li>
+                                        <li>Address</li>
+                                        <li>Bank Detail</li>
+                                        <li>Personal Detail</li>
+                                    </ul>
+
+                                    <div class="vcScroll" id="vcScroll">
+                                        <!-- fieldsets -->
+                                        <fieldset>
+                                            <div class="mb-3">
+                                                <label class="form-label">Bio</label>
+                                                <textarea class="form-control" maxlength="200" rows="3" placeholder="Description... (Optional)" formControlName="bio"></textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h6>Select Your Interests</h6>
+                                                <p class="fs18 text_color_lightgrey">select up to maximum 4 interests
+                                                </p>
+
+                                                <div class="interest_container d-flex flex-wrap">
+                                                    <!-- image checkbox -->
+
+                                                    <div class="imgcheckbox_container position-relative" *ngFor="let category of list">
+                                                        <input class="position-absolute invisible" type="checkbox" [value]="category._id" id="{{category._id}}" (click)="select($event, category._id)" />
+                                                        <label for="{{category._id}}" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" [src]="category.icon">
+                                                           <span class="mt-2 d-inline-block">{{category.name}}</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="{{category._id}}">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="culture" />
+                                                        <label for="culture" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Culture.jpg">
+                                                           <span class="mt-2 d-inline-block">Culture</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="culture">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                    
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="cars" />
+                                                        <label for="cars" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Cars.jpg">
+                                                           <span class="mt-2 d-inline-block">Culture</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="cars">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                               
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="fnd" />
+                                                        <label for="fnd" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Food-Drinks.jpg">
+                                                           <span class="mt-2 d-inline-block">Food & Drinks</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="fnd">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                            
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="travel" />
+                                                        <label for="travel" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Travel.jpg">
+                                                           <span class="mt-2 d-inline-block">Travel</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="travel">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                            
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="art" />
+                                                        <label for="art" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Art.jpg">
+                                                           <span class="mt-2 d-inline-block">Art</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="art">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                        
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="books" />
+                                                        <label for="books" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Books.jpg">
+                                                           <span class="mt-2 d-inline-block">Books</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="books">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="beauty" />
+                                                        <label for="beauty" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Beauty.jpg">
+                                                           <span class="mt-2 d-inline-block">Beauty</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="beauty">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                  
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="technology" />
+                                                        <label for="technology" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Technology.jpg">
+                                                           <span class="mt-2 d-inline-block">Technology</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="technology">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                 
+                                                     <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="music" />
+                                                        <label for="music" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Music.jpg">
+                                                           <span class="mt-2 d-inline-block">Music</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="music">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                 
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="sports" />
+                                                        <label for="sports" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Sports.jpg">
+                                                           <span class="mt-2 d-inline-block">Sports</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="sports">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="imgcheckbox_container position-relative">
+                                                        <input class="position-absolute invisible" type="checkbox" id="gaming" />
+                                                        <label for="gaming" class="img_overlay text-center"> 
+                                                            <img class="img-fluid" src="assets/images/app/category-images/Gaming.jpg">
+                                                           <span class="mt-2 d-inline-block">Gaming</span> 
+                                                        </label>
+                                                        <div class="interest_check" aria-label="gaming">
+                                                            <img src="assets/images/app/select_circle_interest.svg" alt="">
+                                                        </div>
+                                                    </div> -->
+
+                                                </div>
+                                            </div>
+
+                                            <button type="button" class="next btn btn-primary" [disabled]="select_interset.length == 0" (click)="submit()">Continue</button>
+                                            <!-- <button type="button" class="btn btn-link previous_button text_color_pink float-end next">Skip</button> -->
+
+                                        </fieldset>
+                                        <fieldset class="fieldset_padding">
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Enter Your Address (Optional)" formControlName="completeAddress" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Postal Code</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Your Postal Code (Optional)" formControlName="postalCode" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Country</label>
+                                                <select class="form-select form-select-lg" formControlName="country" (change)="getCitieswithcountries($event)">
+                                                    <option selected disabled>Select Country</option>
+                                                    <option [value]="countryList"  *ngFor="let countryList of country">{{countryList}}</option>
+                                                    <!-- <option value="2">Two</option>
+                                                    <option value="3">Three</option> -->
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-5">
+                                                <label class="form-label">City</label>
+                                                <select class="form-select form-select-lg" formControlName="city">
+                                                    <option selected disabled>Select City</option>
+                                                    <option *ngFor="let city of cities">{{city}}</option>
+                                                  </select>
+                                            </div>
+                                            <button type="button" class="btn btn-light previous previous_button">Back</button>
+                                            <button type="button" class="next btn btn-primary" [disabled]="!intersetForm.valid" (click)="submitpersonal()">Continue</button>
+                                            <!-- <button type="button" class="btn btn-link previous_button text_color_pink float-end next">Skip</button> -->
+
+
+                                        </fieldset>
+                                        <fieldset class="fieldset_padding">
+                                            <div class="mb-3">
+                                                <label class="form-label">Account Number</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Your account number" formControlName="accountNumber" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">IBAN Number</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="International bank account number" formControlName="ibanNumber" />
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Routing Number</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Bank routing number (Optional)" formControlName="routingNumber" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Swift Code</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Enter swift code" formControlName="swiftCode" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Bank Name</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Bank name" formControlName="bankName" />
+                                            </div>
+                                            <div class="mb-5">
+                                                <label class="form-label">Bank Address</label>
+                                                <input type="text" class="form-control form-control-lg" placeholder="Bank location and address" formControlName="bankAddress" />
+                                            </div>
+                                            <button type="button" class="btn btn-light previous previous_button">Back</button>
+                                            <button type="button" class="next btn btn-primary" (click)="submitBantDetail()">Continue</button>
+                                            <button type="button" class="btn btn-link previous_button text_color_pink float-end next">Skip</button>
+                                        </fieldset>
+
+                                        <fieldset class="fieldset_padding">
+                                            <!-- <div class="mb-3">
+                                                <label class="form-label w-100">Choose Height</label>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="check" id="centimeter" >
+
+                                                    <label class="form-check-label" for="centimeter">Centimeter</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="check" id="inches">
+                                                    <label class="form-check-label" for="inches">Inches</label>
+                                                  </div>
+                                            </div> -->
+                                            <div class="mb-3">
+                                                <label class="form-label w-100">Choose Height</label>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="check" id="Email" value="Centimeter" formControlName="check">
+
+                                                    <label class="form-check-label" for="Email">Centimeter</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="check" id="Phone" value="Inches" formControlName="check">
+                                                    <label class="form-check-label" for="Phone">Inches</label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-floating height mb-3" id="showCentimeter">
+                                                <input type="text" class="form-control form-control-lg" id="floatingCentimeter" placeholder="Enter Height In Centimeter" formControlName="heightCm">
+                                                <label for="floatingCentimeter">Enter Height In Centimeter</label>
+                                            </div>
+                                            <div class="form-floating height mb-3" id="showInches">
+                                                <input type="text" class="form-control form-control-lg" id="floatingInches" placeholder="Enter Height In Inches" formControlName="heightInches">
+                                                <label for="floatingInches">Enter Height In Inches</label>
+                                            </div>
+
+
+                                            <!-- <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingLength" placeholder="Jeans Length" formControlName="jeanLength">
+                                                <label for="floatingLength">Jeans Length</label>
+                                            </div> -->
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Jeans Length</label>
+                                                <select class="form-select form-select-lg" formControlName="jeanLength">
+                                                    <option value="" disabled selected>Select jean length</option>
+                    
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31"> 31</option>
+                                                    <option value="32" >32</option>
+                                                    <option value="33">33</option>
+                                                    <option value="34">34</option>
+                                                    <option value="35">35</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingWaist" placeholder="Jeans Length" formControlName="jeanWaist">
+                                                <label for="floatingWaist">Jeans Waist</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingShirt" placeholder="Jeans Length" formControlName="shirt">
+                                                <label for="floatingShirt">Shirt</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingShoesize" placeholder="Jeans Length" formControlName="shoeSize">
+                                                <label for="floatingShoesize">Shoe size</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingPants" placeholder="Jeans Length" formControlName="ethnicity">
+                                                <label for="floatingPants">Ethnicity</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingPants" placeholder="Jeans Length" formControlName="hairColor">
+                                                <label for="floatingPants">Hair Color</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingPants" placeholder="Jeans Length" formControlName="hairLength">
+                                                <label for="floatingPants">Hair Length</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control form-control-lg" id="floatingPants" placeholder="Jeans Length" formControlName="eyesColor">
+                                                <label for="floatingPants">Eyes Color</label>
+                                            </div> -->
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Jeans Waist</label>
+                                                <select class="form-select form-select-lg" formControlName="jeanWaist">
+                                                    <option value="" disabled selected>Select Jeans Waist</option>
+                                                    <option value="26">26</option>
+                                                    <option value="28">28</option>
+                                                    <option value="30">30</option>
+                                                    <option value="32">32</option>
+                                                    <option value="34">34</option>
+                                                    <option value="36">36</option>
+                                                    <option value="38"> 38</option>
+                                                    <option value="40">40</option>
+                                                    <option value="42">42</option>
+                                                    <option value="44">44</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Shoe size</label>
+                                                <select class="form-select form-select-lg" formControlName="shoeSize">
+                                                    <option value="" disabled selected>Select Shoe size</option>
+                                                    <option value="36">36</option>
+                                                    <option value="37">37</option>
+                                                    <option value="38">38</option>
+                                                    <option value="39">39</option>
+                                                    <option value="40">40</option>
+                                                    <option value="41">41</option>
+                                                    <option value="42">42</option>
+                                                    <option value="43">43</option>
+                                                    <option value="44">44</option>
+                                                    <option value="45">45</option>
+                                                    <option value="46">46</option>                            
+                                                    <option value="47">47</option>                            
+                                                    <option value="48">48</option>                            
+                                                
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Shirt</label>
+                                                <select class="form-select form-select-lg" formControlName="shirt">
+                                                    <option value="" disabled selected>Select Shirt size</option>
+                                                    <option value="XS">XS</option>
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                             </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Ethnicity</label>
+                                                <select class="form-select form-select-lg" formControlName="ethnicity">
+                                                    <option value="" disabled selected>Select Ethnicity</option>
+                                                    <option value="Asian">Asian</option>
+                                                    <option value="African/Black">African/Black</option>
+                                                    <option value="Caucasian">Caucasian</option>
+                                                    <option value="Hispanic/Latin">Hispanic/Latin</option>
+                                                    <option value="Middle American">Middle American</option>
+                                                    <option value="Native American">Native American</option>
+                                                    <option value="Other">Other</option>
+                    
+                                                </select>
+                                            </div>
+
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Hair Color</label>
+                                                <select class="form-select form-select-lg" formControlName="hairColor">
+                                                    <option value="" disabled selected>Select Hair Color</option>
+                                                    <option value="Brown">Brown</option>
+                                                    <option value="Black">Black</option>
+                                                    <option value="White">White</option>
+                                                    <option value="Sandy">Sandy</option>
+                                                    <option value="Gray or Partially Gray">Gray or Partially Gray</option>
+                                                    <option value="Red/Auburn">Red/Auburn</option>
+                                                    <option value="Blond">Blond</option>
+                                                    <option value="Partly or Completely Bald">Partly or Completely Bald</option>
+                                                    <option value="Other">Other</option>
+                    
+                    
+                                                </select>
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Hair Length</label>
+                                                <select class="form-select form-select-lg" formControlName="hairLength">
+                                                    <option value="" disabled selected>Select Hair Length</option>
+                                                    <option value='10" Neck Line'>10" Neck Line</option>
+                                                    <option value='12" Shoulder Length'>12" Shoulder Length</option>
+                                                    <option value='2"Past Shoulder'>14" 2"Past Shoulder</option>
+                                                    <option value='16" Shoulder blades'>16" Shoulder blades</option>
+                                                    <option value='18" Mid Back'>18" Mid Back</option>
+                                                    <option value='20" Waist length'>20" Waist length</option>
+                                                    <option value='22" Lower Back'>22" Lower Back</option>
+                                                    <option value='22" Lower Back'>22" Lower Back</option>
+                                                    <option value='24" Down to Bottom'>24" Down to Bottom</option>
+                                                    <option value='26" Tail Bone'>26" Tail Bone</option>                            
+                                                
+                                                </select>
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Eyes Color</label>
+                                                <select class="form-select form-select-lg" formControlName="eyesColor">
+                                                    <option value="" disabled selected>Select Eyes Color</option>
+                                                    <option value="Black">Black</option>
+                                                    <option value="Blue">Blue</option>
+                                                    <option value="Brown">Brown</option>
+                                                    <option value="Gray">Gray</option>
+                                                    <option value="Green">Green</option>
+                                                    <option value="Hazel">Hazel</option>
+                                                    <option value="Multicolored">Multicolored</option>
+                                                  </select>
+                                            </div>
+
+                                            <div class="mb-3 add-shots">
+                                                <label class="form-label w-100">Add Pictures</label>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="inner-sec text-center" *ngIf="!headshot">
+                                                            <div class="img-wrap">
+                                                                <img src="assets/images/headshot.svg">
+                                                                <h3 class="fs16 fw_semibold mb-0">Headshot</h3>
+                                                            </div>
+                                                            <div class="btn uploadbtn btn-light-pink no-shadow">
+                                                                <input type="file" (change)="selectImage($event,'headshot')"> Upload
+                                                            </div>
+                                                        </div>
+                                                        <div class="inner-sec uploaded" *ngIf="headshot">
+                                                            <div class="img-wrap">
+                                                                <img src="{{headshot}}">
+
+                                                                <h3 class="fs16 fw_semibold mb-0">Headshot</h3>
+                                                            </div>
+                                                            <!-- <div *ngIf="!headshot" class="btn uploadbtn btn-light-pink no-shadow mx-auto">
+                                                                <input type="file" (change)="selectImage($event,'headshot')">
+                                                               Upload
+                                                            </div> -->
+                                                            <div class="uploadbtn mx-auto">
+                                                                <img src="assets/images/pink-check.svg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="inner-sec text-center" *ngIf="!beauty">
+                                                            <div class="img-wrap">
+                                                                <img *ngIf="!beauty" src="assets/images/beautyshot.svg">
+                                                                <h3 class="fs16 fw_semibold mb-0">Beauty shot</h3>
+                                                            </div>
+                                                            <div *ngIf="!beauty" class="btn uploadbtn btn-light-pink no-shadow mx-auto">
+                                                                <input type="file" (change)="selectImage($event, 'beauty')"> Upload
+                                                            </div>
+                                                        </div>
+                                                        <div class="inner-sec uploaded" *ngIf="beauty">
+                                                            <div class="img-wrap">
+                                                                <img *ngIf="beauty" src="{{beauty}}">
+                                                                <h3 class="fs16 fw_semibold mb-0">Beauty shot</h3>
+                                                            </div>
+                                                            <div class="uploadbtn mx-auto">
+                                                                <img src="assets/images/pink-check.svg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4">
+                                                        <div class="inner-sec text-center" *ngIf="!fulllenght">
+                                                            <div class="img-wrap">
+                                                                <img *ngIf="!fulllenght" src="assets/images/bodyshot.svg">
+                                                                <h3 class="fs16 fw_semibold mb-0">Full Length</h3>
+                                                            </div>
+                                                            <div *ngIf="!fulllenght" class="btn uploadbtn btn-light-pink no-shadow mx-auto">
+                                                                <input type="file" (change)="selectImage($event, 'fulllenght')"> Upload
+                                                            </div>
+                                                        </div>
+                                                        <div class="inner-sec uploaded" *ngIf="fulllenght">
+                                                            <div class="img-wrap">
+                                                                <img src="{{fulllenght}}">
+                                                                <h3 class="fs16 fw_semibold mb-0">Headshot</h3>
+                                                            </div>
+                                                            <div class="uploadbtn mx-auto">
+                                                                <img src="assets/images/pink-check.svg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <button type="button" class="btn btn-light previous previous_button">Back</button>
+                                            <button type="button" class="btn btn-primary" (click)="submitpersonalDetail()">Continue</button>
+                                            <!-- [routerLink]="['/connect']" -->
+                                            <button type="button" class="btn btn-link previous_button text_color_pink float-end" [routerLink]="['/identity-verification']">Skip</button>
+
+                                        </fieldset>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- End Multi step form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

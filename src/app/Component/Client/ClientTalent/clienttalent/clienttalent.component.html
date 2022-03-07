@@ -1,0 +1,442 @@
+<app-client-talentheader></app-client-talentheader>
+<section class="brdcrm-sec">
+    <div class="container">
+        <div class="inner-sec d-flex align-items-center justify-content-between cmn-card">
+            <div class="left-sec d-flex align-items-center">
+                <a class="d-flex me-3" href=""><img src="assets/images/home_icn.svg"></a>
+                <h3 class="m-0 fs20 fw_semibold text_color_darkgrey">Talents</h3>
+            </div>
+            <div class="right-sec">
+                <!-- <p class="fs18 m-0">23 Apr 2021 | 12:30 PM</p> -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="talent-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="post-sec cmn-card mb-4">
+                    <div class="search_outer mt-2 d-flex align-items-strech pb-2">
+
+                            <input type="search" class="form-control form-control-lg rounded-0" placeholder="Search Talent..." [(ngModel)]="name" (ngModelChange)="getSearchTalent()" name="search">
+                       
+                      
+                        <button class="btn btn-pink" data-bs-toggle="modal"
+                        data-bs-target="#filter_modal"><img src="assets/images/filter.svg"></button>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center"  *ngFor="let data of talents">
+                        <div class="img-wrap" (click)="talentDetails(data._id)">
+                            <!-- <img class="object-cover" src="assets/images/talentuser.svg"> -->
+                            <img *ngIf="!data?.profileImage" src="assets/images/talentuser.svg">
+                            <img *ngIf="data?.profileImage" src="{{data?.profileImage}}">
+
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">
+                                    <!-- Bobby Norton -->
+                                    {{ data.fullName}}
+                                </h2>  
+                                <div class="right-rating d-flex align-items-center">
+                                    <ng-template #star let-fill="fill">
+                                        <span class="star" [class.full]="fill === 100">
+                                        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                                        </span>
+                                    </ng-template>
+                                    <ngb-rating [(rate)]="data.averageRating" [starTemplate]="star" [readonly]="true" [max]="5">
+
+                                    </ngb-rating>
+
+
+                                    
+
+                                    <!-- <ngb-rating [(rate)]="currentRate" [starTemplate]="star" [readonly]="true" [max]="5"></ngb-rating> -->
+                                    <!-- <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg"> -->
+                                    <span class="fs14 text_color_lightgrey reviewcount">
+                                        <!-- 80 -->
+                                        {{ data?.allReviews?.length}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1 flex-wrap">
+                                <p class="light-gray my-1" *ngFor="let category of data.categories">
+                                    <!-- Designer -->
+                                    {{ category?.name}}
+                                </p>
+                                <!-- <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p> -->
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0">
+                                    <span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span>
+                                     <span> 
+                                         <!-- 26 -->
+                                         <!-- {{ data.}} -->
+                                        </span></h3>
+                                <h3 class="fs14 fw_semibold mb-0">
+                                    <span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span>
+                                     <span>
+                                         <!-- $34/hr -->
+                                         {{ data?.currencyType}} {{ data?.pricePerHour}}/hr
+                                        </span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span>
+                                     <span>
+                                         <!-- 5 year -->
+                                         {{ data?.experience}} years
+                                         </span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-talent-details']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser1.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-talent-details']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser2.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-talent-details']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-talent-details']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser1.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="talent-itm d-flex align-items-center" [routerLink]="['/client-talent-details']">
+                        <div class="img-wrap">
+                            <img class="object-cover" src="assets/images/talentuser2.svg">
+                        </div>
+                        <div class="content-sec flex-1">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h2 class="fs18 fw_semibold mb-0">Bobby Norton</h2>
+                                <div class="right-rating d-flex align-items-center">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/yellow_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <img src="assets/images/gray_star.svg">
+                                    <span class="fs14 text_color_lightgrey reviewcount">80</span>
+                                </div>
+                            </div>
+                            <div class="d-flex badge-row align-items-center my-2 py-1">
+                                <p class="light-gray mb-0">Designer</p>
+                                <p class="light-pink mb-0">Piano artist</p>
+                                <p class="light-pink mb-0">+2</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Age:</span> <span>26</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Price:</span> <span>$34/hr</span></h3>
+                                <h3 class="fs14 fw_semibold mb-0"><span class="labeltxt fw_normal text_color_lightgrey pe-2">Exp:</span> <span>5 years</span></h3>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="pagination-wrap d-flex align-items-center justify-content-between pt-3">
+                        <p class="fs14 fw_normal mb-0">Pages 1 To 234</p>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <!-- profile box -->
+            <div class="col-md-12 col-lg-4">
+                <div class="profile-sec cmn-card mb-4">
+                    <div class="border-wrap mx-auto my-4">
+                        <div class="img-wrap">
+                            <img *ngIf="!clientprofileData?.user?.profileImage" src="assets/images/profile_user.svg">
+                            <img *ngIf="clientprofileData?.user?.profileImage" src="{{clientprofileData?.user?.profileImage}}">
+                            <!-- <img src="assets/images/usergirl.svg"> -->
+                        </div>
+                    </div>
+                    <h2 class="text-center fs18 fw_semibold">
+                        <!-- Josua Csizmadia -->
+                        {{ clientprofileData?.user?.fullName }} 
+                    </h2>
+                    <p class="fs14 text_color_lightgrey fw_nolrmal m-0 text-center"><img style="margin-top: -3px" class="me-2"
+                        src="assets/images/post_location.svg"><span>
+                            <!-- California 95023, USA -->
+                            {{ clientprofileData?.user?.city }}  {{ clientprofileData?.user?.currentCountry }}
+                        </span></p>
+
+                    <div class="profile-subs d-flex align-items-center mt-3" *ngIf="subscriptionData?.type == 'free' ">
+                        <div class="img-wrap">
+                            <img src="assets/images/diamond.svg">
+                        </div>     
+                        <div class="content-sec">
+                            <p class="fs16 text-white mb-1">Free Subscriber </p>
+                            <h2 class="fs28 text-white mb-0">Upgrade Plan</h2>
+                        </div>
+                    </div>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Phone</h4>
+                    <p class="fs14 fw_light mb-0">
+                        <!-- +1 (256) 856 4568 -->
+                        {{ clientprofileData?.user?.mobileCountryCode }}  {{ clientprofileData?.user?.mobile }}
+                    </p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Gender</h4>
+                    <p class="fs14 fw_light mb-0">
+                        <!-- Male -->
+                        {{ clientprofileData?.user?.gender }}
+                    </p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">City</h4>
+                    <p class="fs14 fw_light mb-0">
+                        <!-- Baghdad -->
+                        {{ clientprofileData?.user?.city }}
+                    </p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Country From</h4>
+                    <p class="fs14 fw_light mb-0">
+                        <!-- Saudi Arabia -->
+                        {{ clientprofileData?.user?.fromCountry }}
+                    </p>
+                    <h4 class="fs16 fw_semibold mb-1 mt-4">Country living in</h4>
+                    <p class="fs14 fw_light mb-0">
+                        <!-- Iraq -->
+                        {{ clientprofileData?.user?.currentCountry }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Modal -->
+<div class="modal fade filter-modal" id="filter_modal" tabindex="-1 " aria-hidden="true ">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content facebook-modal">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_pink">Choose Categories +4</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+               <form [formGroup]="talentData">
+                <div class="interest_container talent d-flex flex-wrap">
+                    <!-- category checkbox -->
+                    <div class="category-check" *ngFor="let category of categories">
+                        <!-- <input type="checkbox" class="btn-check" id="{{ category.name}}"> -->
+                        <input class="btn-check" type="checkbox" formControlName="categoryselect" [value]="category._id" [checked]="category.checked"  id="{{category._id}}" (click)="select($event, category._id)" />
+                        <label for="{{category._id}}" class="btn"> 
+                            <img *ngIf="category?.icon" src="{{category?.icon}}">
+                            {{ category.name}}
+                        </label>
+                    </div>
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="singer">
+                        <label class="btn" 
+                            for="singer">🎙 Singer</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="manager">
+                        <label class="btn" 
+                            for="manager">📽 Production manager</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="designer">
+                        <label class="btn" 
+                            for="designer">🖌 Designer</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="writer">
+                        <label class="btn" 
+                            for="writer">📝 Script Writer</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="artist">
+                        <label class="btn" 
+                            for="artist">🎹 Piano artist</label>
+                    </div> -->
+
+                     <!-- category checkbox -->
+                     <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="photography">
+                        <label class="btn" 
+                            for="photography">📷 Photography</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="film">
+                        <label class="btn" 
+                            for="film">🎬 Film Making</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="event">
+                        <label class="btn" 
+                            for="event">🎉 Event planner</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="fashion">
+                        <label class="btn" 
+                            for="fashion">👠 Fashion designer</label>
+                    </div> -->
+
+                     <!-- category checkbox -->
+                     <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="interior">
+                        <label class="btn" 
+                            for="interior">💠 Interior designer</label>
+                    </div> -->
+
+                    <!-- category checkbox -->
+                    <!-- <div class="category-check">
+                        <input type="checkbox" class="btn-check"
+                            id="tattoo">
+                        <label class="btn" 
+                            for="tattoo">💯 Tattoo artist</label>
+                    </div> -->
+
+                </div>
+                <button class="btn btn-primary mx-auto d-block mt-3" (click) = "saveChanges()">Save</button>
+            </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
